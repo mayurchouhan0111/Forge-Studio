@@ -183,21 +183,21 @@ const Footer = () => {
                 whileHover={{ x: 5 }}
               >
                 <Mail className="w-5 h-5 text-purple-400 group-hover:text-purple-300" />
-                <span>hello@devforge.com</span>
+                <span>mayurchouhan8055@gamail.com</span>
               </motion.div>
               <motion.div 
                 className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors group"
                 whileHover={{ x: 5 }}
               >
                 <Phone className="w-5 h-5 text-cyan-400 group-hover:text-cyan-300" />
-                <span>+1 (555) 123-4567</span>
+                <span>+916263850508</span>
               </motion.div>
               <motion.div 
                 className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors group"
                 whileHover={{ x: 5 }}
               >
                 <MapPin className="w-5 h-5 text-pink-400 group-hover:text-pink-300" />
-                <span>San Francisco, CA</span>
+                <span>India, Indore</span>
               </motion.div>
             </div>
           </motion.div>

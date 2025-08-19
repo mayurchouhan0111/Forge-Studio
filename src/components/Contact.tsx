@@ -102,15 +102,15 @@ const Contact = () => {
         >
           <div className="flex items-center gap-2 text-purple-400">
             <Mail className="w-5 h-5" />
-            <span>agency@email.com</span>
+            <span>mayurchouhan8055@gamail.com</span>
           </div>
           <div className="flex items-center gap-2 text-cyan-400">
             <Phone className="w-5 h-5" />
-            <span>+1 234 567 8901</span>
+            <span>+916263850508</span>
           </div>
           <div className="hidden sm:flex items-center gap-2 text-pink-400">
             <MapPin className="w-5 h-5" />
-            <span>San Francisco, CA</span>
+            <span>India, Indore</span>
           </div>
         </motion.div>
 
