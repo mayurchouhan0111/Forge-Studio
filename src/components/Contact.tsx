@@ -30,7 +30,7 @@ const Contact = () => {
     setSubmitStatus('');
 
     try {
-      const response = await fetch('http://localhost:3003/api/submit-form', {
+      const response = await fetch('https://forge-studio.onrender.com/api/submit-form', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

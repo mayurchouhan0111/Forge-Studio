@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
-import { Menu, X, Zap, Sparkles } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
+import logo from '../asset/image.png';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Header: React.FC = () => {
@@ -67,39 +68,7 @@ const Header: React.FC = () => {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          <motion.div 
-            className="relative w-12 h-12 bg-gradient-to-br from-purple-500 to-cyan-500 rounded-xl flex items-center justify-center overflow-hidden"
-            animate={{ 
-              boxShadow: [
-                '0 0 20px rgba(139, 92, 246, 0.3)',
-                '0 0 40px rgba(6, 182, 212, 0.5)',
-                '0 0 20px rgba(139, 92, 246, 0.3)'
-              ]
-            }}
-            transition={{ duration: 2, repeat: Infinity }}
-          >
-            <Zap className="w-6 h-6 text-white relative z-10" />
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-purple-600 to-cyan-600"
-              animate={{ rotate: 360 }}
-              transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-            />
-          </motion.div>
-          <motion.span 
-            className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent"
-            whileHover={{ 
-              backgroundSize: '200% 200%',
-              backgroundPosition: 'right center'
-            }}
-          >
-            DevForge
-          </motion.span>
-          <motion.div
-            animate={{ rotate: [0, 10, -10, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          >
-            <Sparkles className="w-5 h-5 text-yellow-400" />
-          </motion.div>
+          <img src={logo} alt="Company Logo" className="h-12 w-auto" />
         </motion.a>
 
         {/* Desktop Navigation with crazy hover effects */}
