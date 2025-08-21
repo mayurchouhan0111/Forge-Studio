@@ -30,12 +30,12 @@ const Contact = () => {
     setSubmitStatus('');
 
     try {
-      const response = await fetch('https://script.google.com/macros/s/AKfycbyVgpOCzgZldGhzSn1B1eAWR6ZTZoBuBIHYcmarT7HtRc1oNf48Y2fxviQXDJQzD7Mu/exec', {
+      const response = await fetch('http://localhost:3003/api/submit-form', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
+          'Content-Type': 'application/json',
         },
-        body: new URLSearchParams(formData).toString()
+        body: JSON.stringify(formData)
       });
 
       if (response.ok) {

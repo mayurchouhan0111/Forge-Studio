@@ -5,6 +5,7 @@ import About from '../components/About';
 import Services from '../components/Services';
 import Testimonials from '../components/Testimonials';
 import Contact from '../components/Contact';
+import VoiceAssistant from '../components/VoiceAssistant';
 
 const HomePage = () => {
   const pageVariants = {
@@ -72,6 +73,9 @@ const HomePage = () => {
       
       {/* Contact Section */}
       <Contact />
+      
+      {/* Voice Assistant */}
+      <VoiceAssistant />
     </motion.main>
   );
 };
