@@ -6,6 +6,11 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        'sans': ['Inter', 'system-ui'],
+        'display': ['Poppins', 'sans-serif'],
+        'mono': ['JetBrains Mono', 'monospace']
+      },
       colors: {
         primary: '#050816',
         secondary: '#aaa6c3',

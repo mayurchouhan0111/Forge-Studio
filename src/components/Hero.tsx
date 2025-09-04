@@ -80,15 +80,15 @@ const Hero = () => {
 
         {/* Main title with crazy animations */}
         <motion.h1 
-          className="text-6xl md:text-8xl font-black mb-6 leading-tight"
+          className="text-6xl md:text-8xl font-display font-black mb-6 leading-tight"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.8 }}
         >
-          <span className="text-white">We Build</span>
+          <span className="text-white font-display">We Build</span>
           <br />
           <motion.span 
-            className="bg-gradient-to-r from-purple-400 to-cyan-300 bg-clip-text text-transparent bg-300% animate-gradient"
+            className="bg-gradient-to-r from-purple-400 to-cyan-300 bg-clip-text text-transparent bg-300% animate-gradient font-display"
             animate={{ 
               backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
             }}
@@ -100,7 +100,7 @@ const Hero = () => {
 
         {/* Subtitle with typewriter effect */}
         <motion.p 
-          className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto mb-12 leading-relaxed text-center"
+          className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto mb-12 leading-relaxed text-center font-sans"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.8 }}
@@ -129,7 +129,7 @@ const Hero = () => {
               whileHover={{ x: '0%' }}
               transition={{ duration: 0.3 }}
             />
-            <span className="relative z-10 flex items-center gap-2">
+            <span className="relative z-10 flex items-center gap-2 font-sans font-bold">
               Start Your Project
               <motion.div
                 animate={{ y: [0, 3, 0] }}
@@ -141,7 +141,7 @@ const Hero = () => {
           </motion.button>
           
           <motion.button 
-            className="group flex items-center gap-3 px-8 py-4 border-2 border-purple-500/50 text-white rounded-2xl font-bold hover:bg-white/10 backdrop-blur-xl transition-all duration-300"
+            className="group flex items-center gap-3 px-8 py-4 border-2 border-purple-500/50 text-white rounded-2xl font-sans font-bold hover:bg-white/10 backdrop-blur-xl transition-all duration-300"
             whileHover={{ 
               scale: 1.05,
               borderColor: '#a855f7',

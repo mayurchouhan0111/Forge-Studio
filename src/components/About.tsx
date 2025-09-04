@@ -31,7 +31,7 @@ const About = () => (
       {/* Two-column layout */}
       <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
         {/* Left column - Content */}
-        <motion.div
+          className="text-5xl md:text-6xl font-display font-black mb-6 bg-gradient-to-r from-purple-400 to-cyan-300 bg-clip-text text-transparent"
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
@@ -93,8 +93,8 @@ const About = () => (
                 <feature.icon className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h3 className="text-white font-semibold mb-2">{feature.title}</h3>
-                <p className="text-gray-400 text-sm">{feature.desc}</p>
+               <h3 className="text-white font-display font-semibold mb-2">{feature.title}</h3>
+               <p className="text-gray-400 text-sm font-sans">{feature.desc}</p>
               </div>
             </motion.div>
           ))}
@@ -158,7 +158,7 @@ const About = () => (
           Our Mission
         </motion.h3>
         <motion.p
-          className="text-lg md:text-xl text-gray-300 text-center leading-relaxed"
+          className="text-lg text-gray-400 mb-8 leading-relaxed font-sans"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}

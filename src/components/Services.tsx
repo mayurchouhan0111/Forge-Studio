@@ -60,7 +60,7 @@ const Services = () => {
           viewport={{ once: true }}
         >
           <motion.h2 
-            className="text-5xl md:text-6xl font-black mb-6"
+            className="text-5xl md:text-6xl font-display font-black mb-6"
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -69,7 +69,7 @@ const Services = () => {
             <span className="bg-gradient-to-r from-purple-400 to-cyan-300 bg-clip-text text-transparent">Our Digital Solutions</span>
           </motion.h2>
           <motion.p 
-            className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed"
+            className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-sans"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -132,10 +132,10 @@ const Services = () => {
                 </motion.div>
 
                 {/* Content */}
-                <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-purple-400 transition-colors">
+                <h3 className="text-2xl font-display font-bold text-white mb-4 group-hover:text-purple-400 transition-colors">
                   {service.title}
                 </h3>
-                <p className="text-gray-400 mb-6 leading-relaxed">
+                <p className="text-gray-400 mb-6 leading-relaxed font-sans">
                   {service.description}
                 </p>
 
