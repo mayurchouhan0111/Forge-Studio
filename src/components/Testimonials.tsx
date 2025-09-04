@@ -55,7 +55,7 @@ const Testimonials = () => (
     <div className="max-w-4xl mx-auto z-10 relative">
       {/* Section Title */}
       <motion.h2
-        className="text-center text-5xl md:text-6xl font-black mb-16 bg-gradient-to-r from-purple-400 to-cyan-300 bg-clip-text text-transparent"
+        className="text-center text-5xl md:text-6xl font-display font-black mb-16 bg-gradient-to-r from-purple-400 to-cyan-300 bg-clip-text text-transparent"
         initial="initial"
         whileInView="animate"
         variants={variants}
@@ -116,7 +116,7 @@ const Testimonials = () => (
             
             {/* Feedback */}
             <motion.p
-              className="text-lg text-gray-200 font-medium text-center mb-6 leading-relaxed"
+              className="text-lg text-gray-200 font-sans font-medium text-center mb-6 leading-relaxed"
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.23 }}
@@ -127,10 +127,10 @@ const Testimonials = () => (
             
             {/* Client info */}
             <div className="text-center">
-              <div className="font-semibold text-white text-lg mb-1">
+              <div className="font-display font-semibold text-white text-lg mb-1">
                 {testimonial.name}
               </div>
-              <div className="text-purple-400 text-sm">
+              <div className="text-purple-400 text-sm font-sans">
                 {testimonial.title} at {testimonial.company}
               </div>
             </div>

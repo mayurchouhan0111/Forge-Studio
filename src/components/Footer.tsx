@@ -80,9 +80,9 @@ const Footer = () => {
               >
                 <Zap className="w-6 h-6 text-white" />
               </motion.div>
-              <h3 className="text-2xl font-bold text-white">DevForge</h3>
+              <h3 className="text-2xl font-display font-bold text-white">DevForge</h3>
             </motion.div>
-            <p className="text-gray-400 leading-relaxed">
+            <p className="text-gray-400 leading-relaxed font-sans">
               Crafting digital experiences that transform businesses and inspire innovation through cutting-edge technology.
             </p>
             <div className="flex space-x-4">

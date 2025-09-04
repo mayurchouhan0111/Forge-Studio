@@ -72,7 +72,7 @@ const Contact = () => {
 
       <div className="max-w-6xl mx-auto z-10 relative">
         <motion.h2
-          className="text-center text-5xl md:text-6xl font-black mb-8 bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent"
+          className="text-center text-5xl md:text-6xl font-display font-black mb-8 bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent"
           variants={containerVariants}
           initial="initial"
           whileInView="animate"
@@ -83,13 +83,13 @@ const Contact = () => {
         </motion.h2>
 
         <motion.p
-          className="text-center text-lg text-gray-300 mb-12"
+          className="text-center text-lg text-gray-300 mb-12 font-sans"
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
           viewport={{ once: true }}
         >
-          Got a project or inquiry? Let’s build something incredible together!
+          Got a project or inquiry? Let's build something incredible together!
         </motion.p>
 
         {/* Two-column layout */}
@@ -103,7 +103,7 @@ const Contact = () => {
             viewport={{ once: true }}
           >
             <div>
-              <h3 className="text-2xl font-bold text-white mb-6">Get in Touch</h3>
+              <h3 className="text-2xl font-display font-bold text-white mb-6">Get in Touch</h3>
               <div className="space-y-6">
                 <motion.div 
                   className="flex items-center gap-4 text-gray-300 hover:text-white transition-colors group p-4 bg-white/5 backdrop-blur-xl rounded-2xl border border-purple-500/10 hover:border-purple-500/30"
