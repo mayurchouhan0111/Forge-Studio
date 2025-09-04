@@ -31,12 +31,7 @@ const About = () => (
       {/* Two-column layout */}
       <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
         {/* Left column - Content */}
-          className="text-5xl md:text-6xl font-display font-black mb-6 bg-gradient-to-r from-purple-400 to-cyan-300 bg-clip-text text-transparent"
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-        >
+        <div>
           <motion.h2
             className="text-5xl md:text-6xl font-black mb-6 bg-gradient-to-r from-purple-400 to-cyan-300 bg-clip-text text-transparent"
             initial={{ opacity: 0, y: 30 }}
@@ -64,7 +59,7 @@ const About = () => (
           >
             Our mission is to help businesses succeed online through <span className="text-cyan-400 font-semibold">innovative design</span> and <span className="font-semibold text-purple-400">cutting-edge technology</span>.
           </motion.p>
-        </motion.div>
+        </div>
 
         {/* Right column - Feature highlights */}
         <motion.div
@@ -93,7 +88,7 @@ const About = () => (
                 <feature.icon className="w-6 h-6 text-white" />
               </div>
               <div>
-               <h3 className="text-white font-display font-semibold mb-2">{feature.title}</h3>
+               <h3 className="text-white font-semibold mb-2">{feature.title}</h3>
                <p className="text-gray-400 text-sm font-sans">{feature.desc}</p>
               </div>
             </motion.div>

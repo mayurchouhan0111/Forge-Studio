@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import { Menu, X, Zap, Sparkles } from 'lucide-react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 
@@ -6,21 +6,18 @@ const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activePath, setActivePath] = useState('#home');
-  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
   const [scrollProgress, setScrollProgress] = useState(0);
 
   const { scrollY } = useScroll();
-  const headerOpacity = useTransform(scrollY, [0, 100], [0.95, 0.98]);
   const logoScale = useTransform(scrollY, [0, 100], [1, 0.8]);
 
-  const navigation = useMemo(() => [
+  const navigation = [
     { name: 'Home', path: '#home', color: 'from-purple-400 to-purple-600' },
     { name: 'About', path: '#about', color: 'from-blue-400 to-blue-600' },
     { name: 'Services', path: '#services', color: 'from-cyan-400 to-cyan-600' },
     { name: 'Testimonials', path: '#testimonials', color: 'from-pink-400 to-pink-600' },
     { name: 'Contact', path: '#contact', color: 'from-green-400 to-green-600' },
-  ], []);
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,14 +27,6 @@ const Header: React.FC = () => {
       
       setScrollProgress(progress);
       setIsScrolled(currentScrollY > 20);
-      
-      // Smart header visibility
-      if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        setIsHeaderVisible(false);
-      } else {
-        setIsHeaderVisible(true);
-      }
-      setLastScrollY(currentScrollY);
 
       // Active section detection
       const sections = navigation.map(item => item.path.substring(1));
@@ -52,20 +41,12 @@ const Header: React.FC = () => {
       }
     };
 
-    const handleMouseMove = (e: MouseEvent) => {
-      if (e.clientY < 100) {
-        setIsHeaderVisible(true);
-      }
-    };
-
     window.addEventListener('scroll', handleScroll);
-    window.addEventListener('mousemove', handleMouseMove);
     
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('mousemove', handleMouseMove);
     };
-  }, [navigation, lastScrollY]);
+  }, []);
 
   const handleScrollLink = (e: React.MouseEvent, path: string) => {
     e.preventDefault();
@@ -103,11 +84,6 @@ const Header: React.FC = () => {
             : 'bg-transparent'
         }`}
         initial={{ y: 0 }}
-        animate={{ 
-          y: isHeaderVisible ? 0 : -100,
-          opacity: isHeaderVisible ? headerOpacity : 0
-        }}
-        transition={{ duration: 0.3, ease: "easeInOut" }}
       >
         <nav className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
           {/* Morphing Logo */}
