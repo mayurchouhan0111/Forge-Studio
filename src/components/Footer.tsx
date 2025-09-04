@@ -30,7 +30,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="relative bg-gradient-to-br from-black via-gray-900 to-black overflow-hidden">
+    <footer className="relative bg-gradient-to-br from-slate-950 via-purple-950 to-slate-950 overflow-hidden">
       {/* Animated background elements */}
       <div className="absolute inset-0 opacity-20">
         <motion.div
@@ -221,8 +221,8 @@ const Footer = () => {
           viewport={{ once: true }}
         >
           <p className="text-gray-400 text-sm">
-            &copy; {currentYear} DevForge. All rights reserved. 
-            <span className="ml-2 text-purple-400">Crafted with</span>
+            &copy; {currentYear} DevForge. All rights reserved.
+            <span className="ml-2 text-purple-400">Made with</span>
             <motion.span
               className="inline-block mx-1 text-red-500"
               animate={{ scale: [1, 1.2, 1] }}
@@ -230,7 +230,7 @@ const Footer = () => {
             >
               <Heart className="w-4 h-4 inline fill-current" />
             </motion.span>
-            <span className="text-purple-400">by DevForge Team</span>
+            <span className="text-purple-400">in India</span>
           </p>
           
           {/* Scroll to Top Button */}

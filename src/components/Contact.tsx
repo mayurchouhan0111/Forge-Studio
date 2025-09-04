@@ -54,7 +54,7 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="py-24 px-4 md:px-8 bg-gradient-to-br from-black via-gray-900 to-black relative overflow-hidden"
+      className="py-24 px-4 md:px-8 bg-gradient-to-br from-slate-950 via-purple-950 to-slate-950 relative overflow-hidden"
     >
       {/* Blurred accent blobs */}
       <motion.div
@@ -70,7 +70,7 @@ const Contact = () => {
         transition={{ duration: 13, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      <div className="max-w-xl mx-auto z-10 relative">
+      <div className="max-w-6xl mx-auto z-10 relative">
         <motion.h2
           className="text-center text-5xl md:text-6xl font-black mb-8 bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent"
           variants={containerVariants}
@@ -92,119 +92,165 @@ const Contact = () => {
           Got a project or inquiry? Let’s build something incredible together!
         </motion.p>
 
-        {/* Contact Info Row */}
-        <motion.div
-          className="flex justify-center gap-4 mb-14"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          viewport={{ once: true }}
-        >
-          <div className="flex items-center gap-2 text-purple-400">
-            <Mail className="w-5 h-5" />
-            <span>mayurchouhan8055@gamail.com</span>
-          </div>
-          <div className="flex items-center gap-2 text-cyan-400">
-            <Phone className="w-5 h-5" />
-            <span>+916263850508</span>
-          </div>
-          <div className="hidden sm:flex items-center gap-2 text-pink-400">
-            <MapPin className="w-5 h-5" />
-            <span>India, Indore</span>
-          </div>
-        </motion.div>
+        {/* Two-column layout */}
+        <div className="grid lg:grid-cols-2 gap-16 items-start">
+          {/* Left column - Contact Info */}
+          <motion.div
+            className="space-y-8"
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            <div>
+              <h3 className="text-2xl font-bold text-white mb-6">Get in Touch</h3>
+              <div className="space-y-6">
+                <motion.div 
+                  className="flex items-center gap-4 text-gray-300 hover:text-white transition-colors group p-4 bg-white/5 backdrop-blur-xl rounded-2xl border border-purple-500/10 hover:border-purple-500/30"
+                  whileHover={{ x: 5 }}
+                >
+                  <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-700 rounded-xl flex items-center justify-center">
+                    <Mail className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <p className="font-semibold text-white">Email</p>
+                    <p className="text-purple-400">mayurchouhan8055@gmail.com</p>
+                  </div>
+                </motion.div>
+                
+                <motion.div 
+                  className="flex items-center gap-4 text-gray-300 hover:text-white transition-colors group p-4 bg-white/5 backdrop-blur-xl rounded-2xl border border-purple-500/10 hover:border-purple-500/30"
+                  whileHover={{ x: 5 }}
+                >
+                  <div className="w-12 h-12 bg-gradient-to-br from-cyan-500 to-cyan-700 rounded-xl flex items-center justify-center">
+                    <Phone className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <p className="font-semibold text-white">Phone</p>
+                    <p className="text-cyan-400">+916263850508</p>
+                  </div>
+                </motion.div>
+                
+                <motion.div 
+                  className="flex items-center gap-4 text-gray-300 hover:text-white transition-colors group p-4 bg-white/5 backdrop-blur-xl rounded-2xl border border-purple-500/10 hover:border-purple-500/30"
+                  whileHover={{ x: 5 }}
+                >
+                  <div className="w-12 h-12 bg-gradient-to-br from-pink-500 to-pink-700 rounded-xl flex items-center justify-center">
+                    <MapPin className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <p className="font-semibold text-white">Location</p>
+                    <p className="text-pink-400">Indore, India</p>
+                  </div>
+                </motion.div>
+              </div>
+            </div>
+          </motion.div>
 
-        {/* Contact Form Card */}
-        <motion.form
-          onSubmit={handleSubmit}
-          className="bg-gradient-to-br from-gray-900/70 to-black/80 border border-purple-500/10 backdrop-blur-xl rounded-3xl shadow-xl p-8 flex flex-col gap-6"
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          viewport={{ once: true }}
-        >
-          <motion.div
-            className="flex flex-col gap-4"
-            initial={{ opacity: 0, x: -20 }}
+          {/* Right column - Contact Form */}
+          <motion.form
+            onSubmit={handleSubmit}
+            className="bg-white/10 backdrop-blur-xl border border-purple-500/20 rounded-3xl shadow-xl p-8 flex flex-col gap-6 hover:shadow-2xl hover:shadow-purple-500/10 transition-all duration-300"
+            initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
             viewport={{ once: true }}
           >
-            <label htmlFor="name" className="text-gray-300 font-semibold">
-              Name
-            </label>
-            <input
-              id="name"
-              name="name"
-              type="text"
-              required
-              autoComplete="off"
-              className="bg-black/50 rounded-xl border border-purple-500/30 py-3 px-4 text-white focus:border-purple-400 transition-all"
-              placeholder="Your Name"
-              value={formData.name}
-              onChange={handleChange}
-            />
-          </motion.div>
-          <motion.div
-            className="flex flex-col gap-4"
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <label htmlFor="email" className="text-gray-300 font-semibold">
-              Email
-            </label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              required
-              autoComplete="off"
-              className="bg-black/50 rounded-xl border border-cyan-500/30 py-3 px-4 text-white focus:border-cyan-400 transition-all"
-              placeholder="you@email.com"
-              value={formData.email}
-              onChange={handleChange}
-            />
-          </motion.div>
-          <motion.div
-            className="flex flex-col gap-4"
-            initial={{ opacity: 0, x: -16 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <label htmlFor="message" className="text-gray-300 font-semibold">
-              Message
-            </label>
-            <textarea
-              id="message"
-              name="message"
-              rows={5}
-              required
-              className="bg-black/50 rounded-xl border border-pink-500/30 py-3 px-4 text-white focus:border-pink-400 transition-all resize-none"
-              placeholder="Type your message here..."
-              value={formData.message}
-              onChange={handleChange}
-            />
-          </motion.div>
-          <motion.button
-            type="submit"
-            disabled={isSubmitting}
-            className="mt-4 px-8 py-4 bg-gradient-to-r from-purple-600 to-cyan-600 text-white font-bold rounded-2xl shadow-2xl flex items-center gap-2 hover:scale-105 hover:bg-gradient-to-r hover:from-cyan-600 hover:to-purple-600 transition-all disabled:opacity-50"
-            whileHover={{ scale: 1.07 }}
-            whileTap={{ scale: 0.97 }}
-          >
-            {isSubmitting ? 'Sending...' : 'Send Message'}
-            <Send className="w-5 h-5 ml-2" />
-          </motion.button>
-          {submitStatus === 'success' && (
-            <p className="text-green-500 text-center">Message sent successfully!</p>
-          )}
-          {submitStatus === 'error' && (
-            <p className="text-red-500 text-center">Failed to send message. Please try again.</p>
-          )}
-        </motion.form>
+            <motion.div
+              className="flex flex-col gap-4"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <label htmlFor="name" className="text-gray-300 font-semibold">
+                Name
+              </label>
+              <input
+                id="name"
+                name="name"
+                type="text"
+                required
+                autoComplete="off"
+                className="bg-white/5 backdrop-blur-xl rounded-xl border border-purple-500/30 py-4 px-4 text-white focus:border-purple-400 focus:bg-white/10 transition-all focus:outline-none"
+                placeholder="Your Name"
+                value={formData.name}
+                onChange={handleChange}
+              />
+            </motion.div>
+            <motion.div
+              className="flex flex-col gap-4"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.7 }}
+              viewport={{ once: true }}
+            >
+              <label htmlFor="email" className="text-gray-300 font-semibold">
+                Email
+              </label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                required
+                autoComplete="off"
+                className="bg-white/5 backdrop-blur-xl rounded-xl border border-cyan-500/30 py-4 px-4 text-white focus:border-cyan-400 focus:bg-white/10 transition-all focus:outline-none"
+                placeholder="you@email.com"
+                value={formData.email}
+                onChange={handleChange}
+              />
+            </motion.div>
+            <motion.div
+              className="flex flex-col gap-4"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <label htmlFor="message" className="text-gray-300 font-semibold">
+                Message
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                rows={6}
+                required
+                className="bg-white/5 backdrop-blur-xl rounded-xl border border-pink-500/30 py-4 px-4 text-white focus:border-pink-400 focus:bg-white/10 transition-all resize-none focus:outline-none"
+                placeholder="Tell us about your project..."
+                value={formData.message}
+                onChange={handleChange}
+              />
+            </motion.div>
+            <motion.button
+              type="submit"
+              disabled={isSubmitting}
+              className="mt-4 px-8 py-4 bg-gradient-to-r from-purple-600 to-cyan-600 text-white font-bold rounded-2xl shadow-2xl flex items-center justify-center gap-2 hover:scale-105 hover:shadow-purple-500/30 transition-all disabled:opacity-50"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              {isSubmitting ? 'Sending...' : 'Send Message'}
+              <Send className="w-5 h-5" />
+            </motion.button>
+            {submitStatus === 'success' && (
+              <motion.p 
+                className="text-green-400 text-center font-semibold"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+              >
+                ✅ Message sent successfully!
+              </motion.p>
+            )}
+            {submitStatus === 'error' && (
+              <motion.p 
+                className="text-red-400 text-center font-semibold"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+              >
+                ❌ Failed to send message. Please try again.
+              </motion.p>
+            )}
+          </motion.form>
+        </div>
       </div>
     </section>
   );

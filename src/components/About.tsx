@@ -11,7 +11,7 @@ const stats = [
 const About = () => (
   <section
     id="about"
-    className="py-24 px-4 md:px-8 bg-gradient-to-br from-gray-900 via-black to-gray-900 relative overflow-hidden"
+    className="py-24 px-4 md:px-8 bg-gradient-to-br from-slate-950 via-purple-950 to-slate-950 relative overflow-hidden"
   >
     {/* Animated background blobs */}
     <motion.div
@@ -28,28 +28,78 @@ const About = () => (
     />
 
     <div className="max-w-5xl mx-auto z-10 relative">
-      {/* Section Heading */}
-      <motion.h2
-        className="text-center text-5xl md:text-6xl font-black mb-6 bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-      >
-        About Us
-      </motion.h2>
-      <motion.p
-        className="text-center text-xl text-gray-300 mb-14 max-w-2xl mx-auto leading-relaxed"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
-        viewport={{ once: true }}
-      >
-        We are a team of passionate designers and developers dedicated to creating <span className="text-purple-400 font-semibold">stunning and functional</span> websites.
-        <br />
-        Our mission is to help businesses succeed online through <span className="text-cyan-400 font-semibold">innovative design</span> and <span className="font-semibold text-purple-400">cutting-edge technology</span>.
-      </motion.p>
+      {/* Two-column layout */}
+      <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
+        {/* Left column - Content */}
+        <motion.div
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
+          <motion.h2
+            className="text-5xl md:text-6xl font-black mb-6 bg-gradient-to-r from-purple-400 to-cyan-300 bg-clip-text text-transparent"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            Crafting Digital Excellence
+          </motion.h2>
+          <motion.p
+            className="text-xl text-gray-300 mb-8 leading-relaxed"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            We are a team of passionate designers and developers dedicated to creating <span className="text-purple-400 font-semibold">stunning and functional</span> digital experiences.
+          </motion.p>
+          <motion.p
+            className="text-lg text-gray-400 mb-8 leading-relaxed"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            viewport={{ once: true }}
+          >
+            Our mission is to help businesses succeed online through <span className="text-cyan-400 font-semibold">innovative design</span> and <span className="font-semibold text-purple-400">cutting-edge technology</span>.
+          </motion.p>
+        </motion.div>
 
+        {/* Right column - Feature highlights */}
+        <motion.div
+          className="space-y-6"
+          initial={{ opacity: 0, x: 50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          viewport={{ once: true }}
+        >
+          {[
+            { icon: Award, title: 'Premium Quality', desc: 'Every project meets the highest standards' },
+            { icon: Users, title: 'Expert Team', desc: 'Skilled professionals with years of experience' },
+            { icon: Rocket, title: 'Fast Delivery', desc: 'Quick turnaround without compromising quality' },
+            { icon: Shield, title: 'Reliable Support', desc: '24/7 support and maintenance services' }
+          ].map((feature, index) => (
+            <motion.div
+              key={feature.title}
+              className="flex items-start gap-4 p-6 bg-white/10 backdrop-blur-xl border border-purple-500/20 rounded-2xl hover:border-purple-500/40 transition-all duration-300"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
+              viewport={{ once: true }}
+              whileHover={{ scale: 1.02 }}
+            >
+              <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-cyan-500 rounded-xl flex items-center justify-center flex-shrink-0">
+                <feature.icon className="w-6 h-6 text-white" />
+              </div>
+              <div>
+                <h3 className="text-white font-semibold mb-2">{feature.title}</h3>
+                <p className="text-gray-400 text-sm">{feature.desc}</p>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
       {/* Animated stats grid */}
       <motion.div
         className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-20"
@@ -91,7 +141,7 @@ const About = () => (
 
       {/* Mission Statement - Highlighted Card */}
       <motion.div
-        className="bg-gradient-to-r from-purple-900/20 to-cyan-900/20 backdrop-blur-sm border border-purple-500/20 rounded-3xl p-10 md:p-12 max-w-3xl mx-auto shadow-xl"
+        className="bg-white/10 backdrop-blur-xl border border-purple-500/20 rounded-3xl p-10 md:p-12 max-w-3xl mx-auto shadow-xl hover:shadow-2xl hover:shadow-purple-500/10 transition-all duration-300"
         initial={{ opacity: 0, scale: 0.95 }}
         whileInView={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8, delay: 0.2 }}

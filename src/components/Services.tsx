@@ -4,47 +4,33 @@ import { Code, Palette, Search, Smartphone, Database, Shield, ArrowRight } from 
 const Services = () => {
   const services = [
     { 
-      title: 'Web Development', 
-      description: 'Fast, secure, and scalable websites built with cutting-edge technologies and modern frameworks.',
+      title: 'Web Development 💻', 
+      description: 'Fast, secure, scalable websites built with React, Next.js, and Node.js technologies.',
       icon: Code,
       color: 'purple',
-      features: ['React/Next.js', 'Node.js Backend', 'Database Integration', 'API Development']
+      features: ['React & Next.js', 'Node.js Backend', 'Database Integration', 'API Development']
     },
     { 
-      title: 'UI/UX Design', 
-      description: 'Stunning and user-friendly designs that convert visitors into customers with intuitive experiences.',
+      title: 'UI/UX Design 🎨', 
+      description: 'Beautiful designs that convert visitors into customers with intuitive user experiences.',
       icon: Palette,
       color: 'cyan',
       features: ['User Research', 'Wireframing', 'Prototyping', 'Visual Design']
     },
     { 
-      title: 'SEO Optimization', 
-      description: 'Improve your search engine rankings and attract more customers with proven SEO strategies.',
+      title: 'SEO Optimization 🔍', 
+      description: 'Rank higher and get found online with technical SEO and content strategy.',
       icon: Search,
       color: 'pink',
-      features: ['Keyword Research', 'Technical SEO', 'Content Strategy', 'Analytics']
+      features: ['Technical SEO', 'Content Strategy', 'Keyword Research', 'Analytics']
     },
     { 
-      title: 'Mobile Apps', 
-      description: 'Native and cross-platform mobile applications that deliver exceptional user experiences.',
+      title: 'Mobile Apps 📱', 
+      description: 'Native mobile experiences for iOS & Android with exceptional performance.',
       icon: Smartphone,
       color: 'green',
-      features: ['React Native', 'Flutter', 'iOS Development', 'Android Development']
+      features: ['iOS Development', 'Android Development', 'React Native', 'Flutter']
     },
-    { 
-      title: 'Backend Systems', 
-      description: 'Robust and scalable backend infrastructure to power your applications and handle growth.',
-      icon: Database,
-      color: 'blue',
-      features: ['Cloud Architecture', 'API Design', 'Database Optimization', 'Microservices']
-    },
-    { 
-      title: 'Security & Performance', 
-      description: 'Enterprise-level security measures and performance optimization for maximum efficiency.',
-      icon: Shield,
-      color: 'orange',
-      features: ['Security Audits', 'Performance Testing', 'Load Balancing', 'Monitoring']
-    }
   ];
 
   const colorClasses = {
@@ -57,7 +43,7 @@ const Services = () => {
   };
 
   return (
-    <section id="services" className="py-24 bg-black relative overflow-hidden">
+    <section id="services" className="py-24 bg-gradient-to-br from-slate-950 via-purple-950 to-slate-950 relative overflow-hidden">
       {/* Background elements */}
       <div className="absolute inset-0">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full filter blur-3xl"></div>
@@ -80,8 +66,7 @@ const Services = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <span className="text-white">Our </span>
-            <span className="bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">Services</span>
+            <span className="bg-gradient-to-r from-purple-400 to-cyan-300 bg-clip-text text-transparent">Our Digital Solutions</span>
           </motion.h2>
           <motion.p 
             className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed"
@@ -90,7 +75,7 @@ const Services = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             viewport={{ once: true }}
           >
-            Comprehensive digital solutions to transform your business and drive success in the digital age
+            Comprehensive services to elevate your digital presence and drive business growth
           </motion.p>
         </motion.div>
 
@@ -106,7 +91,7 @@ const Services = () => {
               viewport={{ once: true }}
               whileHover={{ y: -10 }}
             >
-              <div className="relative h-full p-8 bg-gradient-to-br from-gray-900/80 to-black/80 backdrop-blur-sm border border-gray-800 rounded-3xl overflow-hidden group-hover:border-purple-500/50 transition-all duration-500">
+              <div className="relative h-full p-8 bg-white/10 backdrop-blur-xl border border-purple-500/20 rounded-3xl overflow-hidden group-hover:border-purple-500/50 transition-all duration-500 hover:shadow-2xl hover:shadow-purple-500/10">
                 {/* Animated background gradient */}
                 <motion.div 
                   className={`absolute inset-0 bg-gradient-to-br ${colorClasses[service.color]} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}

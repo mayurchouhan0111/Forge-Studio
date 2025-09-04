@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowDown, Code, Sparkles, Rocket, Zap, Star } from 'lucide-react';
+import { ArrowDown, Code, Sparkles, Rocket, Zap, Star, Play } from 'lucide-react';
 
 const Hero = () => {
   const floatingIcons = [
@@ -11,7 +11,7 @@ const Hero = () => {
   ];
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-950 via-purple-950 to-slate-950">
       {/* Animated background grid */}
       <div className="absolute inset-0 opacity-20">
         <div className="grid grid-cols-20 grid-rows-20 w-full h-full gap-1">
@@ -60,7 +60,7 @@ const Hero = () => {
       <div className="relative z-10 max-w-6xl mx-auto px-6 text-center">
         {/* Floating badge */}
         <motion.div
-          className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-500/20 to-cyan-500/20 border border-purple-500/30 rounded-full px-6 py-3 mb-8 backdrop-blur-sm"
+          className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-xl border border-purple-500/30 rounded-full px-6 py-3 mb-8"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.3, duration: 0.6 }}
@@ -73,9 +73,9 @@ const Hero = () => {
             animate={{ rotate: 360 }}
             transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
           >
-            <Sparkles className="w-5 h-5 text-purple-400" />
+            <Rocket className="w-5 h-5 text-purple-400" />
           </motion.div>
-          <span className="text-purple-300 font-semibold">Elite Development Agency</span>
+          <span className="text-purple-300 font-semibold">🚀 Elite Development Agency</span>
         </motion.div>
 
         {/* Main title with crazy animations */}
@@ -88,7 +88,7 @@ const Hero = () => {
           <span className="text-white">We Build</span>
           <br />
           <motion.span 
-            className="bg-gradient-to-r from-purple-400 via-pink-500 to-cyan-400 bg-clip-text text-transparent bg-300% animate-gradient"
+            className="bg-gradient-to-r from-purple-400 to-cyan-300 bg-clip-text text-transparent bg-300% animate-gradient"
             animate={{ 
               backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
             }}
@@ -100,14 +100,12 @@ const Hero = () => {
 
         {/* Subtitle with typewriter effect */}
         <motion.p 
-          className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto mb-12 leading-relaxed"
+          className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto mb-12 leading-relaxed text-center"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.8 }}
         >
-          I develop stunning <span className="text-purple-400 font-semibold">3D visuals</span>, 
-          intuitive <span className="text-cyan-400 font-semibold">user interfaces</span>,
-          and powerful <span className="text-pink-400 font-semibold">web applications</span> that transform ideas into reality
+          Transforming innovative ideas into stunning <span className="text-purple-400 font-semibold">digital experiences</span> that drive growth and success
         </motion.p>
 
         {/* CTA Buttons with insane hover effects */}
@@ -143,16 +141,16 @@ const Hero = () => {
           </motion.button>
           
           <motion.button 
-            className="px-8 py-4 border-2 border-purple-500 text-purple-400 rounded-2xl font-bold hover:bg-purple-500/10 transition-all duration-300"
+            className="group flex items-center gap-3 px-8 py-4 border-2 border-purple-500/50 text-white rounded-2xl font-bold hover:bg-white/10 backdrop-blur-xl transition-all duration-300"
             whileHover={{ 
               scale: 1.05,
-              borderColor: '#06b6d4',
-              color: '#06b6d4',
-              boxShadow: '0 0 20px rgba(6, 182, 212, 0.3)'
+              borderColor: '#a855f7',
+              boxShadow: '0 0 20px rgba(168, 85, 247, 0.3)'
             }}
             whileTap={{ scale: 0.95 }}
           >
-            View Portfolio
+            <Play className="w-5 h-5 group-hover:text-purple-400 transition-colors" />
+            View Our Work
           </motion.button>
         </motion.div>
 
