@@ -1,28 +1,29 @@
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Instagram, ArrowUp, Heart, Zap } from 'lucide-react';
+import { Mail, Phone, MapPin, Github, Linkedin, Twitter, ArrowUp, Heart, Code } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
-    { icon: Facebook, href: '#', name: 'Facebook', color: 'hover:text-blue-500' },
-    { icon: Twitter, href: '#', name: 'Twitter', color: 'hover:text-sky-400' },
-    { icon: Linkedin, href: '#', name: 'LinkedIn', color: 'hover:text-blue-600' },
-    { icon: Instagram, href: '#', name: 'Instagram', color: 'hover:text-pink-500' },
+    { icon: Github, href: 'https://github.com', name: 'GitHub', color: 'hover:text-gray-400' },
+    { icon: Linkedin, href: 'https://linkedin.com', name: 'LinkedIn', color: 'hover:text-blue-400' },
+    { icon: Twitter, href: 'https://twitter.com', name: 'Twitter', color: 'hover:text-sky-400' },
   ];
 
   const quickLinks = [
     { name: 'Home', href: '#home' },
     { name: 'About', href: '#about' },
-    { name: 'Services', href: '#services' },
+    { name: 'Skills', href: '#skills' },
+    { name: 'Projects', href: '#projects' },
+    { name: 'Experience', href: '#experience' },
     { name: 'Contact', href: '#contact' },
   ];
 
   const services = [
-    'Web Development',
-    'Mobile Apps',
-    'UI/UX Design',
-    'SEO Optimization'
+    'Flutter Development',
+    'React Applications',
+    'AI Integration',
+    'Full-Stack Solutions'
   ];
 
   const scrollToTop = () => {
@@ -30,32 +31,18 @@ const Footer = () => {
   };
 
   return (
-    <footer className="relative bg-gradient-to-br from-slate-950 via-purple-950 to-slate-950 overflow-hidden">
-      {/* Animated background elements */}
-      <div className="absolute inset-0 opacity-20">
-        <motion.div
-          className="absolute top-10 left-10 w-32 h-32 bg-purple-500/30 rounded-full blur-2xl"
-          animate={{ 
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.6, 0.3]
-          }}
-          transition={{ duration: 8, repeat: Infinity }}
-        />
-        <motion.div
-          className="absolute bottom-10 right-10 w-40 h-40 bg-cyan-500/30 rounded-full blur-2xl"
-          animate={{ 
-            scale: [1.1, 0.9, 1.1],
-            opacity: [0.4, 0.7, 0.4]
-          }}
-          transition={{ duration: 6, repeat: Infinity, delay: 2 }}
-        />
+    <footer className="relative bg-gradient-to-br from-[#0D1117] to-[#161B22] overflow-hidden">
+      {/* Background elements */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute top-10 left-10 w-32 h-32 bg-[#AD8B73] rounded-full blur-2xl" />
+        <div className="absolute bottom-10 right-10 w-40 h-40 bg-[#AD8B73] rounded-full blur-2xl" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 py-16">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           
-          {/* Company Info */}
+          {/* Brand Info */}
           <motion.div
             className="space-y-6"
             initial={{ opacity: 0, y: 30 }}
@@ -67,30 +54,21 @@ const Footer = () => {
               className="flex items-center gap-3"
               whileHover={{ scale: 1.05 }}
             >
-              <motion.div
-                className="p-2 bg-gradient-to-br from-purple-500 to-cyan-500 rounded-xl"
-                animate={{ 
-                  boxShadow: [
-                    '0 0 20px rgba(139, 92, 246, 0.3)',
-                    '0 0 30px rgba(6, 182, 212, 0.4)',
-                    '0 0 20px rgba(139, 92, 246, 0.3)'
-                  ]
-                }}
-                transition={{ duration: 2, repeat: Infinity }}
-              >
-                <Zap className="w-6 h-6 text-white" />
-              </motion.div>
-              <h3 className="text-2xl font-display font-bold text-white">DevForge</h3>
+              <div className="w-10 h-10 bg-gradient-to-br from-[#AD8B73] to-[#8B6F47] rounded-xl flex items-center justify-center">
+                <Code className="w-5 h-5 text-white" />
+              </div>
+              <h3 className="text-2xl font-bold text-white">Mayur Chouhan</h3>
             </motion.div>
-            <p className="text-gray-400 leading-relaxed font-sans">
-              Crafting digital experiences that transform businesses and inspire innovation through cutting-edge technology.
+            <p className="text-gray-400 leading-relaxed">
+              Full-Stack Developer specializing in Flutter, React, and AI-powered solutions. 
+              Turning ideas into innovative digital experiences.
             </p>
             <div className="flex space-x-4">
               {socialLinks.map((social, index) => (
                 <motion.a
                   key={social.name}
                   href={social.href}
-                  className={`p-3 bg-gray-800/50 rounded-xl text-gray-400 ${social.color} transition-all duration-300 hover:bg-gray-700/50`}
+                  className={`p-3 bg-white/5 backdrop-blur-xl border border-[#AD8B73]/20 rounded-xl text-gray-400 ${social.color} transition-all duration-300 hover:border-[#AD8B73]/40`}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.name}
@@ -101,7 +79,7 @@ const Footer = () => {
                   whileHover={{ 
                     scale: 1.1,
                     y: -2,
-                    boxShadow: '0 10px 25px rgba(139, 92, 246, 0.2)'
+                    boxShadow: '0 10px 25px rgba(173, 139, 115, 0.2)'
                   }}
                   whileTap={{ scale: 0.9 }}
                 >
@@ -131,10 +109,10 @@ const Footer = () => {
                 >
                   <motion.a
                     href={link.href}
-                    className="text-gray-400 hover:text-purple-400 transition-colors duration-300 flex items-center group"
+                    className="text-gray-400 hover:text-[#AD8B73] transition-colors duration-300 flex items-center group"
                     whileHover={{ x: 5 }}
                   >
-                    <span className="w-2 h-2 bg-purple-500 rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                    <span className="w-2 h-2 bg-[#AD8B73] rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity"></span>
                     {link.name}
                   </motion.a>
                 </motion.li>
@@ -150,12 +128,12 @@ const Footer = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <h4 className="text-lg font-semibold text-white mb-4">Our Services</h4>
+            <h4 className="text-lg font-semibold text-white mb-4">Services</h4>
             <ul className="space-y-3">
               {services.map((service, index) => (
                 <motion.li 
                   key={service}
-                  className="text-gray-400 hover:text-cyan-400 transition-colors duration-300 cursor-pointer"
+                  className="text-gray-400 hover:text-[#AD8B73] transition-colors duration-300 cursor-pointer"
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -182,22 +160,22 @@ const Footer = () => {
                 className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors group"
                 whileHover={{ x: 5 }}
               >
-                <Mail className="w-5 h-5 text-purple-400 group-hover:text-purple-300" />
-                <span>mayurchouhan8055@gamail.com</span>
+                <Mail className="w-5 h-5 text-[#AD8B73] group-hover:text-[#8B6F47]" />
+                <span className="text-sm">mayurchouhan8055@gmail.com</span>
               </motion.div>
               <motion.div 
                 className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors group"
                 whileHover={{ x: 5 }}
               >
-                <Phone className="w-5 h-5 text-cyan-400 group-hover:text-cyan-300" />
-                <span>+916263850508</span>
+                <Phone className="w-5 h-5 text-[#AD8B73] group-hover:text-[#8B6F47]" />
+                <span className="text-sm">+91 6263850508</span>
               </motion.div>
               <motion.div 
                 className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors group"
                 whileHover={{ x: 5 }}
               >
-                <MapPin className="w-5 h-5 text-pink-400 group-hover:text-pink-300" />
-                <span>India, Indore</span>
+                <MapPin className="w-5 h-5 text-[#AD8B73] group-hover:text-[#8B6F47]" />
+                <span className="text-sm">Indore, India</span>
               </motion.div>
             </div>
           </motion.div>
@@ -205,7 +183,7 @@ const Footer = () => {
 
         {/* Divider */}
         <motion.div 
-          className="w-full h-px bg-gradient-to-r from-transparent via-purple-500/50 to-transparent mb-8"
+          className="w-full h-px bg-gradient-to-r from-transparent via-[#AD8B73]/50 to-transparent mb-8"
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
           transition={{ duration: 1 }}
@@ -220,9 +198,9 @@ const Footer = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
           viewport={{ once: true }}
         >
-          <p className="text-gray-400 text-sm">
-            &copy; {currentYear} DevForge. All rights reserved.
-            <span className="ml-2 text-purple-400">Made with</span>
+          <p className="text-gray-400 text-sm text-center md:text-left">
+            &copy; {currentYear} Mayur Chouhan. All rights reserved.
+            <span className="ml-2 text-[#AD8B73]">Made with</span>
             <motion.span
               className="inline-block mx-1 text-red-500"
               animate={{ scale: [1, 1.2, 1] }}
@@ -230,16 +208,16 @@ const Footer = () => {
             >
               <Heart className="w-4 h-4 inline fill-current" />
             </motion.span>
-            <span className="text-purple-400">in India</span>
+            <span className="text-[#AD8B73]">in India</span>
           </p>
           
           {/* Scroll to Top Button */}
           <motion.button
             onClick={scrollToTop}
-            className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-500/20 to-cyan-500/20 border border-purple-500/30 rounded-xl text-gray-400 hover:text-white transition-all duration-300 hover:bg-purple-500/10"
+            className="flex items-center gap-2 px-4 py-2 bg-white/5 backdrop-blur-xl border border-[#AD8B73]/30 rounded-xl text-gray-400 hover:text-white hover:border-[#AD8B73] transition-all duration-300"
             whileHover={{ 
               scale: 1.05,
-              boxShadow: '0 5px 15px rgba(139, 92, 246, 0.3)'
+              boxShadow: '0 5px 15px rgba(173, 139, 115, 0.3)'
             }}
             whileTap={{ scale: 0.95 }}
             initial={{ opacity: 0, scale: 0.8 }}
@@ -251,11 +229,6 @@ const Footer = () => {
             <span className="text-sm">Back to Top</span>
           </motion.button>
         </motion.div>
-      </div>
-
-      {/* Background grid pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="w-full h-full bg-grid-pattern"></div>
       </div>
     </footer>
   );

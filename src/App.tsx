@@ -3,12 +3,11 @@ import { motion } from 'framer-motion';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
-import WhatsAppButton from './components/WhatsAppButton';
 import './index.css';
 
 function App() {
   return (
-    <div className="App">
+    <div className="App bg-[#0D1117] text-white">
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -17,12 +16,11 @@ function App() {
         <Header />
         <HomePage />
         <Footer />
-        <WhatsAppButton />
         
-        {/* Crazy animated background elements */}
-        <div className="fixed inset-0 pointer-events-none overflow-hidden">
+        {/* Cursor trail effect */}
+        <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
           <motion.div
-            className="absolute w-96 h-96 rounded-full bg-gradient-to-r from-purple-500/20 to-cyan-500/20 blur-3xl"
+            className="absolute w-96 h-96 rounded-full bg-gradient-to-r from-[#AD8B73]/10 to-transparent blur-3xl"
             animate={{
               x: [0, 100, 0],
               y: [0, -100, 0],
@@ -36,7 +34,7 @@ function App() {
             style={{ top: '10%', right: '10%' }}
           />
           <motion.div
-            className="absolute w-80 h-80 rounded-full bg-gradient-to-r from-pink-500/20 to-blue-500/20 blur-3xl"
+            className="absolute w-80 h-80 rounded-full bg-gradient-to-r from-[#AD8B73]/10 to-transparent blur-3xl"
             animate={{
               x: [0, -50, 0],
               y: [0, 80, 0],

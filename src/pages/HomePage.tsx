@@ -1,12 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Hero from '../components/Hero';
-import Stats from '../components/Stats';
 import About from '../components/About';
-import Services from '../components/Services';
-import Testimonials from '../components/Testimonials';
+import Skills from '../components/Skills';
+import Projects from '../components/Projects';
+import Experience from '../components/Experience';
 import Contact from '../components/Contact';
-import VoiceAssistant from '../components/VoiceAssistant';
 
 const HomePage = () => {
   const pageVariants = {
@@ -27,12 +26,9 @@ const HomePage = () => {
       {/* Hero Section */}
       <Hero />
       
-      {/* Stats Section */}
-      <Stats />
-      
       {/* Section Divider */}
       <motion.div 
-        className="w-full h-px bg-gradient-to-r from-transparent via-purple-500/50 to-transparent"
+        className="w-full h-px bg-gradient-to-r from-transparent via-[#AD8B73]/50 to-transparent"
         initial={{ scaleX: 0 }}
         whileInView={{ scaleX: 1 }}
         transition={{ duration: 1 }}
@@ -44,31 +40,43 @@ const HomePage = () => {
       
       {/* Section Divider */}
       <motion.div 
-        className="w-full h-px bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent"
+        className="w-full h-px bg-gradient-to-r from-transparent via-[#AD8B73]/50 to-transparent"
         initial={{ scaleX: 0 }}
         whileInView={{ scaleX: 1 }}
         transition={{ duration: 1 }}
         viewport={{ once: true }}
       />
       
-      {/* Services Section */}
-      <Services />
+      {/* Skills Section */}
+      <Skills />
       
       {/* Section Divider */}
       <motion.div 
-        className="w-full h-px bg-gradient-to-r from-transparent via-pink-500/50 to-transparent"
+        className="w-full h-px bg-gradient-to-r from-transparent via-[#AD8B73]/50 to-transparent"
         initial={{ scaleX: 0 }}
         whileInView={{ scaleX: 1 }}
         transition={{ duration: 1 }}
         viewport={{ once: true }}
       />
       
-      {/* Testimonials Section */}
-      <Testimonials />
+      {/* Projects Section */}
+      <Projects />
       
       {/* Section Divider */}
       <motion.div 
-        className="w-full h-px bg-gradient-to-r from-transparent via-purple-500/50 to-transparent"
+        className="w-full h-px bg-gradient-to-r from-transparent via-[#AD8B73]/50 to-transparent"
+        initial={{ scaleX: 0 }}
+        whileInView={{ scaleX: 1 }}
+        transition={{ duration: 1 }}
+        viewport={{ once: true }}
+      />
+      
+      {/* Experience Section */}
+      <Experience />
+      
+      {/* Section Divider */}
+      <motion.div 
+        className="w-full h-px bg-gradient-to-r from-transparent via-[#AD8B73]/50 to-transparent"
         initial={{ scaleX: 0 }}
         whileInView={{ scaleX: 1 }}
         transition={{ duration: 1 }}
@@ -77,9 +85,6 @@ const HomePage = () => {
       
       {/* Contact Section */}
       <Contact />
-      
-      {/* Voice Assistant */}
-      <VoiceAssistant />
     </motion.main>
   );
 };
