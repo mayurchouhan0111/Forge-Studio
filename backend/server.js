@@ -16,7 +16,7 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 // --- Agency Knowledge Base ---
 const agencyData = {
-  name: "Forge Studio",
+  name: "Vbuild",
   description: "We are a team of passionate designers and developers dedicated to creating stunning and functional websites. Our mission is to help businesses succeed online through innovative design and cutting-edge technology.",
   services: [
     "Web Development",
@@ -59,7 +59,7 @@ const getAIResponse = async (question) => {
   try {
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro"});
 
-    const fullPrompt = `You are a helpful assistant for Forge Studio. Forge Studio is a team of passionate designers and developers dedicated to creating stunning and functional websites. Their mission is to help businesses succeed online through innovative design and cutting-edge technology. They offer Web Development, UI/UX Design, SEO Optimization, Mobile Apps, Backend Systems, and Security & Performance services. You can contact them via their contact form on their website, email at ${agencyData.contact.email}, or phone at ${agencyData.contact.phone}.
+    const fullPrompt = `You are a helpful assistant for Vbuild. Vbuild is a team of passionate designers and developers dedicated to creating stunning and functional websites. Their mission is to help businesses succeed online through innovative design and cutting-edge technology. They offer Web Development, UI/UX Design, SEO Optimization, Mobile Apps, Backend Systems, and Security & Performance services. You can contact them via their contact form on their website, email at ${agencyData.contact.email}, or phone at ${agencyData.contact.phone}.
 
 User's question: ${question}`;
 
