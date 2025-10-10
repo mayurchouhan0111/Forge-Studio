@@ -1,28 +1,29 @@
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Instagram, ArrowUp, Heart, Zap } from 'lucide-react';
+import { Mail, Phone, MapPin, Github, Linkedin, Briefcase, ArrowUp } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import logo from '../asset/logo.png';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
-    { icon: Facebook, href: '#', name: 'Facebook', color: 'hover:text-blue-500' },
-    { icon: Twitter, href: '#', name: 'Twitter', color: 'hover:text-sky-400' },
-    { icon: Linkedin, href: '#', name: 'LinkedIn', color: 'hover:text-blue-600' },
-    { icon: Instagram, href: '#', name: 'Instagram', color: 'hover:text-pink-500' },
+    { icon: Github, href: 'https://github.com/mayurchouhan0111', name: 'GitHub', color: 'hover:text-gray-400' },
+    { icon: Linkedin, href: 'https://www.linkedin.com/in/mayur-chouhan-2005m17/', name: 'LinkedIn', color: 'hover:text-blue-400' },
+    { icon: Briefcase, href: 'https://flutterfoliomayur.netlify.app/', name: 'Portfolio', color: 'hover:text-green-400' },
   ];
 
   const quickLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
-    { name: 'Services', href: '#services' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Home', path: '/' },
+    { name: 'About', path: '/about' },
+    { name: 'Services', path: '/services' },
+    { name: 'Contact', path: '/contact' },
   ];
 
   const services = [
-    'Web Development',
-    'Mobile Apps',
-    'UI/UX Design',
-    'SEO Optimization'
+    'Flutter Development',
+    'AI Solutions',
+    'Full-Stack Development',
+    'Cloud Architecture'
   ];
 
   const scrollToTop = () => {
@@ -30,232 +31,94 @@ const Footer = () => {
   };
 
   return (
-    <footer className="relative bg-gradient-to-br from-slate-950 via-purple-950 to-slate-950 overflow-hidden">
-      {/* Animated background elements */}
-      <div className="absolute inset-0 opacity-20">
-        <motion.div
-          className="absolute top-10 left-10 w-32 h-32 bg-purple-500/30 rounded-full blur-2xl"
-          animate={{ 
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.6, 0.3]
-          }}
-          transition={{ duration: 8, repeat: Infinity }}
-        />
-        <motion.div
-          className="absolute bottom-10 right-10 w-40 h-40 bg-cyan-500/30 rounded-full blur-2xl"
-          animate={{ 
-            scale: [1.1, 0.9, 1.1],
-            opacity: [0.4, 0.7, 0.4]
-          }}
-          transition={{ duration: 6, repeat: Infinity, delay: 2 }}
-        />
-      </div>
+    <footer className="bg-slate-950 border-t border-white/10 relative overflow-hidden">
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-purple-600/5 rounded-full blur-3xl" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 py-16">
-        {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
-          
-          {/* Company Info */}
-          <motion.div
-            className="space-y-6"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <motion.div 
-              className="flex items-center gap-3"
-              whileHover={{ scale: 1.05 }}
-            >
-              <motion.div
-                className="p-2 bg-gradient-to-br from-purple-500 to-cyan-500 rounded-xl"
-                animate={{ 
-                  boxShadow: [
-                    '0 0 20px rgba(139, 92, 246, 0.3)',
-                    '0 0 30px rgba(6, 182, 212, 0.4)',
-                    '0 0 20px rgba(139, 92, 246, 0.3)'
-                  ]
+      <div className="max-w-7xl mx-auto px-4 md:px-8 py-16 relative z-10">
+        <div className="grid md:grid-cols-4 gap-12 mb-12">
+          {/* Company Info with Logo */}
+          <div className="md:col-span-2">
+            <Link to="/" className="flex items-center mb-6">
+              <motion.img 
+                src={logo} 
+                alt="Vbuild Logo" 
+                className="h-12 md:h-14 w-auto"
+                style={{ 
+                  maxWidth: '180px',
+                  objectFit: 'contain'
                 }}
-                transition={{ duration: 2, repeat: Infinity }}
-              >
-                <Zap className="w-6 h-6 text-white" />
-              </motion.div>
-              <h3 className="text-2xl font-bold text-white">DevForge</h3>
-            </motion.div>
-            <p className="text-gray-400 leading-relaxed">
-              Crafting digital experiences that transform businesses and inspire innovation through cutting-edge technology.
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              />
+            </Link>
+            <p className="text-gray-400 mb-6 leading-relaxed max-w-md">
+              Next-generation software development agency specializing in Flutter, AI integration, and full-stack solutions. 
+              Transforming ideas into powerful digital experiences.
             </p>
-            <div className="flex space-x-4">
-              {socialLinks.map((social, index) => (
+            
+            {/* Social Links */}
+            <div className="flex gap-4">
+              {socialLinks.map((social) => (
                 <motion.a
                   key={social.name}
                   href={social.href}
-                  className={`p-3 bg-gray-800/50 rounded-xl text-gray-400 ${social.color} transition-all duration-300 hover:bg-gray-700/50`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label={social.name}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  whileHover={{ 
-                    scale: 1.1,
-                    y: -2,
-                    boxShadow: '0 10px 25px rgba(139, 92, 246, 0.2)'
-                  }}
-                  whileTap={{ scale: 0.9 }}
+                  className={`w-10 h-10 bg-white/5 border border-white/10 rounded-lg flex items-center justify-center text-gray-400 ${social.color} transition-all duration-300`}
+                  whileHover={{ scale: 1.1, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
                 >
                   <social.icon className="w-5 h-5" />
                 </motion.a>
               ))}
             </div>
-          </motion.div>
+          </div>
 
           {/* Quick Links */}
-          <motion.div
-            className="space-y-6"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            viewport={{ once: true }}
-          >
-            <h4 className="text-lg font-semibold text-white mb-4">Quick Links</h4>
+          <div>
+            <h3 className="text-white font-bold mb-4 text-lg">Quick Links</h3>
             <ul className="space-y-3">
-              {quickLinks.map((link, index) => (
-                <motion.li 
-                  key={link.name}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                >
-                  <motion.a
-                    href={link.href}
-                    className="text-gray-400 hover:text-purple-400 transition-colors duration-300 flex items-center group"
-                    whileHover={{ x: 5 }}
+              {quickLinks.map((link) => (
+                <li key={link.name}>
+                  <Link
+                    to={link.path}
+                    className="text-gray-400 hover:text-purple-400 transition-colors duration-300 inline-block"
                   >
-                    <span className="w-2 h-2 bg-purple-500 rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity"></span>
                     {link.name}
-                  </motion.a>
-                </motion.li>
+                  </Link>
+                </li>
               ))}
             </ul>
-          </motion.div>
+          </div>
 
           {/* Services */}
-          <motion.div
-            className="space-y-6"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            <h4 className="text-lg font-semibold text-white mb-4">Our Services</h4>
+          <div>
+            <h3 className="text-white font-bold mb-4 text-lg">Services</h3>
             <ul className="space-y-3">
-              {services.map((service, index) => (
-                <motion.li 
-                  key={service}
-                  className="text-gray-400 hover:text-cyan-400 transition-colors duration-300 cursor-pointer"
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  whileHover={{ x: 5 }}
-                >
+              {services.map((service) => (
+                <li key={service} className="text-gray-400 text-sm">
                   {service}
-                </motion.li>
+                </li>
               ))}
             </ul>
-          </motion.div>
-
-          {/* Contact Info */}
-          <motion.div
-            className="space-y-6"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            viewport={{ once: true }}
-          >
-            <h4 className="text-lg font-semibold text-white mb-4">Get in Touch</h4>
-            <div className="space-y-4">
-              <motion.div 
-                className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors group"
-                whileHover={{ x: 5 }}
-              >
-                <Mail className="w-5 h-5 text-purple-400 group-hover:text-purple-300" />
-                <span>mayurchouhan8055@gamail.com</span>
-              </motion.div>
-              <motion.div 
-                className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors group"
-                whileHover={{ x: 5 }}
-              >
-                <Phone className="w-5 h-5 text-cyan-400 group-hover:text-cyan-300" />
-                <span>+916263850508</span>
-              </motion.div>
-              <motion.div 
-                className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors group"
-                whileHover={{ x: 5 }}
-              >
-                <MapPin className="w-5 h-5 text-pink-400 group-hover:text-pink-300" />
-                <span>India, Indore</span>
-              </motion.div>
-            </div>
-          </motion.div>
+          </div>
         </div>
 
-        {/* Divider */}
-        <motion.div 
-          className="w-full h-px bg-gradient-to-r from-transparent via-purple-500/50 to-transparent mb-8"
-          initial={{ scaleX: 0 }}
-          whileInView={{ scaleX: 1 }}
-          transition={{ duration: 1 }}
-          viewport={{ once: true }}
-        />
-
         {/* Bottom Bar */}
-        <motion.div
-          className="flex flex-col md:flex-row justify-between items-center gap-4"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          viewport={{ once: true }}
-        >
+        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-gray-400 text-sm">
-            &copy; {currentYear} DevForge. All rights reserved.
-            <span className="ml-2 text-purple-400">Made with</span>
-            <motion.span
-              className="inline-block mx-1 text-red-500"
-              animate={{ scale: [1, 1.2, 1] }}
-              transition={{ duration: 1, repeat: Infinity }}
-            >
-              <Heart className="w-4 h-4 inline fill-current" />
-            </motion.span>
-            <span className="text-purple-400">in India</span>
+            © {currentYear} Vbuild. All rights reserved.
           </p>
-          
-          {/* Scroll to Top Button */}
           <motion.button
             onClick={scrollToTop}
-            className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-500/20 to-cyan-500/20 border border-purple-500/30 rounded-xl text-gray-400 hover:text-white transition-all duration-300 hover:bg-purple-500/10"
-            whileHover={{ 
-              scale: 1.05,
-              boxShadow: '0 5px 15px rgba(139, 92, 246, 0.3)'
-            }}
+            className="w-10 h-10 bg-white/5 border border-white/10 rounded-lg flex items-center justify-center text-gray-400 hover:text-white hover:bg-purple-600 transition-all duration-300"
+            whileHover={{ scale: 1.1, y: -2 }}
             whileTap={{ scale: 0.95 }}
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            viewport={{ once: true }}
+            aria-label="Scroll to top"
           >
-            <ArrowUp className="w-4 h-4" />
-            <span className="text-sm">Back to Top</span>
+            <ArrowUp className="w-5 h-5" />
           </motion.button>
-        </motion.div>
-      </div>
-
-      {/* Background grid pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="w-full h-full bg-grid-pattern"></div>
+        </div>
       </div>
     </footer>
   );

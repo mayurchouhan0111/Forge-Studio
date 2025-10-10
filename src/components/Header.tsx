@@ -1,197 +1,145 @@
-import { useState, useEffect, useMemo } from 'react';
-import { Menu, X, Zap, Sparkles } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import Lottie from "lottie-react";
-import astronotAnimation from "../asset/astronot.json";
+import { Link, useLocation } from 'react-router-dom';
+import logo from '../asset/logo.png';
 
-const Header: React.FC = () => {
+const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [activePath, setActivePath] = useState('#home');
+  const location = useLocation();
 
-  const navigation = useMemo(() => [
-    { name: 'Home', path: '#home' },
-    { name: 'About', path: '#about' },
-    { name: 'Services', path: '#services' },
-    { name: 'Testimonials', path: '#testimonials' },
-    { name: 'Contact', path: '#contact' },
-  ], []);
+  const navigation = [
+    { name: 'Home', path: '/' },
+    { name: 'About', path: '/about' },
+    { name: 'Services', path: '/services' },
+    { name: 'Testimonials', path: '/testimonials' },
+    { name: 'Contact', path: '/contact' },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
-      const sections = navigation.map(item => item.path.substring(1));
-      const scrollPosition = window.scrollY + 100;
-
-      for (const sectionId of sections) {
-        const section = document.getElementById(sectionId);
-        if (section && scrollPosition >= section.offsetTop && scrollPosition < section.offsetTop + section.offsetHeight) {
-          setActivePath(`#${sectionId}`);
-          break;
-        }
-      }
     };
-
+    
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [navigation]);
+  }, []);
 
-  const handleScrollLink = (e: React.MouseEvent, path: string) => {
-    e.preventDefault();
-    const id = path.substring(1);
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      window.history.pushState(null, '', path);
-      setActivePath(path);
-    }
-  };
+  // Close mobile menu when route changes
+  useEffect(() => {
+    setIsMenuOpen(false);
+    window.scrollTo(0, 0);
+  }, [location]);
 
-  const isActive = (path: string) => activePath === path;
+  const isActive = (path: string) => location.pathname === path;
 
   return (
-    <motion.header 
+    <motion.header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled 
-          ? 'bg-black/90 backdrop-blur-xl border-b border-purple-500/20 shadow-2xl shadow-purple-500/10' 
-          : 'bg-transparent'
+          ? 'bg-slate-950/90 backdrop-blur-xl border-b border-white/10 shadow-xl py-2' 
+          : 'bg-transparent py-4'
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
+      transition={{ duration: 0.6 }}
     >
-      <nav className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-        {/* Logo with insane effects */}
-        <motion.a 
-          href="#home" 
-          onClick={(e) => handleScrollLink(e, '#home')} 
-          className="flex items-center gap-3 group"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          <Lottie animationData={astronotAnimation} style={{ width: 50, height: 50 }} />
-          <motion.span 
-            className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent"
-            whileHover={{ 
-              backgroundSize: '200% 200%',
-              backgroundPosition: 'right center'
+      <nav className="max-w-7xl mx-auto px-4 md:px-8 flex items-center justify-between">
+        {/* Logo - Much Larger Size */}
+        <Link to="/" className="flex items-center group">
+          <motion.img 
+            src={logo} 
+            alt="Vbuild Logo" 
+            className={`transition-all duration-300 ${
+              isScrolled 
+                ? 'h-14 md:h-16 w-auto' 
+                : 'h-16 md:h-20 w-auto'
+            }`}
+            style={{ 
+              maxWidth: '200px',
+              objectFit: 'contain'
             }}
-          >
-            Vbuild
-          </motion.span>
-          <motion.div
-            animate={{ rotate: [0, 10, -10, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          >
-            <Sparkles className="w-5 h-5 text-yellow-400" />
-          </motion.div>
-        </motion.a>
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          />
+        </Link>
 
-        {/* Desktop Navigation with crazy hover effects */}
-        <div className="hidden lg:flex items-center gap-8">
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex items-center gap-1">
           {navigation.map((item, index) => (
-            <motion.a
-              key={item.name}
-              href={item.path}
-              onClick={(e) => handleScrollLink(e, item.path)}
-              className={`relative px-4 py-2 font-medium transition-all duration-300 ${
-                isActive(item.path) 
-                  ? 'text-purple-400' 
-                  : 'text-gray-300 hover:text-white'
-              }`}
+            <motion.div
+              key={item.path}
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
-              whileHover={{ 
-                y: -2,
-                textShadow: '0 0 8px rgba(139, 92, 246, 0.8)'
-              }}
             >
-              {item.name}
-              {isActive(item.path) && (
-                <motion.div 
-                  className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-full"
-                  layoutId="activeIndicator"
-                  initial={false}
-                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                />
-              )}
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-cyan-500/10 rounded-lg opacity-0"
-                whileHover={{ opacity: 1 }}
-                transition={{ duration: 0.2 }}
-              />
-            </motion.a>
+              <Link
+                to={item.path}
+                className={`relative px-4 py-2 font-medium transition-all duration-300 rounded-lg ${
+                  isActive(item.path)
+                    ? 'text-white bg-white/10'
+                    : 'text-gray-400 hover:text-white hover:bg-white/5'
+                }`}
+              >
+                {item.name}
+                {isActive(item.path) && (
+                  <motion.div
+                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-purple-500 to-cyan-500"
+                    layoutId="activeTab"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  />
+                )}
+              </Link>
+            </motion.div>
           ))}
         </div>
 
         {/* Mobile menu button */}
         <motion.button
-          className="lg:hidden p-2 text-white"
+          className="md:hidden p-2 text-white hover:bg-white/10 rounded-lg"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
         >
-          <AnimatePresence mode="wait">
-            {isMenuOpen ? (
-              <motion.div
-                key="close"
-                initial={{ rotate: -90, opacity: 0 }}
-                animate={{ rotate: 0, opacity: 1 }}
-                exit={{ rotate: 90, opacity: 0 }}
-                transition={{ duration: 0.2 }}
-              >
-                <X className="w-6 h-6" />
-              </motion.div>
-            ) : (
-              <motion.div
-                key="menu"
-                initial={{ rotate: 90, opacity: 0 }}
-                animate={{ rotate: 0, opacity: 1 }}
-                exit={{ rotate: -90, opacity: 0 }}
-                transition={{ duration: 0.2 }}
-              >
-                <Menu className="w-6 h-6" />
-              </motion.div>
-            )}
-          </AnimatePresence>
+          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </motion.button>
+      </nav>
 
-        {/* Mobile Navigation */}
-        <AnimatePresence>
-          {isMenuOpen && (
-            <motion.div 
-              className="absolute top-full left-4 right-4 bg-black/95 backdrop-blur-xl border border-purple-500/20 rounded-2xl p-6 lg:hidden"
-              initial={{ opacity: 0, y: -20, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -20, scale: 0.95 }}
-              transition={{ duration: 0.3 }}
-            >
+      {/* Mobile Navigation */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            className="md:hidden bg-slate-950/95 backdrop-blur-xl border-t border-white/10"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <div className="px-4 py-6 space-y-2">
               {navigation.map((item, index) => (
-                <motion.a
-                  key={item.name}
-                  href={item.path}
-                  onClick={(e) => {
-                    handleScrollLink(e, item.path);
-                    setIsMenuOpen(false);
-                  }}
-                  className={`block px-4 py-3 rounded-xl font-medium transition-all duration-200 ${
-                    isActive(item.path)
-                      ? 'bg-purple-500/20 text-purple-400'
-                      : 'text-gray-300 hover:bg-gray-800/50 hover:text-white'
-                  }`}
+                <motion.div
+                  key={item.path}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.1 }}
-                  whileHover={{ x: 10 }}
                 >
-                  {item.name}
-                </motion.a>
+                  <Link
+                    to={item.path}
+                    className={`block px-4 py-3 rounded-xl font-medium transition-all duration-200 ${
+                      isActive(item.path)
+                        ? 'bg-purple-500/20 text-purple-400'
+                        : 'text-gray-300 hover:bg-gray-800/50 hover:text-white'
+                    }`}
+                  >
+                    {item.name}
+                  </Link>
+                </motion.div>
               ))}
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </nav>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.header>
   );
 };

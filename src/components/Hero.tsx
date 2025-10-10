@@ -1,225 +1,218 @@
 import { motion } from 'framer-motion';
-import { ArrowDown, Code, Sparkles, Rocket, Zap, Star, Play } from 'lucide-react';
+import { ArrowRight, Play, Sparkles, CheckCircle, Zap, Rocket, Users } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import FOG from 'vanta/dist/vanta.fog.min';
+import * as THREE from 'three';
 
 const Hero = () => {
-  const floatingIcons = [
-    { Icon: Code, delay: 0, position: { top: '20%', right: '15%' } },
-    { Icon: Sparkles, delay: 0.5, position: { top: '60%', left: '10%' } },
-    { Icon: Rocket, delay: 1, position: { bottom: '20%', right: '20%' } },
-    { Icon: Zap, delay: 1.5, position: { top: '40%', right: '5%' } },
-    { Icon: Star, delay: 2, position: { bottom: '40%', left: '5%' } }
-  ];
+  const [vantaEffect, setVantaEffect] = useState<any>(null);
+  const vantaRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!vantaEffect && vantaRef.current) {
+      setVantaEffect(
+        FOG({
+          el: vantaRef.current,
+          THREE: THREE,
+          mouseControls: true,
+          touchControls: true,
+          gyroControls: false,
+          minHeight: 200.00,
+          minWidth: 200.00,
+          highlightColor: 0x7c3aed,      // Vibrant purple (more visible)
+          midtoneColor: 0x5b21b6,        // Rich purple
+          lowlightColor: 0x3b1f66,       // Deep purple
+          baseColor: 0x1a0b2e,           // Dark purple-black background
+          blurFactor: 0.6,
+          speed: 1.00,
+          zoom: 1.00
+        })
+      );
+    }
+    return () => {
+      if (vantaEffect) vantaEffect.destroy();
+    };
+  }, [vantaEffect]);
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-950 via-purple-950 to-slate-950">
-      {/* Animated background grid */}
-      <div className="absolute inset-0 opacity-20">
-        <div className="grid grid-cols-20 grid-rows-20 w-full h-full gap-1">
-          {Array.from({ length: 400 }).map((_, i) => (
-            <motion.div
-              key={i}
-              className="bg-purple-500 rounded-sm"
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ 
-                opacity: [0, 0.5, 0],
-                scale: [0, 1, 0]
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                delay: (i * 0.01) % 2
-              }}
-            />
-          ))}
-        </div>
-      </div>
+    <section
+      ref={vantaRef}
+      id="home"
+      className="min-h-screen flex items-center justify-center px-4 md:px-8 relative overflow-hidden pt-20 pb-20"
+    >
+      {/* Light overlay for better text readability - reduced opacity */}
+      <div className="absolute inset-0 bg-gradient-to-b from-slate-950/20 via-transparent to-slate-950/30 pointer-events-none z-[1]" />
 
-      {/* Matrix rain effect */}
-      <div className="absolute inset-0 overflow-hidden opacity-10">
-        {Array.from({ length: 50 }).map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-px bg-gradient-to-b from-transparent via-cyan-500 to-transparent"
-            style={{
-              left: `${Math.random() * 100}%`,
-              height: '100px'
-            }}
-            animate={{
-              y: [-100, window.innerHeight + 100],
-              opacity: [0, 1, 0]
-            }}
-            transition={{
-              duration: Math.random() * 3 + 2,
-              repeat: Infinity,
-              delay: Math.random() * 2
-            }}
-          />
-        ))}
-      </div>
-
-      <div className="relative z-10 max-w-6xl mx-auto px-6 text-center">
-        {/* Floating badge */}
+      {/* Content with higher z-index to appear above Vanta background */}
+      <div className="max-w-7xl mx-auto text-center relative z-10">
+        {/* Badge */}
         <motion.div
-          className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-xl border border-purple-500/30 rounded-full px-6 py-3 mb-8"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.3, duration: 0.6 }}
-          whileHover={{ 
-            scale: 1.05,
-            boxShadow: '0 0 30px rgba(139, 92, 246, 0.3)'
-          }}
+          className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm border border-purple-500/30 rounded-full mb-8"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
         >
-          <motion.div
-            animate={{ rotate: 360 }}
-            transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-          >
-            <Rocket className="w-5 h-5 text-purple-400" />
-          </motion.div>
-          <span className="text-purple-300 font-semibold">🚀 Elite Development Agency</span>
+          <Sparkles className="w-4 h-4 text-purple-400" />
+          <span className="text-sm text-gray-300 font-medium">Next-Gen Software Development Agency</span>
         </motion.div>
 
-        {/* Main title with crazy animations */}
-        <motion.h1 
-          className="text-6xl md:text-8xl font-black mb-6 leading-tight"
+        {/* Main Headline */}
+        <motion.h1
+          className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 leading-tight drop-shadow-2xl"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.8 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <span className="text-white">We Build</span>
-          <br />
-          <motion.span 
-            className="bg-gradient-to-r from-purple-400 to-cyan-300 bg-clip-text text-transparent bg-300% animate-gradient"
-            animate={{ 
-              backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
-            }}
-            transition={{ duration: 3, repeat: Infinity }}
-          >
-            Digital Dreams
-          </motion.span>
+          <span className="block mb-4">Innovative Solutions</span>
+          <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent">
+            Next-Gen Technology
+          </span>
         </motion.h1>
 
-        {/* Subtitle with typewriter effect */}
-        <motion.p 
-          className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto mb-12 leading-relaxed text-center"
-          initial={{ opacity: 0, y: 20 }}
+        {/* Subtitle */}
+        <motion.p
+          className="text-xl md:text-2xl lg:text-3xl text-gray-200 mb-8 max-w-4xl mx-auto leading-relaxed drop-shadow-lg"
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.8 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
         >
-          Transforming innovative ideas into stunning <span className="text-purple-400 font-semibold">digital experiences</span> that drive growth and success
+          Empowering your digital transformation journey with tailored IT solutions 
+          that move you from today's challenges to tomorrow's success.
         </motion.p>
 
-        {/* CTA Buttons with insane hover effects */}
-        <motion.div 
-          className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
+        {/* Value Propositions */}
+        <motion.div
+          className="flex flex-wrap justify-center gap-4 md:gap-6 mb-12 max-w-3xl mx-auto"
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8, duration: 0.8 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
         >
-          <motion.button 
-            className="group relative px-8 py-4 bg-gradient-to-r from-purple-600 to-cyan-600 rounded-2xl font-bold text-white overflow-hidden shadow-2xl"
-            whileHover={{ 
-              scale: 1.05,
-              boxShadow: '0 0 40px rgba(139, 92, 246, 0.6)'
-            }}
-            whileTap={{ scale: 0.95 }}
-          >
+          {[
+            { icon: Zap, text: 'Fast Delivery' },
+            { icon: CheckCircle, text: 'Quality Assured' },
+            { icon: Users, text: 'Expert Team' },
+            { icon: Rocket, text: 'Scalable Solutions' }
+          ].map((item, idx) => (
             <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-cyan-600 to-purple-600"
-              initial={{ x: '100%' }}
-              whileHover={{ x: '0%' }}
-              transition={{ duration: 0.3 }}
-            />
-            <span className="relative z-10 flex items-center gap-2">
-              Start Your Project
-              <motion.div
-                animate={{ y: [0, 3, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
-              >
-                <ArrowDown className="w-5 h-5" />
-              </motion.div>
-            </span>
-          </motion.button>
-          
-          <motion.button 
-            className="group flex items-center gap-3 px-8 py-4 border-2 border-purple-500/50 text-white rounded-2xl font-bold hover:bg-white/10 backdrop-blur-xl transition-all duration-300"
-            whileHover={{ 
-              scale: 1.05,
-              borderColor: '#a855f7',
-              boxShadow: '0 0 20px rgba(168, 85, 247, 0.3)'
-            }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Play className="w-5 h-5 group-hover:text-purple-400 transition-colors" />
-            View Our Work
-          </motion.button>
+              key={item.text}
+              className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full hover:border-purple-500/40 transition-all duration-300"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.6 + idx * 0.1 }}
+              whileHover={{ scale: 1.05 }}
+            >
+              <item.icon className="w-4 h-4 text-purple-400" />
+              <span className="text-sm text-gray-200 font-medium">{item.text}</span>
+            </motion.div>
+          ))}
         </motion.div>
 
-        {/* Floating icons with crazy animations */}
-        {floatingIcons.map(({ Icon, delay, position }, index) => (
-          <motion.div
-            key={index}
-            className="absolute w-16 h-16 bg-gradient-to-br from-purple-500/20 to-cyan-500/20 border border-purple-500/30 rounded-full flex items-center justify-center backdrop-blur-sm"
-            style={position}
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ 
-              opacity: [0, 1, 0.5, 1],
-              scale: [0, 1.2, 0.8, 1],
-              rotate: [0, 180, 360]
-            }}
-            transition={{
-              duration: 6,
-              repeat: Infinity,
-              delay: delay,
-              ease: "easeInOut"
-            }}
-            whileHover={{ 
-              scale: 1.3,
-              boxShadow: '0 0 30px rgba(139, 92, 246, 0.5)'
-            }}
+        {/* CTA Buttons */}
+        <motion.div
+          className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.7 }}
+        >
+          <motion.a
+            href="/services"
+            className="group px-10 py-5 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-full flex items-center gap-2 hover:shadow-2xl hover:shadow-purple-500/50 transition-all duration-300 text-lg"
+            whileHover={{ scale: 1.05, y: -2 }}
+            whileTap={{ scale: 0.98 }}
           >
-            <Icon className="w-8 h-8 text-purple-400" />
-          </motion.div>
-        ))}
+            Explore Services
+            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          </motion.a>
+          <motion.a
+            href="/contact"
+            className="group px-10 py-5 bg-white/10 backdrop-blur-sm border border-white/30 text-white font-semibold rounded-full flex items-center gap-2 hover:bg-white/20 transition-all duration-300 text-lg"
+            whileHover={{ scale: 1.05, y: -2 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <Play className="w-5 h-5" />
+            Get Started
+          </motion.a>
+        </motion.div>
 
-        {/* Scroll indicator with pulse effect */}
-        <motion.div 
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2 text-gray-400"
+        {/* Stats Cards */}
+        <motion.div
+          className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto mb-12"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.9 }}
+        >
+          {[
+            { number: '12+', label: 'Years Experience', subtext: 'Industry expertise' },
+            { number: '98%', label: 'Client Retention', subtext: 'Satisfaction rate' },
+            { number: '500+', label: 'Projects Delivered', subtext: 'Successfully completed' },
+            { number: '24/7', label: 'Global Support', subtext: 'Always available' }
+          ].map((stat, idx) => (
+            <motion.div
+              key={stat.label}
+              className="bg-white/5 backdrop-blur-sm border border-purple-500/20 rounded-2xl p-6 hover:bg-white/10 hover:border-purple-500/40 transition-all duration-300"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 1.0 + idx * 0.1 }}
+              whileHover={{ y: -5, scale: 1.02 }}
+            >
+              <div className="text-4xl md:text-5xl font-bold text-purple-400 mb-2">
+                {stat.number}
+              </div>
+              <div className="text-sm md:text-base text-white font-semibold mb-1">
+                {stat.label}
+              </div>
+              <div className="text-xs text-gray-400">
+                {stat.subtext}
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* Trusted By Section */}
+        <motion.div
+          className="pt-8 border-t border-white/10 max-w-4xl mx-auto"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1.1 }}
+        >
+          <p className="text-sm text-gray-400 uppercase tracking-wider mb-6">Trusted by Startups to Enterprises</p>
+          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
+            {/* Technology badges */}
+            {['Flutter', 'React', 'Node.js', 'AI/ML', 'Firebase', 'MongoDB'].map((tech, idx) => (
+              <motion.div
+                key={tech}
+                className="px-6 py-3 bg-white/5 border border-white/10 rounded-xl hover:border-purple-500/30 transition-all duration-300"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 1.2 + idx * 0.1 }}
+                whileHover={{ scale: 1.05, y: -2 }}
+              >
+                <span className="text-gray-300 font-medium text-sm">{tech}</span>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Scroll indicator */}
+        <motion.div
+          className="mt-16"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.5 }}
+          transition={{ duration: 0.8, delay: 1.5 }}
         >
           <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="p-2 border border-purple-500/30 rounded-full"
+            className="w-6 h-10 border-2 border-purple-500/30 rounded-full mx-auto flex justify-center"
+            animate={{ y: [0, 10, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity }}
           >
-            <ArrowDown className="w-5 h-5" />
+            <motion.div
+              className="w-1.5 h-3 bg-purple-400 rounded-full mt-2"
+              animate={{ opacity: [1, 0.3, 1] }}
+              transition={{ duration: 1.5, repeat: Infinity }}
+            />
           </motion.div>
-          <span className="text-sm font-medium">Scroll to explore</span>
+          <p className="text-xs text-gray-400 mt-2 uppercase tracking-wider">Scroll to explore</p>
         </motion.div>
-      </div>
-
-      {/* Particles effect */}
-      <div className="absolute inset-0 overflow-hidden">
-        {Array.from({ length: 100 }).map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-1 h-1 bg-purple-400 rounded-full"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`
-            }}
-            animate={{
-              opacity: [0, 1, 0],
-              scale: [0, 1, 0]
-            }}
-            transition={{
-              duration: Math.random() * 3 + 1,
-              repeat: Infinity,
-              delay: Math.random() * 2
-            }}
-          />
-        ))}
       </div>
     </section>
   );

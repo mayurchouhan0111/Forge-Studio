@@ -1,8 +1,7 @@
-
 import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import { Mic } from 'lucide-react';
 
-// Define the interface for the SpeechRecognition API, accounting for browser prefixes
 interface CustomSpeechRecognition extends SpeechRecognition {
   continuous: boolean;
   interimResults: boolean;
@@ -14,8 +13,7 @@ const VoiceAssistant: React.FC = () => {
   const [transcript, setTranscript] = useState('');
   const [error, setError] = useState<string | null>(null);
 
-  // Check for browser support and get the correct SpeechRecognition object
-  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  const SpeechRecognition = window.SpeechRecognition || (window as any).webkitSpeechRecognition;
   let recognition: CustomSpeechRecognition | null = null;
 
   if (SpeechRecognition) {
@@ -71,7 +69,6 @@ const VoiceAssistant: React.FC = () => {
       const data = await res.json();
       const aiResponse = data.answer;
       speak(aiResponse);
-
     } catch (err) {
       const errorMessage = 'Sorry, I am having trouble connecting to my brain. Please try again later.';
       setError(errorMessage);
@@ -84,6 +81,7 @@ const VoiceAssistant: React.FC = () => {
       setError("Your browser doesn't support speech synthesis.");
       return;
     }
+
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = 'en-US';
     window.speechSynthesis.speak(utterance);
@@ -99,22 +97,37 @@ const VoiceAssistant: React.FC = () => {
       setError(null);
       recognition.start();
     }
+
     setIsListening(!isListening);
   };
 
   return (
-    <div className="fixed bottom-8 right-8 z-50">
-      <button
+    <motion.div
+      className="fixed bottom-24 right-6 z-50"
+      initial={{ scale: 0, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition={{ duration: 0.5, delay: 1.2 }}
+    >
+      <motion.button
         onClick={toggleListening}
-        className={`p-4 rounded-full text-white shadow-lg transition-transform transform hover:scale-110 ${
-          isListening ? 'bg-red-500 animate-pulse' : 'bg-blue-500'
+        className={`w-14 h-14 rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 ${
+          isListening 
+            ? 'bg-gradient-to-br from-red-500 to-red-600 shadow-red-500/50' 
+            : 'bg-gradient-to-br from-purple-600 to-cyan-600 shadow-purple-500/50'
         }`}
-        aria-label="Activate voice assistant"
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.95 }}
+        animate={isListening ? { scale: [1, 1.1, 1] } : {}}
+        transition={isListening ? { duration: 1, repeat: Infinity } : {}}
       >
-        <Mic size={24} />
-      </button>
-      {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
-    </div>
+        <Mic className="w-6 h-6 text-white" />
+      </motion.button>
+      {error && (
+        <div className="absolute bottom-16 right-0 bg-red-500/20 border border-red-500/30 rounded-lg p-2 text-xs text-red-400 max-w-xs">
+          {error}
+        </div>
+      )}
+    </motion.div>
   );
 };
 

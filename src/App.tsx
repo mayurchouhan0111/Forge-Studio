@@ -1,58 +1,88 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import HomePage from './pages/HomePage';
+import Home from './pages/HomePage';
+import AboutPage from './pages/AboutPage';
+import ServicesPage from './pages/ServicesPage';
+import TestimonialsPage from './pages/TestimonialsPage';
+import ContactPage from './pages/ContactPage';
 import WhatsAppButton from './components/WhatsAppButton';
+import VoiceAssistant from './components/VoiceAssistant';
 import './index.css';
 
 function App() {
   return (
-    <div className="App">
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8 }}
-      >
-        <Header />
-        <HomePage />
-        <Footer />
-        <WhatsAppButton />
-        
-        {/* Crazy animated background elements */}
-        <div className="fixed inset-0 pointer-events-none overflow-hidden">
+    <Router>
+      <div className="relative min-h-screen bg-slate-950 overflow-x-hidden">
+        {/* Ambient background effects */}
+        <div className="fixed inset-0 pointer-events-none">
           <motion.div
-            className="absolute w-96 h-96 rounded-full bg-gradient-to-r from-purple-500/20 to-cyan-500/20 blur-3xl"
+            className="absolute top-0 left-1/4 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl"
             animate={{
-              x: [0, 100, 0],
-              y: [0, -100, 0],
               scale: [1, 1.2, 1],
+              opacity: [0.3, 0.5, 0.3],
+              x: [0, 50, 0],
+            }}
+            transition={{
+              duration: 10,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+          
+          <motion.div
+            className="absolute bottom-0 right-1/4 w-96 h-96 bg-cyan-600/10 rounded-full blur-3xl"
+            animate={{
+              scale: [1.2, 1, 1.2],
+              opacity: [0.3, 0.5, 0.3],
+              x: [0, -50, 0],
+            }}
+            transition={{
+              duration: 12,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+
+          <motion.div
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-600/5 rounded-full blur-3xl"
+            animate={{
+              scale: [1, 1.1, 1],
+              rotate: [0, 180, 360],
             }}
             transition={{
               duration: 20,
               repeat: Infinity,
-              ease: "easeInOut"
+              ease: "linear"
             }}
-            style={{ top: '10%', right: '10%' }}
-          />
-          <motion.div
-            className="absolute w-80 h-80 rounded-full bg-gradient-to-r from-pink-500/20 to-blue-500/20 blur-3xl"
-            animate={{
-              x: [0, -50, 0],
-              y: [0, 80, 0],
-              scale: [1, 0.8, 1],
-            }}
-            transition={{
-              duration: 15,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 2
-            }}
-            style={{ bottom: '20%', left: '15%' }}
           />
         </div>
-      </motion.div>
-    </div>
+
+        {/* Main content */}
+        <div className="relative z-10">
+          <Header />
+
+          {/* Routes with page transitions */}
+          <AnimatePresence mode="wait">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/services" element={<ServicesPage />} />
+              <Route path="/testimonials" element={<TestimonialsPage />} />
+              <Route path="/contact" element={<ContactPage />} />
+            </Routes>
+          </AnimatePresence>
+
+          <Footer />
+
+          {/* Floating action buttons */}
+          <WhatsAppButton />
+          <VoiceAssistant />
+        </div>
+      </div>
+    </Router>
   );
 }
 
