@@ -1,49 +1,85 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, Play, Sparkles, CheckCircle, Zap, Rocket, Users } from 'lucide-react';
-import { useEffect, useRef, useState } from 'react';
-import FOG from 'vanta/dist/vanta.fog.min';
-import * as THREE from 'three';
 
 const Hero = () => {
-  const [vantaEffect, setVantaEffect] = useState<any>(null);
-  const vantaRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (!vantaEffect && vantaRef.current) {
-      setVantaEffect(
-        FOG({
-          el: vantaRef.current,
-          THREE: THREE,
-          mouseControls: true,
-          touchControls: true,
-          gyroControls: false,
-          minHeight: 200.00,
-          minWidth: 200.00,
-          highlightColor: 0x7c3aed,      // Vibrant purple (more visible)
-          midtoneColor: 0x5b21b6,        // Rich purple
-          lowlightColor: 0x3b1f66,       // Deep purple
-          baseColor: 0x1a0b2e,           // Dark purple-black background
-          blurFactor: 0.6,
-          speed: 1.00,
-          zoom: 1.00
-        })
-      );
-    }
-    return () => {
-      if (vantaEffect) vantaEffect.destroy();
-    };
-  }, [vantaEffect]);
-
   return (
     <section
-      ref={vantaRef}
       id="home"
       className="min-h-screen flex items-center justify-center px-4 md:px-8 relative overflow-hidden pt-20 pb-20"
     >
-      {/* Light overlay for better text readability - reduced opacity */}
-      <div className="absolute inset-0 bg-gradient-to-b from-slate-950/20 via-transparent to-slate-950/30 pointer-events-none z-[1]" />
+      {/* Animated CSS Gradient Background - No Performance Impact */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#0a0118] via-[#1a0b2e] to-[#0f0820]">
+        {/* Animated gradient orbs */}
+        <div className="absolute top-0 left-0 w-full h-full">
+          {/* Large purple orb */}
+          <motion.div
+            className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-600/30 rounded-full blur-3xl"
+            animate={{
+              scale: [1, 1.2, 1],
+              x: [0, 50, 0],
+              y: [0, 30, 0],
+            }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+          
+          {/* Medium cyan orb */}
+          <motion.div
+            className="absolute top-1/3 right-1/4 w-80 h-80 bg-cyan-600/20 rounded-full blur-3xl"
+            animate={{
+              scale: [1.2, 1, 1.2],
+              x: [0, -30, 0],
+              y: [0, -40, 0],
+            }}
+            transition={{
+              duration: 10,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+          
+          {/* Small pink orb */}
+          <motion.div
+            className="absolute bottom-1/4 right-1/3 w-64 h-64 bg-pink-600/25 rounded-full blur-3xl"
+            animate={{
+              scale: [1, 1.3, 1],
+              x: [0, 40, 0],
+              y: [0, -20, 0],
+            }}
+            transition={{
+              duration: 12,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+          
+          {/* Additional small orbs for depth */}
+          <motion.div
+            className="absolute bottom-1/3 left-1/3 w-72 h-72 bg-indigo-600/20 rounded-full blur-3xl"
+            animate={{
+              scale: [1.1, 1, 1.1],
+              x: [0, -25, 0],
+              y: [0, 35, 0],
+            }}
+            transition={{
+              duration: 9,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+        </div>
+        
+        {/* Subtle noise texture overlay for depth */}
+        <div className="absolute inset-0 opacity-20 mix-blend-overlay bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJhIiB4PSIwIiB5PSIwIj48ZmVUdXJidWxlbmNlIGJhc2VGcmVxdWVuY3k9Ii43NSIgc3RpdGNoVGlsZXM9InN0aXRjaCIgdHlwZT0iZnJhY3RhbE5vaXNlIi8+PGZlQ29sb3JNYXRyaXggdHlwZT0ic2F0dXJhdGUiIHZhbHVlcz0iMCIvPjwvZmlsdGVyPjxwYXRoIGQ9Ik0wIDBoMzAwdjMwMEgweiIgZmlsdGVyPSJ1cmwoI2EpIiBvcGFjaXR5PSIuMDUiLz48L3N2Zz4=')]" />
+      </div>
 
-      {/* Content with higher z-index to appear above Vanta background */}
+      {/* Gradient overlay for better text contrast */}
+      <div className="absolute inset-0 bg-gradient-to-b from-slate-950/20 via-transparent to-slate-950/40 pointer-events-none" />
+
+      {/* Content */}
       <div className="max-w-7xl mx-auto text-center relative z-10">
         {/* Badge */}
         <motion.div
@@ -71,7 +107,7 @@ const Hero = () => {
 
         {/* Subtitle */}
         <motion.p
-          className="text-xl md:text-2xl lg:text-3xl text-gray-200 mb-8 max-w-4xl mx-auto leading-relaxed drop-shadow-lg"
+          className="text-xl md:text-2xl lg:text-3xl text-gray-200 mb-8 max-w-4xl mx-auto leading-relaxed"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
@@ -177,7 +213,6 @@ const Hero = () => {
         >
           <p className="text-sm text-gray-400 uppercase tracking-wider mb-6">Trusted by Startups to Enterprises</p>
           <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
-            {/* Technology badges */}
             {['Flutter', 'React', 'Node.js', 'AI/ML', 'Firebase', 'MongoDB'].map((tech, idx) => (
               <motion.div
                 key={tech}
