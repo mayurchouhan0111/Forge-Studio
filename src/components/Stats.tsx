@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Target, Award, Globe, Zap } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 
 const Stats = () => {
   const [counters, setCounters] = useState({
@@ -10,7 +10,7 @@ const Stats = () => {
     growth: 0
   });
 
-  const stats = [
+  const stats = useMemo(() => [
     {
       key: 'projects',
       target: 50,
@@ -39,7 +39,7 @@ const Stats = () => {
       icon: Zap,
       suffix: '%'
     }
-  ];
+  ], []);
 
   useEffect(() => {
     const animateCounters = () => {
@@ -74,7 +74,7 @@ const Stats = () => {
     if (element) observer.observe(element);
 
     return () => observer.disconnect();
-  }, []);
+  }, [stats]);
 
   return (
     <section

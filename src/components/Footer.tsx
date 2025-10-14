@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Github, Linkedin, Briefcase, ArrowUp } from 'lucide-react';
+import { Github, Linkedin, Briefcase, ArrowUp } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import logo from '../asset/logo.png';
 

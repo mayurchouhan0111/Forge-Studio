@@ -104,13 +104,13 @@ const About = () => (
         transition={{ duration: 0.7 }}
         viewport={{ once: true }}
       >
-        {stats.map((stat, idx) => (
+        {stats.map((stat) => (
           <motion.div
             key={stat.label}
             className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 text-center hover:border-purple-500/30 hover:bg-white/10 transition-all duration-300"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: idx * 0.1 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
             viewport={{ once: true }}
             whileHover={{ y: -5, scale: 1.02 }}
           >
@@ -133,13 +133,13 @@ const About = () => (
         transition={{ duration: 0.8 }}
         viewport={{ once: true }}
       >
-        {values.map((value, index) => (
+        {values.map((value) => (
           <motion.div
             key={value.title}
             className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 hover:border-purple-500/30 hover:bg-white/10 transition-all duration-300"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: index * 0.1 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
             viewport={{ once: true }}
             whileHover={{ y: -5 }}
           >
@@ -196,7 +196,7 @@ const About = () => (
           transition={{ duration: 0.6, delay: 0.4 }}
           viewport={{ once: true }}
         >
-          {['Flutter', 'React', 'Node.js', 'AI/ML', 'Cloud', 'MongoDB'].map((tech, idx) => (
+          {['Flutter', 'React', 'Node.js', 'AI/ML', 'Cloud', 'MongoDB'].map((tech) => (
             <span 
               key={tech}
               className="px-4 py-2 bg-white/10 border border-purple-500/20 rounded-full text-sm text-gray-300 font-medium hover:border-purple-500/40 hover:bg-white/15 transition-all duration-300"

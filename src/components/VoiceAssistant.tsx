@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { Mic } from 'lucide-react';
 
@@ -10,10 +10,9 @@ interface CustomSpeechRecognition extends SpeechRecognition {
 
 const VoiceAssistant: React.FC = () => {
   const [isListening, setIsListening] = useState(false);
-  const [transcript, setTranscript] = useState('');
   const [error, setError] = useState<string | null>(null);
 
-  const SpeechRecognition = window.SpeechRecognition || (window as any).webkitSpeechRecognition;
+  const SpeechRecognition = window.SpeechRecognition || (window as typeof window).webkitSpeechRecognition;
   let recognition: CustomSpeechRecognition | null = null;
 
   if (SpeechRecognition) {
@@ -23,6 +22,30 @@ const VoiceAssistant: React.FC = () => {
     recognition.lang = 'en-US';
   }
 
+  const handleResponse = useCallback(async (text: string) => {
+    try {
+      const res = await fetch('http://localhost:3003/api/ask', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ question: text }),
+      });
+
+      if (!res.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const data = await res.json();
+      const aiResponse = data.answer;
+      speak(aiResponse);
+    } catch {
+      const errorMessage = 'Sorry, I am having trouble connecting to my brain. Please try again later.';
+      setError(errorMessage);
+      speak(errorMessage);
+    }
+  }, []);
+
   useEffect(() => {
     if (!recognition) {
       setError("Your browser doesn't support the Web Speech API. Try Chrome or Edge.");
@@ -31,7 +54,6 @@ const VoiceAssistant: React.FC = () => {
 
     recognition.onresult = (event: SpeechRecognitionEvent) => {
       const currentTranscript = event.results[0][0].transcript;
-      setTranscript(currentTranscript);
       handleResponse(currentTranscript);
       setIsListening(false);
     };
@@ -50,31 +72,7 @@ const VoiceAssistant: React.FC = () => {
         recognition.stop();
       }
     };
-  }, [recognition]);
-
-  const handleResponse = async (text: string) => {
-    try {
-      const res = await fetch('http://localhost:3003/api/ask', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ question: text }),
-      });
-
-      if (!res.ok) {
-        throw new Error('Network response was not ok');
-      }
-
-      const data = await res.json();
-      const aiResponse = data.answer;
-      speak(aiResponse);
-    } catch (err) {
-      const errorMessage = 'Sorry, I am having trouble connecting to my brain. Please try again later.';
-      setError(errorMessage);
-      speak(errorMessage);
-    }
-  };
+  }, [recognition, handleResponse]);
 
   const speak = (text: string) => {
     if (!window.speechSynthesis) {
@@ -93,7 +91,6 @@ const VoiceAssistant: React.FC = () => {
     if (isListening) {
       recognition.stop();
     } else {
-      setTranscript('');
       setError(null);
       recognition.start();
     }
