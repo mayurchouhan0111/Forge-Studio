@@ -1,5 +1,9 @@
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { ArrowRight, Play, Sparkles, CheckCircle, Zap, Rocket, Users } from 'lucide-react';
+
+// Create motion-wrapped Link component
+const MotionLink = motion(Link);
 
 const Hero = () => {
   return (
@@ -150,24 +154,24 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.7 }}
         >
-          <motion.a
-            href="/services"
+          <MotionLink
+            to="/services"
             className="group px-10 py-5 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-full flex items-center gap-2 hover:shadow-2xl hover:shadow-purple-500/50 transition-all duration-300 text-lg"
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.98 }}
           >
             Explore Services
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </motion.a>
-          <motion.a
-            href="/contact"
+          </MotionLink>
+          <MotionLink
+            to="/contact"
             className="group px-10 py-5 bg-white/10 backdrop-blur-sm border border-white/30 text-white font-semibold rounded-full flex items-center gap-2 hover:bg-white/20 transition-all duration-300 text-lg"
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.98 }}
           >
             <Play className="w-5 h-5" />
             Get Started
-          </motion.a>
+          </MotionLink>
         </motion.div>
 
         {/* Stats Cards */}
