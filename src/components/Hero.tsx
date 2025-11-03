@@ -1,17 +1,106 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Play, Sparkles, CheckCircle, Zap, Rocket, Users, Smartphone } from 'lucide-react';
-import { useState } from 'react';
+import { ArrowRight, Play, Sparkles, CheckCircle, Zap, Rocket, Users } from 'lucide-react';
+import { useState, useEffect, useMemo, useCallback, memo } from 'react';
+import UnicornScene from 'unicornstudio-react';
 
-// Create motion-wrapped Link component
+// Create motion-wrapped Link component outside to prevent recreation
 const MotionLink = motion(Link);
 
-const Hero = () => {
-  // State to manage which app is displayed
-  const [selectedApp, setSelectedApp] = useState(0);
+// Memoized Badge Component
+const Badge = memo(() => (
+  <motion.div
+    className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm border border-purple-500/30 rounded-full mb-8"
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.6 }}
+  >
+    <Sparkles className="w-4 h-4 text-purple-400" />
+    <span className="text-sm text-gray-300 font-medium">Next-Gen Software Development Agency</span>
+  </motion.div>
+));
+Badge.displayName = 'Badge';
 
-  // Your app portfolio
-  const apps = [
+// Memoized Value Proposition Item
+const ValueItem = memo(({ item, idx }) => (
+  <motion.div
+    className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full hover:border-purple-500/40 transition-all duration-300"
+    initial={{ opacity: 0, scale: 0.8 }}
+    animate={{ opacity: 1, scale: 1 }}
+    transition={{ duration: 0.5, delay: 0.6 + idx * 0.1 }}
+    whileHover={{ scale: 1.05 }}
+  >
+    <item.icon className="w-4 h-4 text-purple-400" />
+    <span className="text-sm text-gray-200 font-medium">{item.text}</span>
+  </motion.div>
+));
+ValueItem.displayName = 'ValueItem';
+
+// Memoized App Switcher Button
+const AppButton = memo(({ app, index, isSelected, onClick, delay }) => (
+  <motion.button
+    onClick={onClick}
+    className={`px-6 py-3 rounded-2xl font-semibold text-sm transition-all duration-300 ${
+      isSelected
+        ? `bg-gradient-to-r ${app.color} text-white shadow-lg`
+        : 'bg-white/10 text-gray-300 hover:bg-white/20'
+    }`}
+    whileHover={{ scale: 1.05 }}
+    whileTap={{ scale: 0.95 }}
+    initial={{ opacity: 0, y: -20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.5, delay }}
+  >
+    <span className="flex items-center gap-2">
+      <span className="text-lg">{app.icon}</span>
+      <span className="hidden xl:inline">{app.name}</span>
+    </span>
+  </motion.button>
+));
+AppButton.displayName = 'AppButton';
+
+// Memoized Stat Card
+const StatCard = memo(({ stat, idx }) => (
+  <motion.div
+    className="bg-white/5 backdrop-blur-sm border border-purple-500/20 rounded-2xl p-6 hover:bg-white/10 hover:border-purple-500/40 transition-all duration-300"
+    initial={{ opacity: 0, scale: 0.8 }}
+    animate={{ opacity: 1, scale: 1 }}
+    transition={{ duration: 0.5, delay: 1.0 + idx * 0.1 }}
+    whileHover={{ y: -5, scale: 1.02 }}
+  >
+    <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-purple-400 mb-2">
+      {stat.number}
+    </div>
+    <div className="text-xs md:text-sm text-white font-semibold mb-1">
+      {stat.label}
+    </div>
+    <div className="text-xs text-gray-400">
+      {stat.subtext}
+    </div>
+  </motion.div>
+));
+StatCard.displayName = 'StatCard';
+
+// Memoized Tech Badge
+const TechBadge = memo(({ tech, idx }) => (
+  <motion.div
+    className="px-6 py-3 bg-white/5 border border-white/10 rounded-xl hover:border-purple-500/30 transition-all duration-300"
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.5, delay: 1.2 + idx * 0.1 }}
+    whileHover={{ scale: 1.05, y: -2 }}
+  >
+    <span className="text-gray-300 font-medium text-sm">{tech}</span>
+  </motion.div>
+));
+TechBadge.displayName = 'TechBadge';
+
+const Hero = () => {
+  const [selectedApp, setSelectedApp] = useState(0);
+  const [shouldLoadWebGL, setShouldLoadWebGL] = useState(false);
+
+  // Memoize apps array to prevent recreation on every render
+  const apps = useMemo(() => [
     {
       id: 0,
       name: 'WallHub',
@@ -36,95 +125,131 @@ const Hero = () => {
       color: 'from-pink-600 to-rose-600',
       icon: '🚀'
     }
-  ];
+  ], []);
+
+  // Memoize value propositions
+  const valueItems = useMemo(() => [
+    { icon: Zap, text: 'Fast Delivery' },
+    { icon: CheckCircle, text: 'Quality Assured' },
+    { icon: Users, text: 'Expert Team' },
+    { icon: Rocket, text: 'Scalable Solutions' }
+  ], []);
+
+  // Memoize stats
+  const stats = useMemo(() => [
+    { number: '3+', label: 'Years Experience', subtext: 'Industry expertise' },
+    { number: '98%', label: 'Client Retention', subtext: 'Satisfaction rate' },
+    { number: '50+', label: 'Projects Delivered', subtext: 'Successfully completed' },
+    { number: '24/7', label: 'Global Support', subtext: 'Always available' }
+  ], []);
+
+  // Memoize technologies
+  const technologies = useMemo(() => 
+    ['Flutter', 'React', 'Node.js', 'AI/ML', 'Firebase', 'MongoDB'],
+    []
+  );
+
+  // Device capability check with useCallback
+  const checkDeviceCapability = useCallback(() => {
+    const isMobile = window.innerWidth < 768;
+    const hasGoodConnection = navigator.connection 
+      ? navigator.connection.effectiveType === '4g' || navigator.connection.effectiveType === 'wifi'
+      : true;
+    
+    setShouldLoadWebGL(!isMobile || (isMobile && hasGoodConnection));
+  }, []);
+
+  useEffect(() => {
+    checkDeviceCapability();
+    
+    // Throttle resize events
+    let timeoutId;
+    const handleResize = () => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(checkDeviceCapability, 150);
+    };
+    
+    window.addEventListener('resize', handleResize, { passive: true });
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      clearTimeout(timeoutId);
+    };
+  }, [checkDeviceCapability]);
+
+  // Hide Unicorn Studio watermark
+  useEffect(() => {
+    const hideWatermark = () => {
+      const style = document.createElement('style');
+      style.innerHTML = `
+        /* Hide Unicorn Studio watermark */
+        a[href*="unicorn.studio"] {
+          display: none !important;
+          opacity: 0 !important;
+          visibility: hidden !important;
+          pointer-events: none !important;
+        }
+        
+        div[data-us-project] a {
+          display: none !important;
+        }
+        
+        canvas + a,
+        canvas ~ a {
+          display: none !important;
+        }
+      `;
+      document.head.appendChild(style);
+    };
+
+    const timeoutId = setTimeout(hideWatermark, 100);
+    return () => clearTimeout(timeoutId);
+  }, []);
+
+  // Memoized callbacks for button clicks
+  const handleAppSelect = useCallback((index) => {
+    setSelectedApp(index);
+  }, []);
+
+  // Memoize current app to prevent unnecessary recalculations
+  const currentApp = useMemo(() => apps[selectedApp], [apps, selectedApp]);
 
   return (
     <section
       id="home"
       className="min-h-screen flex items-center justify-center px-4 md:px-8 relative overflow-hidden pt-32 md:pt-40 pb-20"
     >
-      {/* Animated CSS Gradient Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#0a0118] via-[#1a0b2e] to-[#0f0820]">
-        {/* Animated gradient orbs */}
-        <div className="absolute top-0 left-0 w-full h-full">
-          <motion.div
-            className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-600/30 rounded-full blur-3xl"
-            animate={{
-              scale: [1, 1.2, 1],
-              x: [0, 50, 0],
-              y: [0, 30, 0],
-            }}
-            transition={{
-              duration: 8,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          />
-          
-          <motion.div
-            className="absolute top-1/3 right-1/4 w-80 h-80 bg-cyan-600/20 rounded-full blur-3xl"
-            animate={{
-              scale: [1.2, 1, 1.2],
-              x: [0, -30, 0],
-              y: [0, -40, 0],
-            }}
-            transition={{
-              duration: 10,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          />
-          
-          <motion.div
-            className="absolute bottom-1/4 right-1/3 w-64 h-64 bg-pink-600/25 rounded-full blur-3xl"
-            animate={{
-              scale: [1, 1.3, 1],
-              x: [0, 40, 0],
-              y: [0, -20, 0],
-            }}
-            transition={{
-              duration: 12,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          />
-          
-          <motion.div
-            className="absolute bottom-1/3 left-1/3 w-72 h-72 bg-indigo-600/20 rounded-full blur-3xl"
-            animate={{
-              scale: [1.1, 1, 1.1],
-              x: [0, -25, 0],
-              y: [0, 35, 0],
-            }}
-            transition={{
-              duration: 9,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
+      {/* Optimized Unicorn Studio Background - Conditional Loading with watermark hidden */}
+      {shouldLoadWebGL ? (
+        <div className="absolute inset-0 w-full h-full z-0 [&_a]:!hidden">
+          <UnicornScene 
+            projectId="OVWJ53NGLjDJCtcsaoQO"
+            width="100%"
+            height="100%"
+            scale={0.5}
+            dpi={1}
+            fps={30}
+            lazyload={false}
+            production={true}
+            className="w-full h-full"
           />
         </div>
-        
-        <div className="absolute inset-0 opacity-20 mix-blend-overlay bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJhIiB4PSIwIiB5PSIwIj48ZmVUdXJidWxlbmNlIGJhc2VGcmVxdWVuY3k9Ii43NSIgc3RpdGNoVGlsZXM9InN0aXRjaCIgdHlwZT0iZnJhY3RhbE5vaXNlIi8+PGZlQ29sb3JNYXRyaXggdHlwZT0ic2F0dXJhdGUiIHZhbHVlcz0iMCIvPjwvZmlsdGVyPjxwYXRoIGQ9Ik0wIDBoMzAwdjMwMEgweiIgZmlsdGVyPSJ1cmwoI2EpIiBvcGFjaXR5PSIuMDUiLz48L3N2Zz4=')]" />
-      </div>
+      ) : (
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0a0118] via-[#1a0b2e] to-[#0f0820]" />
+      )}
 
-      <div className="absolute inset-0 bg-gradient-to-b from-slate-950/20 via-transparent to-slate-950/40 pointer-events-none" />
+      {/* Dark overlay */}
+      <div className="absolute inset-0 bg-black/30 z-[1]" />
 
-      {/* Content - Split Layout */}
+      {/* Gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-slate-950/20 via-transparent to-slate-950/40 pointer-events-none z-[2]" />
+
+      {/* Content */}
       <div className="max-w-7xl mx-auto w-full relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           
           {/* LEFT SIDE - Text Content */}
           <div className="text-center lg:text-left">
-            {/* Badge */}
-            <motion.div
-              className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm border border-purple-500/30 rounded-full mb-8"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              <Sparkles className="w-4 h-4 text-purple-400" />
-              <span className="text-sm text-gray-300 font-medium">Next-Gen Software Development Agency</span>
-            </motion.div>
+            <Badge />
 
             {/* Main Headline */}
             <motion.h1
@@ -157,23 +282,8 @@ const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.5 }}
             >
-              {[
-                { icon: Zap, text: 'Fast Delivery' },
-                { icon: CheckCircle, text: 'Quality Assured' },
-                { icon: Users, text: 'Expert Team' },
-                { icon: Rocket, text: 'Scalable Solutions' }
-              ].map((item, idx) => (
-                <motion.div
-                  key={item.text}
-                  className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full hover:border-purple-500/40 transition-all duration-300"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, delay: 0.6 + idx * 0.1 }}
-                  whileHover={{ scale: 1.05 }}
-                >
-                  <item.icon className="w-4 h-4 text-purple-400" />
-                  <span className="text-sm text-gray-200 font-medium">{item.text}</span>
-                </motion.div>
+              {valueItems.map((item, idx) => (
+                <ValueItem key={item.text} item={item} idx={idx} />
               ))}
             </motion.div>
 
@@ -215,25 +325,14 @@ const Hero = () => {
             {/* App Switcher Tabs */}
             <div className="flex gap-3">
               {apps.map((app, index) => (
-                <motion.button
+                <AppButton
                   key={app.id}
-                  onClick={() => setSelectedApp(index)}
-                  className={`px-6 py-3 rounded-2xl font-semibold text-sm transition-all duration-300 ${
-                    selectedApp === index
-                      ? `bg-gradient-to-r ${app.color} text-white shadow-lg`
-                      : 'bg-white/10 text-gray-300 hover:bg-white/20'
-                  }`}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.7 + index * 0.1 }}
-                >
-                  <span className="flex items-center gap-2">
-                    <span className="text-lg">{app.icon}</span>
-                    <span className="hidden xl:inline">{app.name}</span>
-                  </span>
-                </motion.button>
+                  app={app}
+                  index={index}
+                  isSelected={selectedApp === index}
+                  onClick={() => handleAppSelect(index)}
+                  delay={0.7 + index * 0.1}
+                />
               ))}
             </div>
 
@@ -241,7 +340,7 @@ const Hero = () => {
             <div className="relative">
               {/* Glow effect behind screen */}
               <motion.div
-                className={`absolute inset-0 bg-gradient-to-r ${apps[selectedApp].color} rounded-[2.5rem] blur-3xl opacity-50`}
+                className={`absolute inset-0 bg-gradient-to-r ${currentApp.color} rounded-[2.5rem] blur-3xl opacity-50`}
                 animate={{
                   scale: [1, 1.1, 1],
                   opacity: [0.5, 0.8, 0.5],
@@ -275,9 +374,9 @@ const Hero = () => {
                   <AnimatePresence mode="wait">
                     <motion.iframe
                       key={selectedApp}
-                      src={apps[selectedApp].url}
+                      src={currentApp.url}
                       className="w-full h-full border-none"
-                      title={apps[selectedApp].name}
+                      title={currentApp.name}
                       loading="lazy"
                       scrolling="yes"
                       initial={{ opacity: 0, scale: 0.95 }}
@@ -299,7 +398,7 @@ const Hero = () => {
 
               {/* Floating live badge */}
               <motion.div
-                className={`absolute -top-4 -right-4 bg-gradient-to-r ${apps[selectedApp].color} text-white px-4 py-2 rounded-full shadow-lg text-sm font-semibold`}
+                className={`absolute -top-4 -right-4 bg-gradient-to-r ${currentApp.color} text-white px-4 py-2 rounded-full shadow-lg text-sm font-semibold`}
                 initial={{ opacity: 0, scale: 0 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, delay: 1 }}
@@ -326,8 +425,8 @@ const Hero = () => {
                   transition={{ duration: 0.3 }}
                 >
                   <div className="text-center">
-                    <div className="text-white text-sm font-medium">{apps[selectedApp].name}</div>
-                    <div className="text-gray-400 text-xs">{apps[selectedApp].description}</div>
+                    <div className="text-white text-sm font-medium">{currentApp.name}</div>
+                    <div className="text-gray-400 text-xs">{currentApp.description}</div>
                   </div>
                 </motion.div>
               </AnimatePresence>
@@ -342,30 +441,8 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.9 }}
         >
-          {[
-            { number: '3+', label: 'Years Experience', subtext: 'Industry expertise' },
-            { number: '98%', label: 'Client Retention', subtext: 'Satisfaction rate' },
-            { number: '50+', label: 'Projects Delivered', subtext: 'Successfully completed' },
-            { number: '24/7', label: 'Global Support', subtext: 'Always available' }
-          ].map((stat, idx) => (
-            <motion.div
-              key={stat.label}
-              className="bg-white/5 backdrop-blur-sm border border-purple-500/20 rounded-2xl p-6 hover:bg-white/10 hover:border-purple-500/40 transition-all duration-300"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 1.0 + idx * 0.1 }}
-              whileHover={{ y: -5, scale: 1.02 }}
-            >
-              <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-purple-400 mb-2">
-                {stat.number}
-              </div>
-              <div className="text-xs md:text-sm text-white font-semibold mb-1">
-                {stat.label}
-              </div>
-              <div className="text-xs text-gray-400">
-                {stat.subtext}
-              </div>
-            </motion.div>
+          {stats.map((stat, idx) => (
+            <StatCard key={stat.label} stat={stat} idx={idx} />
           ))}
         </motion.div>
 
@@ -378,17 +455,8 @@ const Hero = () => {
         >
           <p className="text-sm text-gray-400 uppercase tracking-wider mb-6 text-center">Trusted Technologies</p>
           <div className="flex flex-wrap justify-center items-center gap-6 md:gap-8">
-            {['Flutter', 'React', 'Node.js', 'AI/ML', 'Firebase', 'MongoDB'].map((tech, idx) => (
-              <motion.div
-                key={tech}
-                className="px-6 py-3 bg-white/5 border border-white/10 rounded-xl hover:border-purple-500/30 transition-all duration-300"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 1.2 + idx * 0.1 }}
-                whileHover={{ scale: 1.05, y: -2 }}
-              >
-                <span className="text-gray-300 font-medium text-sm">{tech}</span>
-              </motion.div>
+            {technologies.map((tech, idx) => (
+              <TechBadge key={tech} tech={tech} idx={idx} />
             ))}
           </div>
         </motion.div>
@@ -418,4 +486,4 @@ const Hero = () => {
   );
 };
 
-export default Hero;
+export default memo(Hero);

@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Smartphone, Code, Brain, Database, Cloud, Palette, ArrowRight, Check, Sparkles } from 'lucide-react';
+import { Smartphone, Code, Brain, Database, Cloud, Palette, ArrowRight, Check, Sparkles, Zap } from 'lucide-react';
 import { useState } from 'react';
 
 const Services = () => {
@@ -38,7 +38,7 @@ const Services = () => {
       tagline: 'Robust & Scalable',
       description: 'Secure server-side solutions with optimized databases, authentication systems, and API development.',
       icon: Database,
-      color: 'from-emerald-500 to-teal-500',
+      color: 'from-purple-500 to-pink-500',
       features: ['Node.js & Express', 'MongoDB & PostgreSQL', 'JWT Authentication', 'Microservices'],
       stats: '99.9% Uptime'
     },
@@ -47,7 +47,7 @@ const Services = () => {
       tagline: 'Scale With Confidence',
       description: 'Modern cloud infrastructure with automated deployment, monitoring, and serverless architecture.',
       icon: Cloud,
-      color: 'from-sky-500 to-cyan-500',
+      color: 'from-cyan-500 to-purple-500',
       features: ['AWS & Firebase', 'Docker Containers', 'CI/CD Pipelines', 'Auto-Scaling'],
       stats: '24/7 Monitoring'
     },
@@ -56,7 +56,7 @@ const Services = () => {
       tagline: 'Design That Converts',
       description: 'User-centric design combining aesthetics with functionality for intuitive digital experiences.',
       icon: Palette,
-      color: 'from-pink-500 to-rose-500',
+      color: 'from-pink-500 to-purple-500',
       features: ['User Research', 'Wireframing & Prototyping', 'Design Systems', 'Usability Testing'],
       stats: '98% User Satisfaction'
     }
@@ -65,218 +65,192 @@ const Services = () => {
   return (
     <section
       id="services"
-      className="py-24 px-4 md:px-8 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 relative overflow-hidden"
+      className="relative overflow-hidden py-32 px-4 md:px-8 bg-gradient-to-b from-[#0a0118] via-[#1a0b2e] to-[#0a0118]"
     >
-      {/* Background decorative elements */}
-      <div className="absolute inset-0 pointer-events-none">
+      {/* Animated Background Orbs */}
+      <div className="absolute inset-0">
         <motion.div
-          className="absolute top-20 right-0 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl"
-          animate={{ 
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.5, 0.3] 
-          }}
-          transition={{ duration: 8, repeat: Infinity }}
+          className="absolute top-20 right-10 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl"
+          animate={{ scale: [1, 1.2, 1], x: [0, 50, 0], y: [0, 30, 0] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div
-          className="absolute bottom-20 left-0 w-96 h-96 bg-cyan-600/10 rounded-full blur-3xl"
-          animate={{ 
-            scale: [1.2, 1, 1.2],
-            opacity: [0.3, 0.5, 0.3] 
-          }}
-          transition={{ duration: 10, repeat: Infinity }}
+          className="absolute bottom-20 left-10 w-80 h-80 bg-cyan-600/20 rounded-full blur-3xl"
+          animate={{ scale: [1.2, 1, 1.2], x: [0, -30, 0], y: [0, -40, 0] }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute top-1/2 left-1/2 w-64 h-64 bg-pink-600/20 rounded-full blur-3xl"
+          animate={{ scale: [1, 1.3, 1], rotate: [0, 180, 360] }}
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
         />
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
-        {/* Enhanced Section Header */}
+        {/* Header Section */}
         <motion.div
           className="text-center mb-20"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <motion.div
-            className="inline-flex items-center gap-2 px-4 py-2 bg-purple-500/10 backdrop-blur-sm border border-purple-500/20 rounded-full mb-6"
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-          >
-            <Sparkles className="w-4 h-4 text-purple-400" />
-            <span className="text-sm text-purple-300 font-semibold uppercase tracking-wider">Our Expertise</span>
-          </motion.div>
-
-          <motion.h2
-            className="text-5xl md:text-6xl font-bold text-white mb-6"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            viewport={{ once: true }}
-          >
-            Comprehensive{' '}
-            <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent">
-              Digital Solutions
-            </span>
-          </motion.h2>
-
-          <motion.p
-            className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            From concept to deployment, we deliver future-ready solutions that drive measurable results 
-            and transform your digital presence
-          </motion.p>
-        </motion.div>
-
-        {/* Enhanced Services Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {services.map((service, index) => (
-            <motion.div
-              key={service.title}
-              className="group relative bg-gradient-to-br from-white/5 to-white/[0.02] backdrop-blur-sm border border-white/10 rounded-3xl p-8 hover:border-purple-500/30 transition-all duration-500 overflow-hidden"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              onMouseEnter={() => setHoveredIndex(index)}
-              onMouseLeave={() => setHoveredIndex(null)}
-              whileHover={{ y: -8, scale: 1.02 }}
-            >
-              {/* Gradient overlay on hover */}
-              <motion.div
-                className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}
-              />
-
-              {/* Animated corner accent */}
-              <motion.div
-                className={`absolute -top-12 -right-12 w-32 h-32 bg-gradient-to-br ${service.color} rounded-full blur-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-500`}
-              />
-
-              {/* Content */}
-              <div className="relative z-10">
-                {/* Icon with gradient background */}
-                <motion.div
-                  className={`w-16 h-16 bg-gradient-to-br ${service.color} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}
-                  animate={hoveredIndex === index ? { rotate: [0, -5, 5, 0] } : {}}
-                  transition={{ duration: 0.5 }}
-                >
-                  <service.icon className="w-8 h-8 text-white" />
-                </motion.div>
-
-                {/* Stats badge */}
-                <div className="absolute top-0 right-0 px-3 py-1 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full">
-                  <span className="text-xs text-gray-400 font-medium">{service.stats}</span>
-                </div>
-
-                {/* Title and tagline */}
-                <div className="mb-4">
-                  <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-cyan-400 group-hover:bg-clip-text transition-all duration-300">
-                    {service.title}
-                  </h3>
-                  <p className="text-sm font-semibold text-purple-400 uppercase tracking-wider">
-                    {service.tagline}
-                  </p>
-                </div>
-
-                {/* Description */}
-                <p className="text-gray-400 mb-6 leading-relaxed">
-                  {service.description}
-                </p>
-
-                {/* Features list with checkmarks */}
-                <ul className="space-y-3 mb-6">
-                  {service.features.map((feature, i) => (
-                    <motion.li
-                      key={i}
-                      className="flex items-center gap-3 text-sm text-gray-400"
-                      initial={{ opacity: 0, x: -10 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.4, delay: index * 0.1 + i * 0.05 }}
-                      viewport={{ once: true }}
-                    >
-                      <div className={`w-5 h-5 rounded-full bg-gradient-to-br ${service.color} flex items-center justify-center flex-shrink-0`}>
-                        <Check className="w-3 h-3 text-white" />
-                      </div>
-                      {feature}
-                    </motion.li>
-                  ))}
-                </ul>
-
-                {/* Learn more link */}
-                <motion.a
-                  href="#contact"
-                  className="inline-flex items-center gap-2 text-purple-400 font-semibold group-hover:gap-3 transition-all duration-300"
-                  whileHover={{ x: 5 }}
-                >
-                  Learn More
-                  <ArrowRight className="w-4 h-4" />
-                </motion.a>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Bottom CTA Section */}
-        <motion.div
-          className="relative bg-gradient-to-br from-purple-600/20 to-cyan-600/20 backdrop-blur-xl border border-purple-500/30 rounded-3xl p-12 overflow-hidden"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          {/* Decorative gradient */}
-          <div className="absolute -top-24 -right-24 w-64 h-64 bg-gradient-to-br from-purple-500 to-cyan-500 rounded-full blur-3xl opacity-20" />
-          
-          <div className="relative z-10 text-center max-w-3xl mx-auto">
-            <motion.h3
-              className="text-3xl md:text-4xl font-bold text-white mb-4"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              viewport={{ once: true }}
+          <motion.div
+            className="inline-flex items-center gap-2 px-6 py-3 bg-white/10 backdrop-blur-md border border-purple-500/30 rounded-full mb-6"
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            whileHover={{ scale: 1.05, borderColor: "rgba(168, 85, 247, 0.5)" }}
+          >
+            <Sparkles className="w-4 h-4 text-purple-400" />
+            <span className="text-sm text-gray-200 font-semibold tracking-wide">
+              Our Expertise
+            </span>
+          </motion.div>
+
+          <h2 className="text-5xl md:text-7xl font-black text-white mb-6 leading-tight">
+            Comprehensive{' '}
+            <motion.span
+              className="block bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent bg-[length:200%_auto]"
+              animate={{ backgroundPosition: ['0% center', '200% center'] }}
+              transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
             >
-              Ready to Transform Your Digital Presence?
-            </motion.h3>
-            <motion.p
-              className="text-lg text-gray-300 mb-8"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              viewport={{ once: true }}
-            >
-              Let's discuss how our expertise can help you achieve your business goals
-            </motion.p>
-            <motion.div
-              className="flex flex-col sm:flex-row gap-4 justify-center"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              viewport={{ once: true }}
-            >
-              <motion.a
-                href="#contact"
-                className="px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-full hover:shadow-2xl hover:shadow-purple-500/50 transition-all duration-300 inline-flex items-center justify-center gap-2"
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                Start Your Project
-                <ArrowRight className="w-5 h-5" />
-              </motion.a>
-              <motion.a
-                href="/about"
-                className="px-8 py-4 bg-white/10 backdrop-blur-sm border border-white/30 text-white font-semibold rounded-full hover:bg-white/20 transition-all duration-300"
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                Learn More About Us
-              </motion.a>
-            </motion.div>
-          </div>
+              Digital Solutions
+            </motion.span>
+          </h2>
+
+          <motion.p
+            className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            From concept to deployment, we deliver{' '}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400 font-bold">
+              future-ready solutions
+            </span>{' '}
+            that drive measurable results and transform your digital presence
+          </motion.p>
         </motion.div>
+
+        {/* Services Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+          {services.map((service, index) => (
+            <motion.div
+              key={service.title}
+              className="group relative bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-lg border border-purple-500/20 rounded-3xl p-10 overflow-hidden"
+              initial={{ opacity: 0, y: 40, scale: 0.95 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{
+                duration: 0.6,
+                delay: index * 0.1,
+                type: "spring",
+                stiffness: 100
+              }}
+              viewport={{ once: true }}
+              onMouseEnter={() => setHoveredIndex(index)}
+              onMouseLeave={() => setHoveredIndex(null)}
+              whileHover={{
+                y: -10,
+                scale: 1.02,
+                borderColor: "rgba(168, 85, 247, 0.4)",
+              }}
+            >
+              <motion.div
+                className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}
+              />
+              <motion.div
+                className={`absolute -top-20 -right-20 w-40 h-40 bg-gradient-to-br ${service.color} rounded-full blur-3xl opacity-0 group-hover:opacity-30 transition-opacity duration-500`}
+              />
+
+              <div className="relative z-10">
+                <motion.div
+                  className={`w-20 h-20 bg-gradient-to-br ${service.color} rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-purple-500/30`}
+                  animate={hoveredIndex === index ? {
+                    rotate: [0, -10, 10, -10, 0],
+                    scale: [1, 1.1, 1]
+                  } : {}}
+                  transition={{ duration: 0.6 }}
+                >
+                  <service.icon className="w-10 h-10 text-white" />
+                </motion.div>
+
+                <motion.div
+                  className="absolute top-0 right-0 px-4 py-2 bg-white/10 backdrop-blur-sm border border-purple-500/30 rounded-full"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 + 0.2 }}
+                  viewport={{ once: true }}
+                >
+                  <span className="text-xs text-purple-300 font-bold flex items-center gap-1">
+                    <Zap className="w-3 h-3" />
+                    {service.stats}
+                  </span>
+                </motion.div>
+
+                <div className="mb-5">
+                  <h3 className="text-2xl font-black text-white mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-pink-400 transition-all duration-300">
+                    {service.title}
+                  </h3>
+                  <p className={`text-sm font-bold bg-gradient-to-r ${service.color} bg-clip-text text-transparent uppercase tracking-wider`}>
+                    {service.tagline}
+                  </p>
+                </div>
+
+                <p className="text-gray-400 mb-6 leading-relaxed">
+                  {service.description}
+                </p>
+
+                <ul className="space-y-3 mb-8">
+                  {service.features.map((feature, i) => (
+                    <motion.li
+                      key={i}
+                      className="flex items-center gap-3 text-sm text-gray-300"
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.4, delay: index * 0.1 + i * 0.05 }}
+                      viewport={{ once: true }}
+                    >
+                      <motion.div
+                        className={`w-6 h-6 rounded-lg bg-gradient-to-br ${service.color} flex items-center justify-center flex-shrink-0`}
+                        whileHover={{ scale: 1.2, rotate: 360 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <Check className="w-3.5 h-3.5 text-white" />
+                      </motion.div>
+                      <span className="group-hover:text-white transition-colors duration-300">
+                        {feature}
+                      </span>
+                    </motion.li>
+                  ))}
+                </ul>
+
+                <motion.a
+                  href="#contact"
+                  className={`inline-flex items-center gap-2 font-bold bg-gradient-to-r ${service.color} bg-clip-text text-transparent group-hover:gap-4 transition-all duration-300`}
+                  whileHover={{ x: 5 }}
+                >
+                  Learn More
+                  <motion.div
+                    animate={hoveredIndex === index ? { x: [0, 5, 0] } : {}}
+                    transition={{ duration: 0.5, repeat: hoveredIndex === index ? Infinity : 0 }}
+                  >
+                    <ArrowRight className={`w-5 h-5 bg-gradient-to-r ${service.color} bg-clip-text text-transparent`} />
+                  </motion.div>
+                </motion.a>
+              </div>
+              <motion.div
+                className="absolute bottom-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                initial={{ x: -10 }}
+                whileHover={{ x: 0 }}
+              >
+                <ArrowRight className="w-6 h-6 text-purple-400" />
+              </motion.div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );

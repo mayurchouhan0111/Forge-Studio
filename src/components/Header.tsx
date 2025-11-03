@@ -46,7 +46,7 @@ const Header = () => {
       transition={{ duration: 0.6 }}
     >
       <nav className="max-w-7xl mx-auto px-4 md:px-8 flex items-center justify-between">
-        {/* Logo - Much Larger Size */}
+        {/* Logo */}
         <Link to="/" className="flex items-center group">
           <motion.img 
             src={logo} 
@@ -65,8 +65,8 @@ const Header = () => {
           />
         </Link>
 
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-1">
+        {/* Desktop Navigation - Improved Animation */}
+        <div className="hidden md:flex items-center gap-2 bg-white/5 backdrop-blur-sm rounded-2xl px-2 py-2 border border-white/10">
           {navigation.map((item, index) => (
             <motion.div
               key={item.path}
@@ -76,18 +76,38 @@ const Header = () => {
             >
               <Link
                 to={item.path}
-                className={`relative px-4 py-2 font-medium transition-all duration-300 rounded-lg ${
-                  isActive(item.path)
-                    ? 'text-white bg-white/10'
-                    : 'text-gray-400 hover:text-white hover:bg-white/5'
-                }`}
+                className="relative px-6 py-2.5 font-semibold transition-colors duration-300 rounded-xl block"
               >
-                {item.name}
+                {/* Animated Background for Active Tab */}
                 {isActive(item.path) && (
                   <motion.div
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-purple-500 to-cyan-500"
-                    layoutId="activeTab"
-                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl shadow-lg shadow-purple-500/50"
+                    layoutId="activeBackground"
+                    transition={{
+                      type: "spring",
+                      stiffness: 500,
+                      damping: 35,
+                      mass: 0.8
+                    }}
+                  />
+                )}
+                
+                {/* Text with smooth color transition */}
+                <span className={`relative z-10 transition-all duration-300 ${
+                  isActive(item.path)
+                    ? 'text-white font-bold'
+                    : 'text-gray-400 hover:text-white'
+                }`}>
+                  {item.name}
+                </span>
+
+                {/* Animated underline on hover (only for inactive tabs) */}
+                {!isActive(item.path) && (
+                  <motion.div
+                    className="absolute bottom-1 left-1/2 -translate-x-1/2 h-0.5 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-full"
+                    initial={{ width: 0 }}
+                    whileHover={{ width: '80%' }}
+                    transition={{ duration: 0.3 }}
                   />
                 )}
               </Link>
@@ -102,11 +122,21 @@ const Header = () => {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
         >
-          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={isMenuOpen ? 'close' : 'menu'}
+              initial={{ rotate: -90, opacity: 0 }}
+              animate={{ rotate: 0, opacity: 1 }}
+              exit={{ rotate: 90, opacity: 0 }}
+              transition={{ duration: 0.2 }}
+            >
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </motion.div>
+          </AnimatePresence>
         </motion.button>
       </nav>
 
-      {/* Mobile Navigation */}
+      {/* Mobile Navigation - Improved */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
@@ -122,17 +152,62 @@ const Header = () => {
                   key={item.path}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ 
+                    delay: index * 0.05,
+                    type: "spring",
+                    stiffness: 300,
+                    damping: 25
+                  }}
                 >
                   <Link
                     to={item.path}
-                    className={`block px-4 py-3 rounded-xl font-medium transition-all duration-200 ${
-                      isActive(item.path)
-                        ? 'bg-purple-500/20 text-purple-400'
-                        : 'text-gray-300 hover:bg-gray-800/50 hover:text-white'
-                    }`}
+                    className="relative block overflow-hidden rounded-xl"
                   >
-                    {item.name}
+                    {/* Animated background for mobile */}
+                    <motion.div
+                      className={`px-4 py-3 font-semibold transition-all duration-300 relative z-10 ${
+                        isActive(item.path)
+                          ? 'text-white'
+                          : 'text-gray-300'
+                      }`}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      {/* Active state background */}
+                      {isActive(item.path) && (
+                        <motion.div
+                          className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 -z-10"
+                          layoutId="mobileActiveBackground"
+                          transition={{
+                            type: "spring",
+                            stiffness: 400,
+                            damping: 30
+                          }}
+                        />
+                      )}
+                      
+                      {/* Hover background for inactive */}
+                      {!isActive(item.path) && (
+                        <motion.div
+                          className="absolute inset-0 bg-gray-800/50 -z-10"
+                          initial={{ opacity: 0 }}
+                          whileHover={{ opacity: 1 }}
+                          transition={{ duration: 0.2 }}
+                        />
+                      )}
+                      
+                      <span className="relative flex items-center justify-between">
+                        {item.name}
+                        {isActive(item.path) && (
+                          <motion.div
+                            className="w-2 h-2 bg-white rounded-full"
+                            initial={{ scale: 0 }}
+                            animate={{ scale: 1 }}
+                            transition={{ delay: 0.2, type: "spring" }}
+                          />
+                        )}
+                      </span>
+                    </motion.div>
                   </Link>
                 </motion.div>
               ))}
