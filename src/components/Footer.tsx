@@ -45,9 +45,9 @@ const Footer = () => {
   ];
 
   const contactInfo = [
-    { icon: Mail, text: 'hello@vbuild.shop', href: 'mailto:hello@vbuild.shop' },
+    { icon: Mail, text: 'mayurchouhan8055@gmail.com', href: 'mailto:mayurchouhan8055@gmail.com' },
     { icon: MapPin, text: 'Indore, India', href: null },
-    { icon: Phone, text: '+91 XXX-XXX-XXXX', href: 'tel:+91XXXXXXXXXX' },
+    { icon: Phone, text: '6263850508', href: 'tel:6263850508' },
   ];
 
   const scrollToTop = () => {
