@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import Home from './pages/HomePage';
-import AboutPage from './pages/AboutPage';
-import ServicesPage from './pages/ServicesPage';
-import TestimonialsPage from './pages/TestimonialsPage';
-import ContactPage from './pages/ContactPage';
+const Home = lazy(() => import('./pages/HomePage'));
+const AboutPage = lazy(() => import('./pages/AboutPage'));
+const ServicesPage = lazy(() => import('./pages/ServicesPage'));
+const TestimonialsPage = lazy(() => import('./pages/TestimonialsPage'));
+const ContactPage = lazy(() => import('./pages/ContactPage'));
 import WhatsAppButton from './components/WhatsAppButton';
 import VoiceAssistant from './components/VoiceAssistant';
 import './index.css';
@@ -66,13 +66,15 @@ function App() {
 
           {/* Routes with page transitions */}
           <AnimatePresence mode="wait">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<AboutPage />} />
-              <Route path="/services" element={<ServicesPage />} />
-              <Route path="/testimonials" element={<TestimonialsPage />} />
-              <Route path="/contact" element={<ContactPage />} />
-            </Routes>
+            <Suspense fallback={<div>Loading...</div>}>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<AboutPage />} />
+                <Route path="/services" element={<ServicesPage />} />
+                <Route path="/testimonials" element={<TestimonialsPage />} />
+                <Route path="/contact" element={<ContactPage />} />
+              </Routes>
+            </Suspense>
           </AnimatePresence>
 
           <Footer />

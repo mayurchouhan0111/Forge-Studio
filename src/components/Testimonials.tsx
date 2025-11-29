@@ -1,286 +1,174 @@
-import { motion } from 'framer-motion';
-import { Star, Quote, Sparkles, CheckCircle } from 'lucide-react';
-import { useState } from 'react';
+import { motion } from "framer-motion";
+import { Star, Quote, Sparkles, CheckCircle } from "lucide-react";
+import { useState } from "react";
 
 const testimonials = [
   {
-    name: 'Rajesh Kumar',
-    title: 'CEO',
-    company: 'TechVision India',
-    feedback: 'Outstanding Flutter development work. The team delivered a high-performance app that exceeded our expectations. Professional approach and excellent communication throughout.',
+    name: "Rajesh Kumar",
+    title: "CEO",
+    company: "TechVision India",
+    feedback:
+      "Outstanding Flutter development work. The team delivered a high-performance app that exceeded our expectations.",
     rating: 5,
-    avatar: 'RK',
-    color: 'from-purple-500 to-pink-500'
+    avatar: "RK",
+    color: "from-purple-500 to-pink-500",
   },
   {
-    name: 'Priya Sharma',
-    title: 'Product Manager',
-    company: 'Digital Solutions Ltd',
-    feedback: 'The AI integration they implemented transformed our document processing workflow. Highly skilled team with deep expertise in modern technologies.',
+    name: "Priya Sharma",
+    title: "Product Manager",
+    company: "Digital Solutions Ltd",
+    feedback:
+      "The AI integration they implemented transformed our workflow. Highly skilled team with modern engineering expertise.",
     rating: 5,
-    avatar: 'PS',
-    color: 'from-cyan-500 to-blue-500'
+    avatar: "PS",
+    color: "from-cyan-500 to-blue-500",
   },
   {
-    name: 'Amit Patel',
-    title: 'Founder',
-    company: 'StartupHub',
-    feedback: 'Exceptional full-stack development services. They built our entire platform from scratch with clean code and scalable architecture. Highly recommended!',
+    name: "Amit Patel",
+    title: "Founder",
+    company: "StartupHub",
+    feedback:
+      "Exceptional full-stack development services. Clean code, scalable architecture — truly best in class.",
     rating: 5,
-    avatar: 'AP',
-    color: 'from-pink-500 to-purple-500'
-  }
+    avatar: "AP",
+    color: "from-pink-500 to-purple-500",
+  },
 ];
 
 const Testimonials = () => {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [hovered, setHovered] = useState<number | null>(null);
 
   return (
     <section
       id="testimonials"
-      className="relative overflow-hidden py-32 px-4 md:px-8 bg-gradient-to-b from-[#0a0118] via-[#1a0b2e] to-[#0a0118]"
+      className="relative py-28 px-4 md:px-8 bg-gradient-to-b from-[#080011] via-[#150823] to-[#080011] overflow-hidden"
     >
-      {/* Animated Background Orbs */}
-      <div className="absolute inset-0">
-        <motion.div
-          className="absolute top-20 right-10 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.2, 1],
-            x: [0, 50, 0],
-            y: [0, 30, 0],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-        <motion.div
-          className="absolute bottom-20 left-10 w-80 h-80 bg-cyan-600/20 rounded-full blur-3xl"
-          animate={{
-            scale: [1.2, 1, 1.2],
-            x: [0, -30, 0],
-            y: [0, -40, 0],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-        <motion.div
-          className="absolute top-1/2 left-1/2 w-64 h-64 bg-pink-600/20 rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.3, 1],
-            rotate: [0, 180, 360],
-          }}
-          transition={{
-            duration: 12,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-      </div>
+      {/* Soft ambient lights */}
+      <motion.div
+        className="absolute top-0 left-1/4 w-[420px] h-[420px] bg-purple-500/10 blur-[180px] rounded-full"
+        animate={{ opacity: [0.3, 0.5, 0.3], scale: [1, 1.1, 1] }}
+        transition={{ duration: 10, repeat: Infinity }}
+      />
+      <motion.div
+        className="absolute bottom-0 right-1/4 w-[380px] h-[380px] bg-cyan-500/10 blur-[160px] rounded-full"
+        animate={{ opacity: [0.2, 0.4, 0.2], scale: [1.2, 1, 1.2] }}
+        transition={{ duration: 12, repeat: Infinity }}
+      />
 
       <div className="max-w-7xl mx-auto relative z-10">
-        {/* Header Section */}
-        <motion.div
-          className="text-center mb-20"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-        >
-          {/* Animated Badge */}
-          <motion.div
-            className="inline-flex items-center gap-2 px-6 py-3 bg-white/10 backdrop-blur-md border border-purple-500/30 rounded-full mb-6"
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            whileHover={{ scale: 1.05, borderColor: "rgba(168, 85, 247, 0.5)" }}
-          >
+        {/* Header */}
+        <div className="text-center mb-20">
+          <div className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-white/5 border border-purple-500/20 backdrop-blur-md">
             <Sparkles className="w-4 h-4 text-purple-400" />
-            <span className="text-sm text-gray-200 font-semibold tracking-wide">
-              Client Success Stories
+            <span className="text-sm text-gray-300 tracking-wide font-medium">
+              Testimonials
             </span>
-          </motion.div>
+          </div>
 
-          {/* Animated Gradient Title */}
-          <h2 className="text-5xl md:text-7xl font-black text-white mb-6 leading-tight">
-            What Our{' '}
-            <motion.span
-              className="block bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent bg-[length:200%_auto]"
-              animate={{
-                backgroundPosition: ['0% center', '200% center'],
-              }}
-              transition={{
-                duration: 5,
-                repeat: Infinity,
-                ease: "linear",
-              }}
-            >
-              Clients Say
-            </motion.span>
+          <h2 className="text-5xl md:text-7xl font-extrabold text-white mt-6 tracking-tight leading-[1.1]">
+            Loved By{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400">
+              Clients Worldwide
+            </span>
           </h2>
 
-          <motion.p
-            className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            Don't just take our word for it. Hear from the businesses we've{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400 font-bold">
-              helped transform
-            </span>
-          </motion.p>
-        </motion.div>
+          <p className="text-gray-400 text-lg max-w-2xl mx-auto mt-6 leading-relaxed">
+            Real experiences. Real impact. Here’s what teams & founders say
+            about working with us.
+          </p>
+        </div>
 
-        {/* Testimonials Grid */}
-        <div className="grid md:grid-cols-3 gap-8 mb-16">
-          {testimonials.map((testimonial, idx) => (
+        {/* Updated modern grid */}
+        <div className="grid md:grid-cols-3 gap-12">
+          {testimonials.map((t, i) => (
             <motion.div
-              key={testimonial.name}
-              className="group relative bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-lg border border-purple-500/20 rounded-3xl p-10 overflow-hidden"
-              initial={{ opacity: 0, y: 40, scale: 0.95 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{
-                duration: 0.6,
-                delay: idx * 0.15,
-                type: "spring",
-                stiffness: 100
-              }}
+              key={i}
+              onMouseEnter={() => setHovered(i)}
+              onMouseLeave={() => setHovered(null)}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: i * 0.15 }}
               viewport={{ once: true }}
-              onMouseEnter={() => setHoveredIndex(idx)}
-              onMouseLeave={() => setHoveredIndex(null)}
-              whileHover={{
-                y: -10,
-                scale: 1.02,
-                borderColor: "rgba(168, 85, 247, 0.4)",
-              }}
+              className="p-8 bg-white/[0.04] border border-white/10 backdrop-blur-xl rounded-3xl
+                         hover:border-purple-500/30 transition-all shadow-xl hover:shadow-purple-500/20"
             >
-              {/* Animated background gradient on hover */}
+              {/* Floating quote icon */}
               <motion.div
-                className={`absolute inset-0 bg-gradient-to-br ${testimonial.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}
-              />
+                animate={
+                  hovered === i
+                    ? { rotate: [-5, 5, -5], scale: 1.1 }
+                    : { scale: 1 }
+                }
+                transition={{ duration: 0.6 }}
+                className="mb-6"
+              >
+                <Quote className="w-10 h-10 text-purple-400/40" />
+              </motion.div>
 
-              {/* Glow effect on hover */}
-              <motion.div
-                className={`absolute -top-20 -right-20 w-40 h-40 bg-gradient-to-br ${testimonial.color} rounded-full blur-3xl opacity-0 group-hover:opacity-30 transition-opacity duration-500`}
-              />
+              {/* Feedback */}
+              <p className="text-gray-300 text-lg leading-relaxed mb-8">
+                "{t.feedback}"
+              </p>
 
-              {/* Content */}
-              <div className="relative z-10">
-                {/* Quote Icon with Animation */}
-                <motion.div
-                  className="relative mb-6"
-                  animate={hoveredIndex === idx ? {
-                    rotate: [0, -10, 10, 0],
-                    scale: [1, 1.1, 1]
-                  } : {}}
-                  transition={{ duration: 0.6 }}
-                >
-                  <Quote className="w-12 h-12 text-purple-400/40" />
-                  <motion.div
-                    className={`absolute -top-2 -left-2 w-16 h-16 bg-gradient-to-br ${testimonial.color} rounded-full blur-xl opacity-20`}
+              {/* Stars */}
+              <div className="flex gap-1 mb-6">
+                {Array.from({ length: t.rating }).map((_, j) => (
+                  <Star
+                    key={j}
+                    className="w-5 h-5 text-yellow-400 fill-yellow-400"
                   />
-                </motion.div>
+                ))}
+              </div>
 
-                {/* Star Rating */}
-                <div className="flex gap-1 mb-6">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <motion.div
-                      key={i}
-                      initial={{ opacity: 0, scale: 0 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      transition={{
-                        duration: 0.3,
-                        delay: idx * 0.15 + i * 0.05
-                      }}
-                      viewport={{ once: true }}
-                      whileHover={{ scale: 1.2, rotate: 360 }}
-                    >
-                      <Star className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-                    </motion.div>
-                  ))}
+              {/* Client info */}
+              <div className="flex items-center gap-4 mt-6 pt-6 border-t border-white/10">
+                <div
+                  className={`w-14 h-14 bg-gradient-to-r ${t.color} rounded-xl flex items-center justify-center text-white font-bold`}
+                >
+                  {t.avatar}
                 </div>
 
-                {/* Feedback Text */}
-                <p className="text-gray-300 mb-8 leading-relaxed italic text-lg">
-                  "{testimonial.feedback}"
-                </p>
-
-                {/* Client Info */}
-                <div className="flex items-center gap-4 pt-6 border-t border-purple-500/20">
-                  {/* Avatar with Gradient */}
-                  <motion.div
-                    className={`w-14 h-14 bg-gradient-to-br ${testimonial.color} rounded-2xl flex items-center justify-center font-black text-white text-lg shadow-lg shadow-purple-500/30`}
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
-                    {testimonial.avatar}
-                  </motion.div>
-
-                  {/* Client Details */}
-                  <div className="flex-1">
-                    <div className="font-bold text-white text-lg mb-1">
-                      {testimonial.name}
-                    </div>
-                    <div className="text-sm text-gray-400 flex items-center gap-2">
-                      <span>{testimonial.title}</span>
-                      <span className="w-1 h-1 bg-purple-400 rounded-full" />
-                      <span className="text-purple-300">{testimonial.company}</span>
-                    </div>
+                <div className="flex-1">
+                  <div className="text-white text-lg font-semibold">
+                    {t.name}
                   </div>
-
-                  {/* Verified Badge */}
-                  <motion.div
-                    className="flex-shrink-0"
-                    initial={{ opacity: 0, scale: 0 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.5, delay: idx * 0.15 + 0.3 }}
-                    viewport={{ once: true }}
-                    whileHover={{ scale: 1.2, rotate: 360 }}
-                  >
-                    <CheckCircle className="w-6 h-6 text-green-400" />
-                  </motion.div>
+                  <div className="text-gray-400 text-sm flex items-center gap-2">
+                    {t.title}
+                    <span className="w-1 h-1 bg-purple-400 rounded-full"></span>
+                    <span className="text-purple-300 font-medium">
+                      {t.company}
+                    </span>
+                  </div>
                 </div>
+
+                <CheckCircle className="w-6 h-6 text-green-400" />
               </div>
             </motion.div>
           ))}
         </div>
 
-        {/* Stats Section */}
-        <motion.div
-          className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          viewport={{ once: true }}
-        >
+        {/* Stats — More minimal style */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-10 mt-20 text-center">
           {[
-            { number: '100+', label: 'Happy Clients' },
-            { number: '5.0', label: 'Average Rating' },
-            { number: '98%', label: 'Client Retention' },
-            { number: '24/7', label: 'Support Available' }
-          ].map((stat, idx) => (
+            { label: "Happy Clients", value: "100+" },
+            { label: "Avg. Rating", value: "5.0" },
+            { label: "Retention Rate", value: "98%" },
+            { label: "Support", value: "24/7" },
+          ].map((s, i) => (
             <motion.div
-              key={stat.label}
-              className="text-center"
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.6 + idx * 0.1 }}
-              viewport={{ once: true }}
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 + i * 0.1 }}
+              className="space-y-2"
             >
-              <div className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 mb-2">
-                {stat.number}
-              </div>
-              <div className="text-sm text-gray-400 font-semibold">{stat.label}</div>
+              <h3 className="text-4xl font-extrabold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                {s.value}
+              </h3>
+              <p className="text-gray-400">{s.label}</p>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
