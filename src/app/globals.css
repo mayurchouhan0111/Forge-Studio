@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-sans);
+  
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-blue: var(--accent-blue);
+  --color-accent-green: var(--accent-green);
+}
+
+:root {
+  /* Default to Dark Mode / Noir Theme */
+  --background: #000000;
+  --foreground: #ffffff;
+
+  --primary: #0BE0FF; /* Cyan/Sky Blue */
+  --primary-foreground: #000000;
+
+  --secondary: #22C55E; /* Green */
+  --secondary-foreground: #ffffff;
+
+  --card: #18181b; /* zinc-900 */
+  --card-foreground: #a1a1aa; /* zinc-400 for body text usually */
+
+  --accent: #0BE0FF;
+  --accent-blue: #4F46E5; /* Indigo */
+  --accent-green: #22C55E;
+
+  --font-sans: Inter, sans-serif;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+/* Custom Utilities for Glow Effects */
+@utility glow-text {
+  text-shadow: 0 0 20px rgba(11, 224, 255, 0.5);
+}
+
+@utility glow-box {
+  box-shadow: 0 0 20px rgba(11, 224, 255, 0.15);
+}
