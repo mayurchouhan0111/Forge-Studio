@@ -1,184 +1,97 @@
+import React from 'react';
 import { motion } from 'framer-motion';
-import { GraduationCap, MapPin, Calendar, Award } from 'lucide-react';
+import {
+  ShieldCheck,
+  Zap,
+  HeartHandshake,
+  Flame,
+  Code2,
+  Users,
+} from 'lucide-react';
 
-const About = () => {
-  const highlights = [
+interface AboutProps {
+  onOpenBooking: () => void;
+}
+
+const About: React.FC<AboutProps> = ({ onOpenBooking }) => {
+  const agencyValues = [
     {
-      icon: GraduationCap,
-      title: "IT Student",
-      description: "Pursuing Information Technology at SGSITS Indore",
-      color: "from-[#AD8B73] to-[#8B6F47]"
+      title: '100% Code & IP Ownership',
+      description: 'You retain full intellectual property rights, repository ownership, and deployment keys upon completion.',
+      icon: ShieldCheck,
+      color: 'from-indigo-600 to-indigo-700',
     },
     {
-      icon: Award,
-      title: "Freelancer",
-      description: "Building custom solutions for clients worldwide",
-      color: "from-[#AD8B73] to-[#8B6F47]"
+      title: 'Zero Tech Debt Architecture',
+      description: 'Strict TypeScript interfaces, automated CI/CD checks, and modular design patterns mean your codebase scales seamlessly.',
+      icon: Code2,
+      color: 'from-violet-600 to-indigo-600',
     },
     {
-      icon: MapPin,
-      title: "Based in Indore",
-      description: "Available for remote and local projects",
-      color: "from-[#AD8B73] to-[#8B6F47]"
-    }
+      title: 'Direct Senior Architect Access',
+      description: 'No account managers or middle layers. You communicate directly with senior solutions architects on Slack.',
+      icon: Users,
+      color: 'from-emerald-600 to-teal-600',
+    },
   ];
 
   return (
-    <section
-      id="about"
-      className="py-24 px-4 md:px-8 bg-[#0D1117] relative overflow-hidden"
-    >
-      {/* Background elements */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-20 left-20 w-72 h-72 bg-[#AD8B73] rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-20 w-72 h-72 bg-[#AD8B73] rounded-full blur-3xl" />
-      </div>
+    <section id="about" className="py-24 px-4 sm:px-6 bg-[#FFFFFF] relative overflow-hidden">
+      {/* Background Ambient Glow */}
+      <div className="absolute top-1/4 left-10 w-96 h-96 bg-indigo-50 rounded-full blur-[130px] pointer-events-none" />
 
-      <div className="max-w-6xl mx-auto z-10 relative">
-        {/* Section Header */}
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-        >
-          <motion.h2
-            className="text-5xl md:text-6xl font-black mb-6 text-white"
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            About <span className="text-[#AD8B73]">Me</span>
-          </motion.h2>
-        </motion.div>
-
-        {/* Main Content Grid */}
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left Column - Story */}
-          <motion.div
-            className="space-y-6"
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <div className="bg-white/5 backdrop-blur-xl border border-[#AD8B73]/20 rounded-3xl p-8 hover:border-[#AD8B73]/40 transition-all duration-300">
-              <motion.p
-                className="text-lg text-gray-300 leading-relaxed mb-6"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                viewport={{ once: true }}
-              >
-                I'm a passionate <span className="text-[#AD8B73] font-semibold">full-stack developer</span> and 
-                IT student at SGSITS Indore, specializing in creating innovative mobile applications, 
-                web solutions, and AI-powered systems.
-              </motion.p>
-              
-              <motion.p
-                className="text-lg text-gray-300 leading-relaxed mb-6"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                viewport={{ once: true }}
-              >
-                My journey in technology spans across <span className="text-[#AD8B73] font-semibold">Flutter mobile development</span>, 
-                <span className="text-[#AD8B73] font-semibold"> React web applications</span>, and 
-                <span className="text-[#AD8B73] font-semibold"> AI integration</span>. I love turning complex problems 
-                into simple, beautiful, and intuitive solutions.
-              </motion.p>
-
-              <motion.p
-                className="text-lg text-gray-300 leading-relaxed"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                viewport={{ once: true }}
-              >
-                When I'm not coding, you'll find me exploring new technologies, participating in hackathons, 
-                or working on freelance projects that challenge my skills and creativity.
-              </motion.p>
-            </div>
-          </motion.div>
-
-          {/* Right Column - Highlights */}
-          <motion.div
-            className="space-y-6"
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            {highlights.map((highlight, index) => (
-              <motion.div
-                key={highlight.title}
-                className="bg-white/5 backdrop-blur-xl border border-[#AD8B73]/20 rounded-2xl p-6 hover:border-[#AD8B73]/40 transition-all duration-300 group"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
-                viewport={{ once: true }}
-                whileHover={{ scale: 1.02, y: -5 }}
-              >
-                <div className="flex items-start gap-4">
-                  <div className={`w-12 h-12 bg-gradient-to-br ${highlight.color} rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300`}>
-                    <highlight.icon className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="text-white font-bold text-xl mb-2 group-hover:text-[#AD8B73] transition-colors">
-                      {highlight.title}
-                    </h3>
-                    <p className="text-gray-400 leading-relaxed">
-                      {highlight.description}
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
+      <div className="max-w-7xl mx-auto z-10 relative">
+        {/* Header */}
+        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-50 border border-indigo-200 text-indigo-700 text-xs font-semibold mb-4 shadow-sm">
+            <Flame className="w-3.5 h-3.5" />
+            <span className="uppercase tracking-wider font-mono text-[11px]">Agency Principles & Culture</span>
+          </div>
+          <h2 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight mb-4 font-display">
+            About <span className="shimmer-text">VBUILD</span>
+          </h2>
+          <p className="text-slate-600 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
+            We are an elite software & AI engineering studio building high-impact digital products for ambitious startups and enterprises.
+          </p>
         </div>
 
-        {/* Stats Section */}
-        <motion.div
-          className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-20"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          viewport={{ once: true }}
-        >
-          {[
-            { number: '20+', label: 'Projects Completed' },
-            { number: '3+', label: 'Years Learning' },
-            { number: '5+', label: 'Technologies' },
-            { number: '100%', label: 'Dedication' }
-          ].map((stat, index) => (
-            <motion.div
-              key={stat.label}
-              className="text-center group"
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
-              viewport={{ once: true }}
-              whileHover={{ scale: 1.05 }}
-            >
-              <div className="bg-white/5 backdrop-blur-xl border border-[#AD8B73]/20 rounded-2xl p-6 hover:border-[#AD8B73]/40 transition-all duration-300">
-                <motion.div
-                  className="text-4xl font-black text-[#AD8B73] mb-2"
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  transition={{ duration: 1, delay: 0.6 + index * 0.1 }}
-                  viewport={{ once: true }}
-                >
-                  {stat.number}
-                </motion.div>
-                <div className="text-gray-400 font-medium text-sm">
-                  {stat.label}
+        {/* Story Box */}
+        <div className="glass-card p-6 sm:p-12 rounded-3xl border border-slate-200 bg-white mb-12 sm:mb-16 relative overflow-hidden shadow-sm">
+          <div className="max-w-3xl space-y-4 text-slate-600 text-sm sm:text-base leading-relaxed">
+            <h3 className="text-xl sm:text-2xl font-bold text-slate-900">
+              Engineered for Speed, Precision & Code Ownership
+            </h3>
+            <p>
+              VBUILD (<a href="https://vbuild.shop/" target="_blank" rel="noopener noreferrer" className="text-indigo-600 hover:underline font-mono font-bold">vbuild.shop</a>) was founded with a singular mission: to eliminate low-quality outsourced software development and replace it with <span className="text-indigo-600 font-semibold">world-class, high-speed engineering precision</span>.
+            </p>
+            <p>
+              Our senior engineering squad partners directly with tech founders and CTOs to design, develop, and deploy production-ready web applications, Flutter mobile products, and custom AI models with 100% intellectual property ownership.
+            </p>
+          </div>
+        </div>
+
+        {/* Agency Values Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+          {agencyValues.map((val, idx) => {
+            const IconComp = val.icon;
+            return (
+              <motion.div
+                key={val.title}
+                className="glass-card glass-card-hover p-6 sm:p-8 rounded-3xl border border-slate-200 bg-white space-y-4 shadow-sm"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                viewport={{ once: true }}
+              >
+                <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${val.color} text-white flex items-center justify-center shadow-md`}>
+                  <IconComp className="w-6 h-6" />
                 </div>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
+                <h4 className="text-lg font-bold text-slate-900">{val.title}</h4>
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">{val.description}</p>
+              </motion.div>
+            );
+          })}
+        </div>
       </div>
     </section>
   );

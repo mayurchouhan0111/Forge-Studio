@@ -1,234 +1,189 @@
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Github, Linkedin, Twitter, ArrowUp, Heart, Code } from 'lucide-react';
+import {
+  Flame,
+  Mail,
+  Phone,
+  MapPin,
+  Github,
+  Linkedin,
+  Twitter,
+  ArrowUp,
+  Heart,
+  Send,
+  CheckCircle2,
+  ShieldCheck,
+} from 'lucide-react';
 
-const Footer = () => {
+const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
+  const [newsletterEmail, setNewsletterEmail] = useState('');
+  const [isSubscribed, setIsSubscribed] = useState(false);
 
-  const socialLinks = [
-    { icon: Github, href: 'https://github.com', name: 'GitHub', color: 'hover:text-gray-400' },
-    { icon: Linkedin, href: 'https://linkedin.com', name: 'LinkedIn', color: 'hover:text-blue-400' },
-    { icon: Twitter, href: 'https://twitter.com', name: 'Twitter', color: 'hover:text-sky-400' },
-  ];
-
-  const quickLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
-    { name: 'Skills', href: '#skills' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Experience', href: '#experience' },
-    { name: 'Contact', href: '#contact' },
-  ];
-
-  const services = [
-    'Flutter Development',
-    'React Applications',
-    'AI Integration',
-    'Full-Stack Solutions'
-  ];
+  const handleSubscribe = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (newsletterEmail) {
+      setIsSubscribed(true);
+      setNewsletterEmail('');
+    }
+  };
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const quickLinks = [
+    { name: 'Home', href: '#home' },
+    { name: 'Capabilities & Services', href: '#services' },
+    { name: 'Project Showcase', href: '#projects' },
+    { name: 'Scope Estimator', href: '#estimator' },
+    { name: 'Engineering Process', href: '#process' },
+    { name: 'Tech Stack Matrix', href: '#skills' },
+    { name: 'Client Wall of Love', href: '#testimonials' },
+    { name: 'Contact Agency', href: '#contact' },
+  ];
+
+  const services = [
+    'Web Engineering (Next.js / React)',
+    'Flutter Mobile Apps (iOS/Android)',
+    'Autonomous AI Agents & RAG',
+    'Enterprise Cloud & DevOps',
+    'UI/UX Product Architecture',
+    'IPDR Cybersecurity & Log Analysis',
+  ];
+
   return (
-    <footer className="relative bg-gradient-to-br from-[#0D1117] to-[#161B22] overflow-hidden">
-      {/* Background elements */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-10 left-10 w-32 h-32 bg-[#AD8B73] rounded-full blur-2xl" />
-        <div className="absolute bottom-10 right-10 w-40 h-40 bg-[#AD8B73] rounded-full blur-2xl" />
-      </div>
+    <footer className="bg-[#0F172A] text-slate-300 relative overflow-hidden border-t border-slate-800">
+      {/* Background glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-indigo-500/10 rounded-full blur-[140px] pointer-events-none" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 py-16">
-        {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
-          
-          {/* Brand Info */}
-          <motion.div
-            className="space-y-6"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <motion.div 
-              className="flex items-center gap-3"
-              whileHover={{ scale: 1.05 }}
-            >
-              <div className="w-10 h-10 bg-gradient-to-br from-[#AD8B73] to-[#8B6F47] rounded-xl flex items-center justify-center">
-                <Code className="w-5 h-5 text-white" />
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+        {/* Main 4-Col Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 sm:gap-10 mb-12">
+          {/* Brand Info (4 cols) */}
+          <div className="lg:col-span-4 space-y-4">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-gradient-to-br from-indigo-500 via-violet-600 to-cyan-500 rounded-xl flex items-center justify-center text-white shadow-lg">
+                <Flame className="w-5 h-5" />
               </div>
-              <h3 className="text-2xl font-bold text-white">Mayur Chouhan</h3>
-            </motion.div>
-            <p className="text-gray-400 leading-relaxed">
-              Full-Stack Developer specializing in Flutter, React, and AI-powered solutions. 
-              Turning ideas into innovative digital experiences.
+              <span className="text-2xl font-black tracking-tight text-white font-display">
+                V<span className="text-indigo-400">BUILD</span>
+              </span>
+            </div>
+
+            <p className="text-xs text-slate-400 leading-relaxed">
+              VBUILD (<a href="https://vbuild.shop/" target="_blank" rel="noopener noreferrer" className="text-indigo-400 hover:underline font-mono">vbuild.shop</a>) is a premier digital engineering agency crafting high-impact web platforms, Flutter mobile products, and autonomous AI systems with 100% IP code ownership.
             </p>
-            <div className="flex space-x-4">
-              {socialLinks.map((social, index) => (
-                <motion.a
-                  key={social.name}
-                  href={social.href}
-                  className={`p-3 bg-white/5 backdrop-blur-xl border border-[#AD8B73]/20 rounded-xl text-gray-400 ${social.color} transition-all duration-300 hover:border-[#AD8B73]/40`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={social.name}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  whileHover={{ 
-                    scale: 1.1,
-                    y: -2,
-                    boxShadow: '0 10px 25px rgba(173, 139, 115, 0.2)'
-                  }}
-                  whileTap={{ scale: 0.9 }}
-                >
-                  <social.icon className="w-5 h-5" />
-                </motion.a>
-              ))}
-            </div>
-          </motion.div>
 
-          {/* Quick Links */}
-          <motion.div
-            className="space-y-6"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            viewport={{ once: true }}
-          >
-            <h4 className="text-lg font-semibold text-white mb-4">Quick Links</h4>
-            <ul className="space-y-3">
-              {quickLinks.map((link, index) => (
-                <motion.li 
-                  key={link.name}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                >
-                  <motion.a
-                    href={link.href}
-                    className="text-gray-400 hover:text-[#AD8B73] transition-colors duration-300 flex items-center group"
-                    whileHover={{ x: 5 }}
-                  >
-                    <span className="w-2 h-2 bg-[#AD8B73] rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity"></span>
-                    {link.name}
-                  </motion.a>
-                </motion.li>
+            <div className="flex items-center gap-2 text-xs font-mono text-indigo-300 bg-white/5 p-2.5 rounded-xl border border-white/10">
+              <ShieldCheck className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+              <span>100% Codebase IP Ownership</span>
+            </div>
+
+            <div className="flex space-x-3 pt-2">
+              <a
+                href="https://github.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2.5 bg-slate-900 border border-slate-800 rounded-xl text-slate-400 hover:text-white hover:border-indigo-500 transition-colors active:scale-[0.95]"
+              >
+                <Github className="w-4 h-4" />
+              </a>
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2.5 bg-slate-900 border border-slate-800 rounded-xl text-slate-400 hover:text-indigo-400 hover:border-indigo-500 transition-colors active:scale-[0.95]"
+              >
+                <Linkedin className="w-4 h-4" />
+              </a>
+              <a
+                href="https://twitter.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2.5 bg-slate-900 border border-slate-800 rounded-xl text-slate-400 hover:text-sky-400 hover:border-sky-400 transition-colors active:scale-[0.95]"
+              >
+                <Twitter className="w-4 h-4" />
+              </a>
+            </div>
+          </div>
+
+          {/* Quick Links (3 cols) */}
+          <div className="lg:col-span-3 space-y-3 sm:space-y-4">
+            <h4 className="text-xs sm:text-sm font-bold text-white uppercase tracking-wider">Quick Navigation</h4>
+            <ul className="grid grid-cols-2 lg:grid-cols-1 gap-2 text-xs">
+              {quickLinks.map((link) => (
+                <li key={link.name}>
+                  <a href={link.href} className="text-slate-400 hover:text-indigo-300 transition-colors flex items-center gap-1.5 py-0.5">
+                    <span className="w-1.5 h-1.5 bg-indigo-400 rounded-full flex-shrink-0" />
+                    <span className="truncate">{link.name}</span>
+                  </a>
+                </li>
               ))}
             </ul>
-          </motion.div>
+          </div>
 
-          {/* Services */}
-          <motion.div
-            className="space-y-6"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            <h4 className="text-lg font-semibold text-white mb-4">Services</h4>
-            <ul className="space-y-3">
-              {services.map((service, index) => (
-                <motion.li 
-                  key={service}
-                  className="text-gray-400 hover:text-[#AD8B73] transition-colors duration-300 cursor-pointer"
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  whileHover={{ x: 5 }}
-                >
-                  {service}
-                </motion.li>
+          {/* Services (2 cols) */}
+          <div className="lg:col-span-2 space-y-3 sm:space-y-4">
+            <h4 className="text-xs sm:text-sm font-bold text-white uppercase tracking-wider">Capabilities</h4>
+            <ul className="space-y-2 text-xs">
+              {services.map((srv) => (
+                <li key={srv} className="text-slate-400 hover:text-white transition-colors cursor-default leading-tight">
+                  {srv}
+                </li>
               ))}
             </ul>
-          </motion.div>
+          </div>
 
-          {/* Contact Info */}
-          <motion.div
-            className="space-y-6"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            viewport={{ once: true }}
-          >
-            <h4 className="text-lg font-semibold text-white mb-4">Get in Touch</h4>
-            <div className="space-y-4">
-              <motion.div 
-                className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors group"
-                whileHover={{ x: 5 }}
-              >
-                <Mail className="w-5 h-5 text-[#AD8B73] group-hover:text-[#8B6F47]" />
-                <span className="text-sm">mayurchouhan8055@gmail.com</span>
-              </motion.div>
-              <motion.div 
-                className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors group"
-                whileHover={{ x: 5 }}
-              >
-                <Phone className="w-5 h-5 text-[#AD8B73] group-hover:text-[#8B6F47]" />
-                <span className="text-sm">+91 6263850508</span>
-              </motion.div>
-              <motion.div 
-                className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors group"
-                whileHover={{ x: 5 }}
-              >
-                <MapPin className="w-5 h-5 text-[#AD8B73] group-hover:text-[#8B6F47]" />
-                <span className="text-sm">Indore, India</span>
-              </motion.div>
-            </div>
-          </motion.div>
+          {/* Newsletter Box (3 cols) */}
+          <div className="lg:col-span-3 space-y-3 sm:space-y-4">
+            <h4 className="text-xs sm:text-sm font-bold text-white uppercase tracking-wider">Tech Insights Newsletter</h4>
+            <p className="text-xs text-slate-400 leading-relaxed">
+              Get monthly engineering breakdowns, AI architecture benchmarks, and tech trends.
+            </p>
+
+            <form onSubmit={handleSubscribe} className="space-y-2">
+              <div className="relative">
+                <input
+                  type="email"
+                  required
+                  value={newsletterEmail}
+                  onChange={(e) => setNewsletterEmail(e.target.value)}
+                  placeholder="cto@company.com"
+                  className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-800 rounded-xl text-xs text-white placeholder-slate-500 focus:border-indigo-500 focus:outline-none pr-10"
+                />
+                <button
+                  type="submit"
+                  className="absolute right-1.5 top-1.5 p-1.5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg transition-colors active:scale-[0.95]"
+                >
+                  <Send className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            </form>
+
+            {isSubscribed && (
+              <div className="flex items-center gap-1.5 text-xs text-emerald-400 font-semibold">
+                <CheckCircle2 className="w-4 h-4 flex-shrink-0" />
+                <span>Subscribed! Check your inbox soon.</span>
+              </div>
+            )}
+          </div>
         </div>
 
-        {/* Divider */}
-        <motion.div 
-          className="w-full h-px bg-gradient-to-r from-transparent via-[#AD8B73]/50 to-transparent mb-8"
-          initial={{ scaleX: 0 }}
-          whileInView={{ scaleX: 1 }}
-          transition={{ duration: 1 }}
-          viewport={{ once: true }}
-        />
-
         {/* Bottom Bar */}
-        <motion.div
-          className="flex flex-col md:flex-row justify-between items-center gap-4"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          viewport={{ once: true }}
-        >
-          <p className="text-gray-400 text-sm text-center md:text-left">
-            &copy; {currentYear} Mayur Chouhan. All rights reserved.
-            <span className="ml-2 text-[#AD8B73]">Made with</span>
-            <motion.span
-              className="inline-block mx-1 text-red-500"
-              animate={{ scale: [1, 1.2, 1] }}
-              transition={{ duration: 1, repeat: Infinity }}
-            >
-              <Heart className="w-4 h-4 inline fill-current" />
-            </motion.span>
-            <span className="text-[#AD8B73]">in India</span>
+        <div className="pt-6 sm:pt-8 border-t border-slate-900 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400 text-center sm:text-left">
+          <p>
+            &copy; {currentYear} VBUILD Digital Agency (<a href="https://vbuild.shop/" target="_blank" rel="noopener noreferrer" className="hover:text-white underline font-mono">vbuild.shop</a>). All rights reserved. Crafted with precision.
           </p>
-          
-          {/* Scroll to Top Button */}
-          <motion.button
+
+          <button
             onClick={scrollToTop}
-            className="flex items-center gap-2 px-4 py-2 bg-white/5 backdrop-blur-xl border border-[#AD8B73]/30 rounded-xl text-gray-400 hover:text-white hover:border-[#AD8B73] transition-all duration-300"
-            whileHover={{ 
-              scale: 1.05,
-              boxShadow: '0 5px 15px rgba(173, 139, 115, 0.3)'
-            }}
-            whileTap={{ scale: 0.95 }}
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            viewport={{ once: true }}
+            className="flex items-center gap-2 px-4 py-2 bg-slate-900 hover:bg-slate-800 border border-slate-800 rounded-xl text-slate-300 hover:text-white transition-colors active:scale-[0.95]"
           >
             <ArrowUp className="w-4 h-4" />
-            <span className="text-sm">Back to Top</span>
-          </motion.button>
-        </motion.div>
+            <span>Back to Top</span>
+          </button>
+        </div>
       </div>
     </footer>
   );
