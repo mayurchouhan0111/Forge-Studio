@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { ArrowDown, Code, Sparkles, Rocket, Zap, Star, Play, Github, Linkedin, Mail } from 'lucide-react';
+import Estimator from './Estimator';
 
 const Hero = () => {
   const roles = [
@@ -111,6 +112,8 @@ const Hero = () => {
         >
           IT Student at SGSITS Indore crafting innovative mobile apps, web solutions, and AI-powered systems
         </motion.p>
+
+        <Estimator />
 
         {/* CTA Buttons */}
         <motion.div 
