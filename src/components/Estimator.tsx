@@ -63,21 +63,21 @@ const Estimator: React.FC<EstimatorProps> = ({ onOpenBooking }) => {
   const estimatedWeeks = Math.ceil(selectedPt.weeks + selectedSc.weeksAdd + addOnsTotalWeeks);
 
   return (
-    <section id="estimator" className="py-24 px-4 sm:px-6 bg-slate-50 relative overflow-hidden">
+    <section id="estimator" className="py-24 px-4 sm:px-6 bg-slate-50 dark:bg-[#04070A] relative overflow-hidden transition-colors">
       {/* Ambient background glows */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-indigo-100/50 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-emerald-500/10 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="max-w-6xl mx-auto z-10 relative">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-50 border border-indigo-200 text-indigo-700 text-xs font-semibold mb-4 shadow-sm animate-soft-breath">
-            <Calculator className="w-3.5 h-3.5 text-indigo-600 animate-wiggle-icon" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-50 dark:bg-[#0A0F18] border border-indigo-200 dark:border-emerald-500/30 text-indigo-700 dark:text-emerald-400 text-xs font-semibold mb-4 shadow-sm animate-soft-breath">
+            <Calculator className="w-3.5 h-3.5 text-indigo-600 dark:text-emerald-400 animate-wiggle-icon" />
             <span className="uppercase tracking-wider font-mono text-[11px]">Instant Scope Estimator</span>
           </div>
-          <h2 className="text-3xl sm:text-5xl font-black text-slate-900 mb-4 tracking-tight font-display">
+          <h2 className="text-3xl sm:text-5xl font-black text-slate-900 dark:text-white mb-4 tracking-tight font-display">
             Interactive <span className="shimmer-text">Project Calculator</span>
           </h2>
-          <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
+          <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
             Select your architecture preferences, stage, and add-ons to calculate a budget and timeline estimate in seconds.
           </p>
         </div>
@@ -86,7 +86,7 @@ const Estimator: React.FC<EstimatorProps> = ({ onOpenBooking }) => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Left Column: Form Controls */}
           <motion.div
-            className="lg:col-span-7 glass-card p-6 sm:p-8 rounded-3xl border border-slate-200 bg-white space-y-6 sm:space-y-8 shadow-sm card-shine-effect"
+            className="lg:col-span-7 glass-card p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-slate-800/80 bg-white dark:bg-[#0A0F18] space-y-6 sm:space-y-8 shadow-sm card-shine-effect"
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
@@ -94,7 +94,7 @@ const Estimator: React.FC<EstimatorProps> = ({ onOpenBooking }) => {
           >
             {/* Step 1: Select Project Type */}
             <div>
-              <label className="block text-xs font-bold uppercase tracking-wider text-indigo-600 mb-3">
+              <label className="block text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-emerald-400 mb-3 font-heading">
                 1. Select Core Product Architecture
               </label>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
@@ -105,12 +105,12 @@ const Estimator: React.FC<EstimatorProps> = ({ onOpenBooking }) => {
                     onClick={() => setProjectType(pt.id)}
                     className={`p-3.5 rounded-2xl text-left transition-all border active:scale-[0.98] ${
                       projectType === pt.id
-                        ? 'bg-indigo-50 border-indigo-600 text-slate-900 shadow-md font-bold'
-                        : 'bg-white border-slate-200 text-slate-700 hover:text-slate-900 hover:border-slate-300'
+                        ? 'bg-indigo-50 dark:bg-emerald-950/50 border-indigo-600 dark:border-emerald-500 text-slate-900 dark:text-white shadow-md font-bold'
+                        : 'bg-white dark:bg-slate-900/80 border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:border-slate-300 dark:hover:border-slate-700'
                     }`}
                   >
-                    <div className="font-bold text-xs sm:text-sm text-slate-900 mb-0.5">{pt.label}</div>
-                    <div className="text-[11px] text-slate-500 font-mono leading-tight">{pt.desc}</div>
+                    <div className="font-bold text-xs sm:text-sm text-slate-900 dark:text-white mb-0.5 font-heading">{pt.label}</div>
+                    <div className="text-[11px] text-slate-500 dark:text-slate-400 font-mono leading-tight">{pt.desc}</div>
                   </button>
                 ))}
               </div>
@@ -118,7 +118,7 @@ const Estimator: React.FC<EstimatorProps> = ({ onOpenBooking }) => {
 
             {/* Step 2: Select Scope Tier */}
             <div>
-              <label className="block text-xs font-bold uppercase tracking-wider text-violet-600 mb-3">
+              <label className="block text-xs font-bold uppercase tracking-wider text-violet-600 dark:text-amber-400 mb-3 font-heading">
                 2. Select Development Stage / Scope
               </label>
               <div className="grid grid-cols-1 xs:grid-cols-3 gap-2.5">
@@ -129,12 +129,12 @@ const Estimator: React.FC<EstimatorProps> = ({ onOpenBooking }) => {
                     onClick={() => setScope(sc.id)}
                     className={`p-3 sm:p-3.5 rounded-2xl text-left transition-all border active:scale-[0.98] ${
                       scope === sc.id
-                        ? 'bg-violet-50 border-violet-600 text-slate-900 shadow-md font-bold'
-                        : 'bg-white border-slate-200 text-slate-700 hover:text-slate-900 hover:border-slate-300'
+                        ? 'bg-violet-50 dark:bg-amber-950/50 border-violet-600 dark:border-amber-500 text-slate-900 dark:text-white shadow-md font-bold'
+                        : 'bg-white dark:bg-slate-900/80 border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:border-slate-300 dark:hover:border-slate-700'
                     }`}
                   >
-                    <div className="font-bold text-xs text-slate-900 mb-1">{sc.label}</div>
-                    <div className="text-[10px] sm:text-[11px] text-slate-500 leading-tight">{sc.desc}</div>
+                    <div className="font-bold text-xs text-slate-900 dark:text-white mb-1 font-heading">{sc.label}</div>
+                    <div className="text-[10px] sm:text-[11px] text-slate-500 dark:text-slate-400 leading-tight">{sc.desc}</div>
                   </button>
                 ))}
               </div>
@@ -142,7 +142,7 @@ const Estimator: React.FC<EstimatorProps> = ({ onOpenBooking }) => {
 
             {/* Step 3: Select Power Add-ons */}
             <div>
-              <label className="block text-xs font-bold uppercase tracking-wider text-cyan-600 mb-3">
+              <label className="block text-xs font-bold uppercase tracking-wider text-cyan-600 dark:text-cyan-400 mb-3 font-heading">
                 3. Select Capability Add-Ons (Optional)
               </label>
               <div className="space-y-2">
@@ -155,21 +155,21 @@ const Estimator: React.FC<EstimatorProps> = ({ onOpenBooking }) => {
                       onClick={() => toggleAddOn(ao.id)}
                       className={`w-full p-3 rounded-xl text-left flex items-center justify-between text-xs font-semibold transition-all border active:scale-[0.99] ${
                         isChecked
-                          ? 'bg-cyan-50 border-cyan-500 text-cyan-900 shadow-sm'
-                          : 'bg-white border-slate-200 text-slate-700 hover:border-slate-300'
+                          ? 'bg-cyan-50 dark:bg-cyan-950/60 border-cyan-500 text-cyan-900 dark:text-cyan-200 shadow-sm'
+                          : 'bg-white dark:bg-slate-900/80 border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:border-slate-300 dark:hover:border-slate-700'
                       }`}
                     >
                       <div className="flex items-center gap-2.5 flex-1 min-w-0 pr-2">
                         <div
                           className={`w-4 h-4 rounded flex items-center justify-center border flex-shrink-0 ${
-                            isChecked ? 'bg-cyan-600 border-cyan-600 text-white font-bold' : 'border-slate-300'
+                            isChecked ? 'bg-cyan-600 border-cyan-600 text-white font-bold' : 'border-slate-300 dark:border-slate-700'
                           }`}
                         >
                           {isChecked && <CheckCircle2 className="w-3 h-3 text-white stroke-[3]" />}
                         </div>
                         <span className="truncate">{ao.label}</span>
                       </div>
-                      <span className="font-mono text-cyan-700 text-xs font-bold flex-shrink-0">+${ao.cost}</span>
+                      <span className="font-mono text-cyan-700 dark:text-cyan-400 text-xs font-bold flex-shrink-0">+${ao.cost}</span>
                     </button>
                   );
                 })}
@@ -179,39 +179,39 @@ const Estimator: React.FC<EstimatorProps> = ({ onOpenBooking }) => {
 
           {/* Right Column: Real-Time Estimate Summary Card */}
           <motion.div
-            className="lg:col-span-5 glass-card p-6 sm:p-8 rounded-3xl border border-slate-200 bg-white sticky top-28 space-y-6 shadow-xl animate-border-pulse"
+            className="lg:col-span-5 glass-card p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-slate-800/80 bg-white dark:bg-[#0A0F18] sticky top-28 space-y-6 shadow-xl"
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <div className="flex items-center justify-between border-b border-slate-100 pb-4">
+            <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-4">
               <div className="flex items-center gap-2">
-                <div className="p-2 bg-indigo-50 border border-indigo-200 rounded-xl text-indigo-600">
+                <div className="p-2 bg-indigo-50 dark:bg-emerald-950/60 border border-indigo-200 dark:border-emerald-800 rounded-xl text-indigo-600 dark:text-emerald-400">
                   <Sparkles className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="text-base sm:text-lg font-bold text-slate-900">Calculated Estimate</h3>
-                  <p className="text-xs text-slate-500">Live configuration summary</p>
+                  <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white font-heading">Calculated Estimate</h3>
+                  <p className="text-xs text-slate-500 dark:text-slate-400">Live configuration summary</p>
                 </div>
               </div>
-              <span className="px-2.5 py-1 bg-emerald-50 border border-emerald-200 text-emerald-700 text-[10px] font-mono font-bold rounded-full">
+              <span className="px-2.5 py-1 bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800 text-emerald-700 dark:text-emerald-300 text-[10px] font-mono font-bold rounded-full">
                 Fixed Price SLA
               </span>
             </div>
 
             <div className="space-y-4">
-              <div className="flex justify-between items-center text-xs pb-2 border-b border-slate-100">
-                <span className="text-slate-500">Estimated Investment:</span>
-                <span className="text-xl sm:text-2xl font-black text-indigo-600 font-mono">
+              <div className="flex justify-between items-center text-xs pb-2 border-b border-slate-100 dark:border-slate-800">
+                <span className="text-slate-500 dark:text-slate-400">Estimated Investment:</span>
+                <span className="text-xl sm:text-2xl font-black text-indigo-600 dark:text-emerald-400 font-mono">
                   ${estimatedTotal.toLocaleString()} USD
                 </span>
               </div>
 
-              <div className="flex justify-between items-center text-xs pb-2 border-b border-slate-100">
-                <span className="text-slate-500">Estimated Turnaround:</span>
-                <span className="text-sm font-bold text-slate-900 font-mono flex items-center gap-1">
-                  <Clock className="w-3.5 h-3.5 text-indigo-600" />
+              <div className="flex justify-between items-center text-xs pb-2 border-b border-slate-100 dark:border-slate-800">
+                <span className="text-slate-500 dark:text-slate-400">Estimated Turnaround:</span>
+                <span className="text-sm font-bold text-slate-900 dark:text-white font-mono flex items-center gap-1">
+                  <Clock className="w-3.5 h-3.5 text-indigo-600 dark:text-emerald-400" />
                   {estimatedWeeks} Weeks
                 </span>
               </div>
@@ -224,7 +224,7 @@ const Estimator: React.FC<EstimatorProps> = ({ onOpenBooking }) => {
                     `Estimator Config: ${selectedPt.label} (${selectedSc.label}) - ~$${estimatedTotal}`
                   )
                 }
-                className="button-shine-flare w-full py-4 bg-gradient-to-r from-indigo-600 via-violet-600 to-indigo-700 hover:opacity-95 text-white font-extrabold text-xs sm:text-sm uppercase tracking-wider rounded-xl shadow-xl shadow-indigo-500/25 transition-all flex items-center justify-center gap-2 active:scale-[0.98]"
+                className="btn-primary-gradient button-shine-flare w-full py-4 text-slate-950 font-black text-xs sm:text-sm uppercase tracking-wider rounded-xl shadow-xl transition-all flex items-center justify-center gap-2 active:scale-[0.98]"
               >
                 <span>Lock In Estimate & Reserve Slot</span>
                 <ArrowRight className="w-4 h-4" />

@@ -119,21 +119,21 @@ const Projects: React.FC<ProjectsProps> = ({ onOpenBooking }) => {
     activeTab === 'All' ? projectsList : projectsList.filter((p) => p.category === activeTab);
 
   return (
-    <section id="projects" className="py-24 px-4 sm:px-6 bg-slate-50 relative overflow-hidden">
+    <section id="projects" className="py-24 px-4 sm:px-6 bg-slate-50 dark:bg-[#04070A] relative overflow-hidden transition-colors">
       {/* Ambient Background Glow */}
-      <div className="absolute top-1/4 right-0 w-96 h-96 bg-indigo-200/40 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-1/4 right-0 w-96 h-96 bg-emerald-500/10 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto z-10 relative">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-50 border border-indigo-200 text-indigo-700 text-xs font-bold mb-4 shadow-sm animate-soft-breath">
-            <Sparkles className="w-3.5 h-3.5 text-indigo-600 animate-pulse-glow-icon" />
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-50 dark:bg-[#0A0F18] border border-indigo-200 dark:border-emerald-500/30 text-indigo-700 dark:text-emerald-400 text-xs font-bold mb-4 shadow-sm animate-soft-breath">
+            <Sparkles className="w-3.5 h-3.5 text-indigo-600 dark:text-emerald-400 animate-pulse-glow-icon" />
             <span className="uppercase tracking-wider font-mono text-[11px]">Engineering Portfolio</span>
           </div>
-          <h2 className="text-3xl sm:text-5xl font-black text-slate-900 mb-4 tracking-tight font-display">
+          <h2 className="text-3xl sm:text-5xl font-black text-slate-900 dark:text-white mb-4 tracking-tight font-display">
             Featured <span className="shimmer-text">Client Successes</span>
           </h2>
-          <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-medium">
+          <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
             Explore production software engineered by VBUILD for high-growth tech startups and enterprise platforms.
           </p>
         </div>
@@ -146,8 +146,8 @@ const Projects: React.FC<ProjectsProps> = ({ onOpenBooking }) => {
               onClick={() => setActiveTab(tab)}
               className={`px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-extrabold transition-all duration-300 active:scale-[0.97] ${
                 activeTab === tab
-                  ? 'bg-gradient-to-r from-indigo-600 via-violet-600 to-indigo-700 text-white shadow-xl shadow-indigo-500/30 scale-105 border-0'
-                  : 'bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 hover:text-slate-900 shadow-sm'
+                  ? 'bg-gradient-to-r from-emerald-500 to-teal-600 text-slate-950 shadow-xl shadow-emerald-500/30 scale-105 border-0'
+                  : 'bg-white dark:bg-[#0A0F18] border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white shadow-sm'
               }`}
             >
               {tab}
@@ -162,7 +162,7 @@ const Projects: React.FC<ProjectsProps> = ({ onOpenBooking }) => {
             return (
               <motion.div
                 key={project.id}
-                className="glass-card glass-card-hover rounded-3xl overflow-hidden border border-slate-200 bg-white flex flex-col justify-between shadow-lg hover:shadow-2xl hover:shadow-indigo-500/20 cursor-default group relative"
+                className="glass-card glass-card-hover rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800/80 bg-white dark:bg-[#0A0F18] flex flex-col justify-between shadow-lg hover:shadow-2xl hover:shadow-emerald-500/20 cursor-default group relative"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 whileHover={{ y: -8, scale: 1.02 }}
@@ -192,7 +192,7 @@ const Projects: React.FC<ProjectsProps> = ({ onOpenBooking }) => {
                   {/* Category Pill Overlay */}
                   <div className="absolute bottom-4 left-5 right-5 flex items-center justify-between text-white z-10">
                     <div className="flex items-center gap-2.5">
-                      <div className={`p-2.5 rounded-xl bg-gradient-to-br ${project.accent} text-white shadow-lg shadow-indigo-500/40 group-hover:rotate-12 transition-transform duration-300`}>
+                      <div className={`p-2.5 rounded-xl bg-gradient-to-br ${project.accent} text-white shadow-lg group-hover:rotate-12 transition-transform duration-300`}>
                         <IconComp className="w-4 h-4" />
                       </div>
                       <span className="text-xs font-mono font-bold text-slate-200 uppercase tracking-wider">{project.category}</span>
@@ -203,10 +203,10 @@ const Projects: React.FC<ProjectsProps> = ({ onOpenBooking }) => {
                 {/* Card Body */}
                 <div className="p-6 sm:p-8 flex-1 flex flex-col justify-between space-y-6">
                   <div>
-                    <h3 className="text-2xl font-black text-slate-900 mb-2 leading-tight group-hover:text-indigo-600 transition-colors font-display">
+                    <h3 className="text-2xl font-black text-slate-900 dark:text-white mb-2 leading-tight group-hover:text-indigo-600 dark:group-hover:text-emerald-400 transition-colors font-display">
                       {project.title}
                     </h3>
-                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4 font-medium">
+                    <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4 font-medium">
                       {project.description}
                     </p>
 
@@ -215,7 +215,7 @@ const Projects: React.FC<ProjectsProps> = ({ onOpenBooking }) => {
                       {project.technologies.map((tech) => (
                         <span
                           key={tech}
-                          className="px-3 py-1 bg-indigo-50 border border-indigo-200/80 rounded-xl text-xs font-mono font-bold text-indigo-700"
+                          className="px-3 py-1 bg-indigo-50 dark:bg-emerald-950/40 border border-indigo-200/80 dark:border-emerald-800/60 rounded-xl text-xs font-mono font-bold text-indigo-700 dark:text-emerald-300"
                         >
                           {tech}
                         </span>
@@ -224,10 +224,10 @@ const Projects: React.FC<ProjectsProps> = ({ onOpenBooking }) => {
                   </div>
 
                   {/* Footer Action Buttons */}
-                  <div className="pt-4 border-t border-slate-100 flex items-center justify-between gap-3">
+                  <div className="pt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between gap-3">
                     <button
                       onClick={() => setSelectedCaseStudy(project)}
-                      className="btn-primary-gradient button-shine-flare px-5 py-3 rounded-xl text-xs font-extrabold flex items-center gap-2 shadow-md active:scale-[0.98]"
+                      className="btn-primary-gradient button-shine-flare px-5 py-3 rounded-xl text-xs font-black text-slate-950 flex items-center gap-2 shadow-md active:scale-[0.98]"
                     >
                       <TrendingUp className="w-4 h-4" />
                       <span>View Case Study</span>
@@ -255,7 +255,7 @@ const Projects: React.FC<ProjectsProps> = ({ onOpenBooking }) => {
         {selectedCaseStudy && (
           <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
             <motion.div
-              className="fixed inset-0 bg-slate-950/60 backdrop-blur-md"
+              className="fixed inset-0 bg-slate-950/80 backdrop-blur-md"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -263,7 +263,7 @@ const Projects: React.FC<ProjectsProps> = ({ onOpenBooking }) => {
             />
 
             <motion.div
-              className="relative w-full max-w-3xl bg-white border border-slate-200 rounded-3xl p-6 sm:p-9 shadow-2xl z-10 max-h-[90vh] overflow-y-auto text-slate-900"
+              className="relative w-full max-w-3xl bg-white dark:bg-[#0A0F18] border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-9 shadow-2xl z-10 max-h-[90vh] overflow-y-auto text-slate-900 dark:text-white"
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
@@ -274,39 +274,39 @@ const Projects: React.FC<ProjectsProps> = ({ onOpenBooking }) => {
 
               <button
                 onClick={() => setSelectedCaseStudy(null)}
-                className="absolute top-5 right-5 p-2 text-slate-400 hover:text-slate-900 bg-slate-100 rounded-full z-20"
+                className="absolute top-5 right-5 p-2 text-slate-400 hover:text-slate-900 dark:hover:text-white bg-slate-100 dark:bg-slate-800 rounded-full z-20"
               >
                 <X className="w-5 h-5" />
               </button>
 
               {/* Header */}
               <div className="mb-6 space-y-2 pt-1">
-                <span className="px-3.5 py-1 bg-indigo-50 border border-indigo-200 text-indigo-700 rounded-full text-xs font-black font-mono uppercase">
+                <span className="px-3.5 py-1 bg-indigo-50 dark:bg-emerald-950/60 border border-indigo-200 dark:border-emerald-800 text-indigo-700 dark:text-emerald-300 rounded-full text-xs font-black font-mono uppercase">
                   {selectedCaseStudy.category}
                 </span>
-                <h3 className="text-2xl sm:text-3xl font-black text-slate-900 pt-1 font-display">
+                <h3 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white pt-1 font-display">
                   {selectedCaseStudy.title}
                 </h3>
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-medium">
+                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
                   {selectedCaseStudy.description}
                 </p>
               </div>
 
               {/* Challenge & Solution Grid */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
-                <div className="bg-amber-50 p-4.5 rounded-2xl border border-amber-200">
-                  <h4 className="text-xs font-extrabold uppercase tracking-wider text-amber-800 mb-2">
+                <div className="bg-amber-50 dark:bg-amber-950/40 p-4.5 rounded-2xl border border-amber-200 dark:border-amber-800/80">
+                  <h4 className="text-xs font-extrabold uppercase tracking-wider text-amber-800 dark:text-amber-300 mb-2 font-heading">
                     The Challenge:
                   </h4>
-                  <p className="text-xs text-amber-900 leading-relaxed font-medium">
+                  <p className="text-xs text-amber-900 dark:text-amber-200 leading-relaxed font-medium">
                     {selectedCaseStudy.challenge}
                   </p>
                 </div>
-                <div className="bg-indigo-50 p-4.5 rounded-2xl border border-indigo-200">
-                  <h4 className="text-xs font-extrabold uppercase tracking-wider text-indigo-900 mb-2">
+                <div className="bg-indigo-50 dark:bg-emerald-950/40 p-4.5 rounded-2xl border border-indigo-200 dark:border-emerald-800/80">
+                  <h4 className="text-xs font-extrabold uppercase tracking-wider text-indigo-900 dark:text-emerald-300 mb-2 font-heading">
                     The VBUILD Solution:
                   </h4>
-                  <p className="text-xs text-indigo-800 leading-relaxed font-medium">
+                  <p className="text-xs text-indigo-800 dark:text-emerald-200 leading-relaxed font-medium">
                     {selectedCaseStudy.solution}
                   </p>
                 </div>
@@ -314,13 +314,13 @@ const Projects: React.FC<ProjectsProps> = ({ onOpenBooking }) => {
 
               {/* Outcome Metrics */}
               <div className="mb-6">
-                <h4 className="text-xs font-extrabold uppercase tracking-wider text-slate-700 mb-3">
+                <h4 className="text-xs font-extrabold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-3 font-heading">
                   Verified Outcome & Metrics:
                 </h4>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                   {selectedCaseStudy.results.map((res: string, i: number) => (
-                    <div key={i} className="p-3.5 bg-slate-50 rounded-xl border border-slate-200 text-center font-extrabold text-xs text-slate-900 flex items-center justify-center gap-2 shadow-xs">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0" />
+                    <div key={i} className="p-3.5 bg-slate-50 dark:bg-slate-800/80 rounded-xl border border-slate-200 dark:border-slate-700 text-center font-extrabold text-xs text-slate-900 dark:text-white flex items-center justify-center gap-2 shadow-xs">
+                      <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0" />
                       <span>{res}</span>
                     </div>
                   ))}
@@ -331,7 +331,7 @@ const Projects: React.FC<ProjectsProps> = ({ onOpenBooking }) => {
               <div className="flex justify-end gap-3 pt-2">
                 <button
                   onClick={() => setSelectedCaseStudy(null)}
-                  className="px-5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold rounded-xl transition-colors"
+                  className="px-5 py-2.5 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 text-slate-700 dark:text-slate-300 text-xs font-bold rounded-xl transition-colors"
                 >
                   Close Case Study
                 </button>
@@ -341,7 +341,7 @@ const Projects: React.FC<ProjectsProps> = ({ onOpenBooking }) => {
                     setSelectedCaseStudy(null);
                     onOpenBooking(`Replicate Architecture: ${title}`);
                   }}
-                  className="btn-primary-gradient button-shine-flare px-6 py-3 text-xs font-black rounded-xl shadow-lg active:scale-[0.98] flex items-center gap-2"
+                  className="btn-primary-gradient button-shine-flare px-6 py-3 text-xs font-black text-slate-950 rounded-xl shadow-lg active:scale-[0.98] flex items-center gap-2"
                 >
                   <span>Build Similar Product</span>
                   <ArrowRight className="w-4 h-4" />

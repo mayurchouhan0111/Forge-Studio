@@ -12,6 +12,7 @@ import {
   Layers,
   CheckCircle2,
 } from 'lucide-react';
+import { VBuildLogoIcon } from './VBuildLogo';
 
 interface HeroProps {
   onOpenBooking: (type?: string) => void;
@@ -36,42 +37,42 @@ const Hero: React.FC<HeroProps> = ({ onOpenBooking, onScrollToEstimator }) => {
   ];
 
   return (
-    <section id="home" className="relative min-h-screen pt-24 sm:pt-28 pb-16 sm:pb-20 flex flex-col justify-center overflow-hidden bg-[#F8FAFC]">
+    <section id="home" className="relative min-h-screen pt-28 sm:pt-32 pb-16 sm:pb-20 flex flex-col justify-center overflow-hidden bg-slate-50 dark:bg-[#04070A] transition-colors">
       {/* Background Glowing Ambient Orbs */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[300px] sm:w-[600px] h-[300px] sm:h-[600px] bg-gradient-to-tr from-indigo-200/50 via-cyan-100/40 to-violet-100/50 rounded-full blur-[90px] sm:blur-[120px] pointer-events-none animate-orb-pulse" />
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[300px] sm:w-[600px] h-[300px] sm:h-[600px] bg-gradient-to-tr from-emerald-500/15 via-amber-500/10 to-teal-500/15 rounded-full blur-[90px] sm:blur-[140px] pointer-events-none animate-orb-pulse" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 text-center">
         {/* Live Tagline Pill */}
         <motion.div
-          className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-50 border border-indigo-200/80 text-indigo-700 text-xs font-semibold mb-6 shadow-sm"
+          className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-indigo-50/90 dark:bg-[#0A0F18] border border-indigo-200 dark:border-emerald-500/30 text-indigo-700 dark:text-emerald-400 text-xs font-semibold mb-6 shadow-sm backdrop-blur-md"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
         >
-          <span className="w-2 h-2 rounded-full bg-indigo-600 animate-ping flex-shrink-0" />
-          <span className="uppercase tracking-wider font-mono text-[11px]">
-            Next-Gen Software & AI Product Agency | 100% IP Ownership
+          <VBuildLogoIcon className="w-4 h-4 flex-shrink-0" />
+          <span className="uppercase tracking-[0.18em] font-mono text-[11px] font-bold">
+            AUTOMATE <span className="text-emerald-500">•</span> CONNECT <span className="text-amber-500">•</span> GROW
           </span>
         </motion.div>
 
         {/* Main Headline */}
         <motion.h1
-          className="text-3xl xs:text-4xl sm:text-6xl md:text-7xl xl:text-8xl font-black text-slate-900 tracking-tight leading-[1.1] mb-6 font-display"
+          className="text-3xl xs:text-4xl sm:text-6xl md:text-7xl xl:text-8xl font-black text-slate-900 dark:text-white tracking-tight leading-[1.1] mb-6 font-display"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1 }}
         >
-          We Build <span className="shimmer-text">High-Impact</span> Web Apps, Mobile & <span className="text-indigo-600">AI Systems</span>
+          We Build <span className="shimmer-text">High-Impact</span> Web Apps, Mobile & <span className="text-indigo-600 dark:text-emerald-400">AI Systems</span>
         </motion.h1>
 
         {/* Subtitle */}
         <motion.p
-          className="text-sm sm:text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed mb-8 sm:mb-12 font-normal"
+          className="text-sm sm:text-lg text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed mb-8 sm:mb-12 font-normal"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          From rapid MVP launches to enterprise scaling, <span className="text-indigo-600 font-semibold">VBUILD</span> partners with tech leaders to build hyper-scalable web platforms, Flutter mobile apps, and autonomous AI agents.
+          From rapid MVP launches to enterprise scaling, <span className="text-indigo-600 dark:text-emerald-400 font-semibold font-display">VBUILD</span> partners with tech leaders to build hyper-scalable web platforms, Flutter mobile apps, and autonomous AI agents with 100% IP code ownership.
         </motion.p>
 
         {/* Action CTAs */}
@@ -83,9 +84,9 @@ const Hero: React.FC<HeroProps> = ({ onOpenBooking, onScrollToEstimator }) => {
         >
           <button
             onClick={() => onOpenBooking('Hero Discovery Call')}
-            className="btn-primary-gradient button-shine-flare w-full sm:w-auto px-8 py-4 font-extrabold text-sm sm:text-base rounded-2xl active:scale-[0.98] flex items-center justify-center gap-3 group"
+            className="btn-primary-gradient button-shine-flare w-full sm:w-auto px-8 py-4 font-extrabold text-sm sm:text-base rounded-2xl active:scale-[0.98] flex items-center justify-center gap-3 group shadow-xl"
           >
-            <Sparkles className="w-5 h-5 text-white animate-pulse-glow-icon group-hover:rotate-45 transition-transform duration-300" />
+            <Sparkles className="w-5 h-5 text-white dark:text-slate-950 animate-pulse-glow-icon group-hover:rotate-45 transition-transform duration-300" />
             <span>Book Discovery Session</span>
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1.5 transition-transform" />
           </button>
@@ -94,29 +95,29 @@ const Hero: React.FC<HeroProps> = ({ onOpenBooking, onScrollToEstimator }) => {
             onClick={onScrollToEstimator}
             className="btn-secondary-outline w-full sm:w-auto px-8 py-4 font-bold text-sm sm:text-base rounded-2xl backdrop-blur-xl flex items-center justify-center gap-3 active:scale-[0.98] group"
           >
-            <Calculator className="w-5 h-5 text-indigo-600 animate-wiggle-icon group-hover:scale-110 transition-transform" />
+            <Calculator className="w-5 h-5 text-indigo-600 dark:text-amber-400 animate-wiggle-icon group-hover:scale-110 transition-transform" />
             <span>Launch Scope Calculator</span>
           </button>
         </motion.div>
 
         {/* Live Feature Chips */}
         <motion.div
-          className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-4 text-[11px] sm:text-xs font-semibold text-slate-700 mb-12 sm:mb-16"
+          className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-4 text-[11px] sm:text-xs font-semibold text-slate-700 dark:text-slate-300 mb-12 sm:mb-16"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.6 }}
         >
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white border border-slate-200 shadow-sm hover:border-indigo-300 transition-colors">
+          <div className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white dark:bg-[#0A0F18] border border-slate-200 dark:border-emerald-500/20 shadow-sm hover:border-emerald-400/40 transition-colors">
             <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0" />
             <span>Zero Tech Debt Codebase</span>
           </div>
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white border border-slate-200 shadow-sm hover:border-indigo-300 transition-colors">
+          <div className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white dark:bg-[#0A0F18] border border-slate-200 dark:border-emerald-500/20 shadow-sm hover:border-emerald-400/40 transition-colors">
             <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0" />
             <span>24/7 Dedicated Slack Channel</span>
           </div>
-          <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white border border-slate-200 shadow-sm hover:border-indigo-300 transition-colors">
+          <div className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white dark:bg-[#0A0F18] border border-slate-200 dark:border-emerald-500/20 shadow-sm hover:border-emerald-400/40 transition-colors">
             <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0" />
-            <span>30-Day Money Back Code Guarantee</span>
+            <span>100% Code & IP Ownership</span>
           </div>
         </motion.div>
 
@@ -130,26 +131,26 @@ const Hero: React.FC<HeroProps> = ({ onOpenBooking, onScrollToEstimator }) => {
           {stats.map((st, i) => (
             <motion.div
               key={i}
-              className="glass-card glass-card-hover p-4 sm:p-6 rounded-2xl text-center border border-slate-200 cursor-default bg-white shadow-sm"
+              className="glass-card glass-card-hover p-4 sm:p-6 rounded-2xl text-center border border-slate-200 dark:border-slate-800 cursor-default bg-white dark:bg-[#0A0F18] shadow-sm"
               whileHover={{ y: -6, scale: 1.03 }}
               transition={{ type: 'spring', stiffness: 300, damping: 20 }}
             >
-              <div className="text-2xl xs:text-3xl sm:text-4xl font-extrabold text-slate-900 font-display mb-1 text-shimmer break-words">
+              <div className="text-2xl xs:text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white font-display mb-1 shimmer-text break-words">
                 {st.value}
               </div>
-              <div className="text-[11px] sm:text-xs font-medium text-slate-600 leading-tight">{st.label}</div>
+              <div className="text-[11px] sm:text-xs font-medium text-slate-600 dark:text-slate-400 leading-tight">{st.label}</div>
             </motion.div>
           ))}
         </motion.div>
 
         {/* Client Partner Marquee Ticker */}
         <motion.div
-          className="border-t border-b border-slate-200 py-5 sm:py-6 overflow-hidden relative"
+          className="border-t border-b border-slate-200 dark:border-slate-800/80 py-5 sm:py-6 overflow-hidden relative"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.9 }}
         >
-          <div className="text-[10px] sm:text-xs font-mono tracking-widest uppercase text-slate-500 mb-3 sm:mb-4 px-2">
+          <div className="text-[10px] sm:text-xs font-mono tracking-widest uppercase text-slate-500 dark:text-slate-400 mb-3 sm:mb-4 px-2 font-bold">
             TRUSTED BY FORWARD-THINKING TECH COMPANIES & STARTUPS
           </div>
           
@@ -159,9 +160,9 @@ const Hero: React.FC<HeroProps> = ({ onOpenBooking, onScrollToEstimator }) => {
               return (
                 <div
                   key={idx}
-                  className="inline-flex items-center gap-2.5 opacity-70 hover:opacity-100 transition-opacity text-slate-700 font-bold text-xs sm:text-sm tracking-wider"
+                  className="inline-flex items-center gap-2.5 opacity-70 hover:opacity-100 transition-opacity text-slate-700 dark:text-slate-300 font-bold text-xs sm:text-sm tracking-wider"
                 >
-                  <IconComp className="w-4 h-4 sm:w-5 sm:h-5 text-indigo-600" />
+                  <IconComp className="w-4 h-4 sm:w-5 sm:h-5 text-indigo-600 dark:text-emerald-400" />
                   <span>{client.name}</span>
                 </div>
               );

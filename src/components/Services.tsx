@@ -31,8 +31,8 @@ const Services: React.FC<ServicesProps> = ({ onOpenBooking }) => {
       title: 'Full-Stack Web Engineering & Next.js Platforms',
       subtitle: 'High-performance, SSR-optimized, scalable web applications built for speed and conversion.',
       icon: Code,
-      accent: 'from-indigo-600 via-violet-600 to-indigo-700',
-      badgeClass: 'bg-indigo-50 border-indigo-200 text-indigo-700',
+      accent: 'from-emerald-500 via-teal-500 to-amber-500',
+      badgeClass: 'bg-emerald-50 dark:bg-emerald-950/60 border-emerald-200 dark:border-emerald-800 text-emerald-700 dark:text-emerald-300',
       badge: 'Popular',
       deliveryTime: '2 - 5 Weeks',
       tech: ['React 18', 'Next.js 14', 'TypeScript', 'Tailwind CSS', 'Node.js', 'PostgreSQL'],
@@ -53,7 +53,7 @@ const Services: React.FC<ServicesProps> = ({ onOpenBooking }) => {
       subtitle: 'iOS & Android mobile apps engineered with pixel-perfect UI, 60fps animations, and offline-first capabilities.',
       icon: Smartphone,
       accent: 'from-cyan-500 via-blue-600 to-indigo-600',
-      badgeClass: 'bg-cyan-50 border-cyan-200 text-cyan-700',
+      badgeClass: 'bg-cyan-50 dark:bg-cyan-950/60 border-cyan-200 dark:border-cyan-800 text-cyan-700 dark:text-cyan-300',
       badge: 'High Performance',
       deliveryTime: '3 - 6 Weeks',
       tech: ['Flutter', 'Dart', 'Firebase', 'Native iOS/Android', 'Bloc/Provider', 'SQLite'],
@@ -74,7 +74,7 @@ const Services: React.FC<ServicesProps> = ({ onOpenBooking }) => {
       subtitle: 'Transform business operations with custom LLM agents, vector semantic search, and document intelligence.',
       icon: Brain,
       accent: 'from-purple-600 via-indigo-600 to-pink-600',
-      badgeClass: 'bg-purple-50 border-purple-200 text-purple-700',
+      badgeClass: 'bg-purple-50 dark:bg-purple-950/60 border-purple-200 dark:border-purple-800 text-purple-700 dark:text-purple-300',
       badge: 'Cutting Edge',
       deliveryTime: '3 - 5 Weeks',
       tech: ['Python', 'OpenAI GPT-4o', 'LangChain', 'Pinecone', 'TensorFlow', 'FastAPI'],
@@ -95,7 +95,7 @@ const Services: React.FC<ServicesProps> = ({ onOpenBooking }) => {
       subtitle: 'Resilient cloud infrastructure, automated CI/CD pipelines, and microservice orchestration.',
       icon: Cloud,
       accent: 'from-emerald-500 via-teal-500 to-cyan-600',
-      badgeClass: 'bg-emerald-50 border-emerald-200 text-emerald-700',
+      badgeClass: 'bg-emerald-50 dark:bg-emerald-950/60 border-emerald-200 dark:border-emerald-800 text-emerald-700 dark:text-emerald-300',
       badge: 'Scalability',
       deliveryTime: '2 - 4 Weeks',
       tech: ['AWS', 'Docker', 'Kubernetes', 'Terraform', 'GitHub Actions', 'Redis'],
@@ -116,7 +116,7 @@ const Services: React.FC<ServicesProps> = ({ onOpenBooking }) => {
       subtitle: 'Bespoke design systems, interactive Figma prototypes, and user experience research.',
       icon: Layout,
       accent: 'from-rose-500 via-pink-500 to-amber-500',
-      badgeClass: 'bg-rose-50 border-rose-200 text-rose-700',
+      badgeClass: 'bg-rose-50 dark:bg-rose-950/60 border-rose-200 dark:border-rose-800 text-rose-700 dark:text-rose-300',
       badge: 'Design System',
       deliveryTime: '1 - 3 Weeks',
       tech: ['Figma', 'Design Systems', 'Micro-Interactions', 'Prototyping', 'User Testing'],
@@ -137,7 +137,7 @@ const Services: React.FC<ServicesProps> = ({ onOpenBooking }) => {
       subtitle: 'Specialized log analysis, anomaly detection, and security audit platforms for enterprise compliance.',
       icon: ShieldAlert,
       accent: 'from-red-500 via-amber-600 to-yellow-500',
-      badgeClass: 'bg-amber-50 border-amber-200 text-amber-700',
+      badgeClass: 'bg-amber-50 dark:bg-amber-950/60 border-amber-200 dark:border-amber-800 text-amber-700 dark:text-amber-300',
       badge: 'CyberShield',
       deliveryTime: '3 - 5 Weeks',
       tech: ['Python', 'Pandas', 'Cyber Security', 'Threat Detection', 'React', 'D3.js'],
@@ -159,22 +159,22 @@ const Services: React.FC<ServicesProps> = ({ onOpenBooking }) => {
       : servicesList.filter((s) => s.category === selectedCategory);
 
   return (
-    <section id="services" className="py-24 px-4 sm:px-6 bg-white relative overflow-hidden">
+    <section id="services" className="py-24 px-4 sm:px-6 bg-slate-50 dark:bg-[#04070A] relative overflow-hidden transition-colors">
       {/* Ambient Background Orbs */}
-      <div className="absolute top-1/3 left-0 w-80 h-80 bg-indigo-50 rounded-full blur-[100px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-blue-50 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/3 left-0 w-80 h-80 bg-emerald-500/10 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-amber-500/10 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto z-10 relative">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-50 border border-indigo-200 text-indigo-700 text-xs font-semibold mb-4 shadow-sm">
-            <Sparkles className="w-3.5 h-3.5" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-50 dark:bg-[#0A0F18] border border-indigo-200 dark:border-emerald-500/30 text-indigo-700 dark:text-emerald-400 text-xs font-semibold mb-4 shadow-sm">
+            <Sparkles className="w-3.5 h-3.5 text-indigo-600 dark:text-emerald-400" />
             <span className="uppercase tracking-wider font-mono text-[11px]">Engineering Capabilities</span>
           </div>
-          <h2 className="text-3xl sm:text-5xl font-black text-slate-900 mb-4 tracking-tight font-display">
+          <h2 className="text-3xl sm:text-5xl font-black text-slate-900 dark:text-white mb-4 tracking-tight font-display">
             End-to-End <span className="shimmer-text font-black">Digital Services</span>
           </h2>
-          <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
+          <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
             We assemble elite cross-functional squads to architect, engineer, and deploy high-performance software systems.
           </p>
         </div>
@@ -187,8 +187,8 @@ const Services: React.FC<ServicesProps> = ({ onOpenBooking }) => {
               onClick={() => setSelectedCategory(cat)}
               className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all whitespace-nowrap active:scale-[0.97] ${
                 selectedCategory === cat
-                  ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-500/25 font-bold'
-                  : 'bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 hover:text-slate-900 shadow-sm'
+                  ? 'bg-gradient-to-r from-emerald-500 to-teal-600 text-slate-950 shadow-lg shadow-emerald-500/25 font-black'
+                  : 'bg-white dark:bg-[#0A0F18] border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white shadow-sm'
               }`}
             >
               {cat}
@@ -203,7 +203,7 @@ const Services: React.FC<ServicesProps> = ({ onOpenBooking }) => {
             return (
               <motion.div
                 key={service.id}
-                className="glass-card glass-card-hover rounded-3xl p-6 sm:p-8 flex flex-col justify-between border border-slate-200 bg-white relative overflow-hidden group cursor-default shadow-md hover:shadow-2xl hover:shadow-indigo-500/15"
+                className="glass-card glass-card-hover rounded-3xl p-6 sm:p-8 flex flex-col justify-between border border-slate-200 dark:border-slate-800/80 bg-white dark:bg-[#0A0F18] relative overflow-hidden group cursor-default shadow-md hover:shadow-2xl hover:shadow-emerald-500/15"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 whileHover={{ y: -7, scale: 1.025 }}
@@ -216,7 +216,7 @@ const Services: React.FC<ServicesProps> = ({ onOpenBooking }) => {
                 <div>
                   {/* Icon & Badge */}
                   <div className="flex items-center justify-between mb-5 pt-1">
-                    <div className={`w-13 h-13 sm:w-14 sm:h-14 bg-gradient-to-br ${service.accent} rounded-2xl flex items-center justify-center shadow-lg shadow-indigo-500/25 text-white group-hover:scale-110 group-hover:rotate-3 transition-all duration-300`}>
+                    <div className={`w-13 h-13 sm:w-14 sm:h-14 bg-gradient-to-br ${service.accent} rounded-2xl flex items-center justify-center shadow-lg text-white group-hover:scale-110 group-hover:rotate-3 transition-all duration-300`}>
                       <IconComp className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
                     </div>
                     <span className={`px-3.5 py-1 border rounded-full text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider shadow-sm ${service.badgeClass}`}>
@@ -225,10 +225,10 @@ const Services: React.FC<ServicesProps> = ({ onOpenBooking }) => {
                   </div>
 
                   {/* Title & Subtitle */}
-                  <h3 className="text-lg sm:text-xl font-bold text-slate-900 mb-2 leading-snug group-hover:text-indigo-600 transition-colors">
+                  <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-2 leading-snug group-hover:text-indigo-600 dark:group-hover:text-emerald-400 transition-colors font-heading">
                     {service.title}
                   </h3>
-                  <p className="text-xs sm:text-sm text-slate-600 mb-5 leading-relaxed">
+                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mb-5 leading-relaxed">
                     {service.subtitle}
                   </p>
 
@@ -237,7 +237,7 @@ const Services: React.FC<ServicesProps> = ({ onOpenBooking }) => {
                     {service.tech.map((t: string) => (
                       <span
                         key={t}
-                        className="px-2.5 py-1 bg-slate-50 border border-slate-200/80 rounded-md text-[11px] font-mono text-slate-600"
+                        className="px-2.5 py-1 bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/80 rounded-md text-[11px] font-mono text-slate-700 dark:text-slate-300"
                       >
                         {t}
                       </span>
@@ -247,7 +247,7 @@ const Services: React.FC<ServicesProps> = ({ onOpenBooking }) => {
                   {/* Features Bullet List */}
                   <ul className="space-y-2 mb-6">
                     {service.features.slice(0, 4).map((ft: string, i: number) => (
-                      <li key={i} className="flex items-start gap-2 text-xs text-slate-700">
+                      <li key={i} className="flex items-start gap-2 text-xs text-slate-700 dark:text-slate-300">
                         <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5" />
                         <span>{ft}</span>
                       </li>
@@ -256,14 +256,14 @@ const Services: React.FC<ServicesProps> = ({ onOpenBooking }) => {
                 </div>
 
                 {/* Footer Link & SLA */}
-                <div className="pt-4 border-t border-slate-100 flex items-center justify-between gap-3">
-                  <div className="flex items-center gap-1.5 text-xs text-slate-500 font-medium font-mono">
+                <div className="pt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between gap-3">
+                  <div className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400 font-medium font-mono">
                     <Clock className="w-3.5 h-3.5 text-slate-400" />
                     <span>{service.deliveryTime}</span>
                   </div>
                   <button
                     onClick={() => setActiveModalService(service)}
-                    className="flex items-center gap-1.5 text-xs font-bold text-indigo-600 hover:text-indigo-700 group/btn"
+                    className="flex items-center gap-1.5 text-xs font-bold text-indigo-600 dark:text-emerald-400 hover:text-indigo-700 dark:hover:text-emerald-300 group/btn"
                   >
                     <span>View Architecture</span>
                     <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" />
@@ -280,7 +280,7 @@ const Services: React.FC<ServicesProps> = ({ onOpenBooking }) => {
         {activeModalService && (
           <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
             <motion.div
-              className="fixed inset-0 bg-slate-950/60 backdrop-blur-md"
+              className="fixed inset-0 bg-slate-950/80 backdrop-blur-md"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -288,7 +288,7 @@ const Services: React.FC<ServicesProps> = ({ onOpenBooking }) => {
             />
 
             <motion.div
-              className="relative w-full max-w-2xl bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-2xl z-10 max-h-[90vh] overflow-y-auto text-slate-900"
+              className="relative w-full max-w-2xl bg-white dark:bg-[#0A0F18] border border-slate-200 dark:border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl z-10 max-h-[90vh] overflow-y-auto text-slate-900 dark:text-white"
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
@@ -296,7 +296,7 @@ const Services: React.FC<ServicesProps> = ({ onOpenBooking }) => {
             >
               <button
                 onClick={() => setActiveModalService(null)}
-                className="absolute top-5 right-5 p-2 text-slate-400 hover:text-slate-700 bg-slate-100 rounded-full"
+                className="absolute top-5 right-5 p-2 text-slate-400 hover:text-slate-700 dark:hover:text-white bg-slate-100 dark:bg-slate-800 rounded-full"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -307,20 +307,20 @@ const Services: React.FC<ServicesProps> = ({ onOpenBooking }) => {
                     {React.createElement(activeModalService.icon, { className: 'w-6 h-6' })}
                   </div>
                   <div>
-                    <span className="text-xs font-mono text-indigo-600 font-bold uppercase">{activeModalService.category}</span>
-                    <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900">{activeModalService.title}</h3>
+                    <span className="text-xs font-mono text-indigo-600 dark:text-emerald-400 font-bold uppercase">{activeModalService.category}</span>
+                    <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white font-heading">{activeModalService.title}</h3>
                   </div>
                 </div>
 
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                   {activeModalService.subtitle}
                 </p>
 
                 <div>
-                  <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider mb-2">Technical Capabilities Included:</h4>
+                  <h4 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-2 font-heading">Technical Capabilities Included:</h4>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     {activeModalService.features.map((f: string, i: number) => (
-                      <div key={i} className="flex items-center gap-2 p-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-700">
+                      <div key={i} className="flex items-center gap-2 p-2.5 bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/80 rounded-xl text-xs text-slate-700 dark:text-slate-300">
                         <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0" />
                         <span>{f}</span>
                       </div>
@@ -328,20 +328,20 @@ const Services: React.FC<ServicesProps> = ({ onOpenBooking }) => {
                   </div>
                 </div>
 
-                <div className="bg-indigo-50 border border-indigo-200 p-4 rounded-2xl">
-                  <h4 className="text-xs font-bold text-indigo-900 uppercase tracking-wider mb-1">Guaranteed Client Deliverables:</h4>
-                  <p className="text-xs text-indigo-700 leading-relaxed">{activeModalService.deliverables}</p>
+                <div className="bg-indigo-50 dark:bg-emerald-950/40 border border-indigo-200 dark:border-emerald-800/60 p-4 rounded-2xl">
+                  <h4 className="text-xs font-bold text-indigo-900 dark:text-emerald-300 uppercase tracking-wider mb-1 font-heading">Guaranteed Client Deliverables:</h4>
+                  <p className="text-xs text-indigo-700 dark:text-emerald-200 leading-relaxed">{activeModalService.deliverables}</p>
                 </div>
 
                 <div className="pt-2 flex items-center justify-between gap-4">
-                  <span className="text-xs font-mono text-slate-500">Estimated SLA: {activeModalService.deliveryTime}</span>
+                  <span className="text-xs font-mono text-slate-500 dark:text-slate-400">Estimated SLA: {activeModalService.deliveryTime}</span>
                   <button
                     onClick={() => {
                       const srvName = activeModalService.title;
                       setActiveModalService(null);
                       onOpenBooking(srvName);
                     }}
-                    className="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold uppercase rounded-xl shadow-md transition-all flex items-center gap-2"
+                    className="btn-primary-gradient px-6 py-3 text-slate-950 font-black text-xs uppercase rounded-xl shadow-md transition-all flex items-center gap-2"
                   >
                     <span>Book Service Sprint</span>
                     <ArrowRight className="w-4 h-4" />
